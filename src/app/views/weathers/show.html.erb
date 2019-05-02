@@ -1,0 +1,10 @@
+<h1>Weathers#show</h1>
+<p>Find me in app/views/weathers/show.html.erb</p>
+
+<ul>
+  <li>Title : <%= @title %></li>
+  <li>Description    : <%= @description %></li>
+  <% @tables.each do |table|  %>
+  <li>Table    : <%= table[:title] %></li>
+  <% end %>
+</ul>
