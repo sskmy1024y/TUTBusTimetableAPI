@@ -10,7 +10,7 @@
       <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
       <% table[:table][:to_description].each do |row| %>
       <tr>
-        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:suttle] ? "o" : "" %></td></td>
+        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:shuttle] ? "o" : "" %></td></td>
       </tr>
       <% end %>
     </table>

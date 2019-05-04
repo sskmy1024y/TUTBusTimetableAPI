@@ -53,7 +53,7 @@ class WeathersController < ApplicationController
               interval: ([interval[1].to_f, interval[2].to_f].average * 60).round
             }
         
-          # シャトル運行フラグがあって、時間表記がない場合
+          # シャトル運行フラグがあり、次の時間表示の行の場合
           elsif is_shuttle[:status] && row.css('td')[0].inner_text != "～"
           
             # 表記あり時刻に近似しない時刻であることを確認
@@ -61,12 +61,12 @@ class WeathersController < ApplicationController
               goto_destination << {
                 departure_time: goto_destination.last[:departure_time] + is_shuttle[:interval],
                 arrival_time: goto_destination.last[:arrival_time] + is_shuttle[:interval],
-                suttle: true
+                shuttle: true
               }
               goto_school << {
                 departure_time: goto_school.last[:departure_time] + is_shuttle[:interval],
                 arrival_time: goto_school.last[:arrival_time] + is_shuttle[:interval],
-                suttle: true
+                shuttle: true
               }
             end
 
@@ -77,12 +77,12 @@ class WeathersController < ApplicationController
             goto_destination << {
               departure_time: Time.parse(row.css('td')[0].inner_text),
               arrival_time: Time.parse(row.css('td')[1].inner_text),
-              suttle: false
+              shuttle: !row.css('td.sbus').blank?
             }
             goto_school << {
               departure_time: Time.parse(row.css('td')[1].inner_text),
               arrival_time: Time.parse(row.css('td')[2].inner_text),
-              suttle: false
+              shuttle: !row.css('td.sbus').blank?
             }
           end
         end
