@@ -90,8 +90,10 @@ class WeathersController < ApplicationController
 
       @tables << { 
         title: node.css('span strong').inner_text,
+        destination_place: node.css('span strong').inner_text[/(.*)行/, 1],
+        school_place: node.css('span strong').inner_text[/［発着所：(.*)］/, 1],
         table: {
-          to_description: goto_destination,
+          to_destination: goto_destination,
           to_school: goto_school
         }
      }

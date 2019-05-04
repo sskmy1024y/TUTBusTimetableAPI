@@ -6,9 +6,19 @@
   <li>Description    : <%= @description %></li>
   <% @tables.each do |table|  %>
   <li>Table    : <%= table[:title] %>
+    <h3>行き先：<%= table[:destination_place] %></h3>
     <table border="1">
       <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
-      <% table[:table][:to_description].each do |row| %>
+      <% table[:table][:to_destination].each do |row| %>
+      <tr>
+        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:shuttle] ? "o" : "" %></td></td>
+      </tr>
+      <% end %>
+    </table>
+    <h3>行き先：<%= table[:school_place] %></h3>
+    <table border="1">
+      <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
+      <% table[:table][:to_school].each do |row| %>
       <tr>
         <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:shuttle] ? "o" : "" %></td></td>
       </tr>
