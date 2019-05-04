@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 1
+  arrival_time: 2019-05-05 01:22:25
+  departure_time: 2019-05-05 01:22:25
+  is_shuttle: 
+
+two:
+  course_id: 1
+  arrival_time: 2019-05-05 01:22:25
+  departure_time: 2019-05-05 01:22:25
+  is_shuttle: 
