@@ -5,6 +5,15 @@
   <li>Title : <%= @title %></li>
   <li>Description    : <%= @description %></li>
   <% @tables.each do |table|  %>
-  <li>Table    : <%= table[:title] %></li>
+  <li>Table    : <%= table[:title] %>
+    <table border="1">
+      <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
+      <% table[:table][:to_description].each do |row| %>
+      <tr>
+        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:suttle] ? "o" : "" %></td></td>
+      </tr>
+      <% end %>
+    </table>
+  </li>
   <% end %>
 </ul>
