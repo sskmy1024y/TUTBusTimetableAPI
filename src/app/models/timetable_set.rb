@@ -1,3 +1,3 @@
 class TimetableSet < ApplicationRecord
-  has_many :timetable
+  has_many :timetables
 end

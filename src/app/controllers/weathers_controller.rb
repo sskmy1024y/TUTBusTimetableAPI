@@ -155,6 +155,8 @@ class WeathersController < ApplicationController
      }
     end
 
+    # 検索方法
+    # TimetableSet.find(1).timetables.where("course_id = ? AND departure_time >= ?", [コース情報], Time.now ).limit(3)
     
     # description
     if doc.css('//meta[property="og:description"]/@content').empty?
