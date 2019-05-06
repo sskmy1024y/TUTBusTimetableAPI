@@ -5,9 +5,31 @@
   <li>Title : <%= @title %></li>
   <li>Description    : <%= @description %></li>
   <% @tables.each do |table|  %>
-  <li>Table    : <%= table[:title] %>
+  <li>Table : <%= table[:title] %>
     <h3>行き先：<%= table[:destination_place] %></h3>
-    <table border="1">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-sm-3">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+
+        <!-- Force next columns to break to new line -->
+        <div class="w-100"></div>
+
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+      </div>
+    </div>
+    <table class="table table-striped" >
       <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
       <% table[:table][:to_destination].each do |row| %>
       <tr>

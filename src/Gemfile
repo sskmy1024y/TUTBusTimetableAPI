@@ -67,3 +67,9 @@ gem 'openurl'
 # 検索結果を整形する
 gem 'hirb'
 gem 'hirb-unicode'
+
+# Bootstrap
+gem 'bootstrap-sass', '3.3.7'
+
+# font-awesome
+gem "font-awesome-rails"
