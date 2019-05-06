@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index]
+      resources :users
     end
   end
 
-  resources :weathers
+  resources :weathers, only: [:index, :new]
 end
