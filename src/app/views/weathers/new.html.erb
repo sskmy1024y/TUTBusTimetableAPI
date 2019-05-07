@@ -1,96 +1,90 @@
-<h1>Weathers#new</h1>
-<p>Find me in app/views/weathers/new.html.erb</p>
+<h2>データベース登録</h2>
+<p>時刻表の内容を確認して、登録してください</p>
 
-<ul>
-  <li>Title : <%= @title %></li>
-  <li>Description    : <%= @description %></li>
+<div class="container">
 
-  <!-- タブ・メニュー -->
-<ul class="nav nav-tabs">
-	<li><%= link_to "Home", '#sampleContentA' %></li>
-	<li class="active"><a href="#sampleContentB" data-toggle="tab">タブＢ</a></li>
-	<li><a href="#sampleContentC" data-toggle="tab">タブＣ</a></li>
-	<li><a href="#sampleContentD" data-toggle="tab">タブＤ</a></li>
-</ul>
-
-<!-- タブ内容 -->
-<div class="tab-content">
-	<div class="tab-pane" id="sampleContentA">
-		<p>タブＡの内容</p>
-	</div>
-	<div class="tab-pane active" id="sampleContentB">
-		<p>タブＢの内容</p>
-	</div>
-	<div class="tab-pane" id="sampleContentC">
-		<p>タブＣの内容</p>
-	</div>
-	<div class="tab-pane" id="sampleContentD">
-		<p>タブＤの内容</p>
-	</div>
-</div>
-
-  <div class="container">
-    <ul class="nav nav-tabs">
-      <% @tables.each_with_index do |table, index|  %>
-        <li role="presentation" class="<%= index == 0 ? 'active' : '' %>"><a href="#tabContent<%= index %>A" data-toggle="tab"><%= table[:destination_place] %></a></li>
-        <li role="presentation"><a href="#tabContent<%= index %>B" data-toggle="tab"><%= table[:school_place] %></a></li>
-      <% end %>
-    </ul>
-    
-    
-    <div class="tab-content">
-      <% @tables.each_with_index do |table, index|  %>
-        <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="tabContent<%= index %>A">
-          <p><%= table[:destination_place] %></p>
-        </div>
-        <div class="tab-pane" id="tabContent<%= index %>B">
-          <p><%= table[:school_place] %></p>
-        </div>
-      <% end %>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-  <% @tables.each do |table|  %>
-  <li>Table : <%= table[:title] %>
-    <h3>行き先：<%= table[:destination_place] %></h3>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <%= table[:destination_place] %>行
-            </div>
-            <div class="panel-body">
-              
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
 
-        <!-- Force next columns to break to new line -->
-        <div class="w-100"></div>
+  <ul class="nav nav-tabs">
+    <% @tables.each_with_index do |table, index|  %>
+    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>A"
+        class="nav-link <%= index == 0 ? 'active' : '' %>" data-toggle="tab"><%= table[:destination_place] %>行</a></li>
+    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>B" class="nav-link"
+        data-toggle="tab"><%= table[:school_place] %></a></li>
+    <% end %>
+  </ul>
 
-        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
-        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+  <div class="tab-content">
+    <% @tables.each_with_index do |table, index|  %>
+    <%# 往路情報 %>
+    <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="tabContent<%= index %>A">
+      <div class="container">
+        <dl>
+          <dt>出発地</dt>
+          <dd><%= table[:school_place] %></dd>
+          <dt>到着地</dt>
+          <dd><%= table[:destination_place] %></dd>
+        </dl>
+        <table class="table table-striped table-sm">
+          <tr>
+            <th>出発時刻</th>
+            <th>到着時刻</th>
+            <th>シャトル運行</th>
+          </tr>
+          <% table[:table][:to_destination].each do |row| %>
+          <tr>
+            <td><%= row[:departure_time].strftime('%H:%M') %></td>
+            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+            <td><%= row[:shuttle] ? "o" : "" %></td>
+            </td>
+          </tr>
+          <% end %>
+        </table>
       </div>
     </div>
-    <table class="table table-striped" >
-      <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
-      <% table[:table][:to_destination].each do |row| %>
-      <tr>
-        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:shuttle] ? "o" : "" %></td></td>
-      </tr>
-      <% end %>
-    </table>
-    <h3>行き先：<%= table[:school_place] %></h3>
-    <table border="1">
-      <tr><th>出発時刻</th><th>到着時刻</th><th>シャトル運行</th></tr>
-      <% table[:table][:to_school].each do |row| %>
-      <tr>
-        <td><%= row[:departure_time] %></td><td><%= row[:arrival_time] %></td><td><%= row[:shuttle] ? "o" : "" %></td></td>
-      </tr>
-      <% end %>
-    </table>
-  </li>
-  <% end %>
-</ul>
+    <%# 復路情報 %>
+    <div class="tab-pane" id="tabContent<%= index %>B">
+      <div class="container">
+        <dl>
+          <dt>出発地</dt>
+          <dd><%= table[:destination_place] %></dd>
+          <dt>到着地</dt>
+          <dd><%= table[:school_place] %></dd>
+        </dl>
+        <table class="table table-striped table-sm">
+          <tr>
+            <th>出発時刻</th>
+            <th>到着時刻</th>
+            <th>シャトル運行</th>
+          </tr>
+          <% table[:table][:to_destination].each do |row| %>
+          <tr>
+            <td><%= row[:departure_time].strftime('%H:%M') %></td>
+            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+            <td><%= row[:shuttle] ? "o" : "" %></td>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
