@@ -129,9 +129,9 @@
       const _range = $("#input-date-range").val().split(/ - /);
 
       for (let i = new Date(_range[0]); i.getTime() <= new Date(_range[1]).getTime(); i.setDate(i.getDate() +
-        1)) {
+          1)) {
         const date =
-        `${i.getFullYear()}/${("0"+(i.getMonth()+1)).slice(-2)}/${("0"+(i.getDate()+1)).slice(-2)}`;
+          `${i.getFullYear()}/${("0"+(i.getMonth()+1)).slice(-2)}/${("0"+(i.getDate())).slice(-2)}`;
         if (!dates.find(_date => _date == date)) {
           if (
             $('#check-weekday').prop('checked') && [1, 2, 3, 4, 5].includes(i.getDay()) || //平日のチェックがあり、平日であれば
