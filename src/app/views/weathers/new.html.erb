@@ -1,0 +1,161 @@
+<h2>データベース登録</h2>
+<p>時刻表の内容を確認して、登録してください</p>
+
+<div class="container">
+
+  <%= form_with url: weathers_path do |form| %>
+  <div class="row">
+    <div class="col-7">
+      <div class="form-group">
+        <label for="limit-date-picker">適用期間</label>
+        <%= form.text_area :limitDatePicker, class: "form-control", rows: "10", id: "input-date-textarea", placeholder: ",(コンマ)で区切ってください" %>
+        <small id="emailHelp" class="form-text text-muted">時刻表の反映期間をテキストエリアに入力してください。</small>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">入力補助</span>
+        </div>
+        <input type="text" id="input-date-range" class="form-control daterange">
+      </div>
+      <div class="input-group mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" checked id="check-weekday">
+          <label class="form-check-label" for="check-weekday">
+            平日
+          </label>
+        </div>
+        &nbsp;
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check-saturday">
+          <label class="form-check-label" for="check-saturday">
+            土曜日
+          </label>
+        </div>
+        &nbsp;
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check-sunday">
+          <label class="form-check-label" for="check-sunday">
+            日曜日
+          </label>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <button type="button" id="input-date-button" class="btn btn-primary btn-sm">追加</button>
+      </div>
+    </div>
+  </div>
+
+
+  <input type="hidden" name="tabledate" value="<%= @tables.to_json %>">
+
+  <ul class="nav nav-tabs">
+    <% @tables.each_with_index do |table, index|  %>
+    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>A"
+        class="nav-link <%= index == 0 ? 'active' : '' %>" data-toggle="tab"><%= table[:destination_place] %>行</a>
+    </li>
+    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>B" class="nav-link"
+        data-toggle="tab"><%= table[:school_place] %></a></li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+    <% @tables.each_with_index do |table, index|  %>
+    <%# 往路情報 %>
+    <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="tabContent<%= index %>A">
+      <div class="container">
+        <dl>
+          <dt>出発地</dt>
+          <dd><%= table[:school_place] %></dd>
+          <dt>到着地</dt>
+          <dd><%= table[:destination_place] %></dd>
+        </dl>
+        <table class="table table-striped table-sm">
+          <tr>
+            <th>出発時刻</th>
+            <th>到着時刻</th>
+            <th>シャトル運行</th>
+          </tr>
+          <% table[:table][:to_destination].each do |row| %>
+          <tr>
+            <td><%= row[:departure_time].strftime('%H:%M') %></td>
+            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+            <td><%= row[:shuttle] ? "o" : "" %></td>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <%# 復路情報 %>
+    <div class="tab-pane" id="tabContent<%= index %>B">
+      <div class="container">
+        <dl>
+          <dt>出発地</dt>
+          <dd><%= table[:destination_place] %></dd>
+          <dt>到着地</dt>
+          <dd><%= table[:school_place] %></dd>
+        </dl>
+        <table class="table table-striped table-sm">
+          <tr>
+            <th>出発時刻</th>
+            <th>到着時刻</th>
+            <th>シャトル運行</th>
+          </tr>
+          <% table[:table][:to_destination].each do |row| %>
+          <tr>
+            <td><%= row[:departure_time].strftime('%H:%M') %></td>
+            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+            <td><%= row[:shuttle] ? "o" : "" %></td>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <button type="submit" class="btn btn-primary">登録</button>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(() => {
+
+    $("#input-date-button").click(function () {
+      let dates = $('#input-date-textarea').val().split(',').length > 1 ?
+        $('#input-date-textarea').val().split(/,\n*/) : [];
+      const _range = $("#input-date-range").val().split(/ - /);
+
+      for (let i = new Date(_range[0]); i.getTime() <= new Date(_range[1]).getTime(); i.setDate(i.getDate() +
+        1)) {
+        const date =
+        `${i.getFullYear()}/${("0"+(i.getMonth()+1)).slice(-2)}/${("0"+(i.getDate()+1)).slice(-2)}`;
+        if (!dates.find(_date => _date == date)) {
+          if (
+            $('#check-weekday').prop('checked') && [1, 2, 3, 4, 5].includes(i.getDay()) || //平日のチェックがあり、平日であれば
+            $('#check-saturday').prop('checked') && [6].includes(i.getDay()) || //土曜のチェックがあり、土曜であれば
+            $('#check-sunday').prop('checked') && [0].includes(i.getDay()) //日曜のチェックがあり、日曜であれば
+          ) {
+            dates.push(date)
+          }
+        }
+      }
+
+      $('#input-date-textarea').val(dates.sort().join(',\n'))
+
+    });
+
+    $('input.daterange').daterangepicker({
+      minDate: moment(),
+      locale: {
+        format: 'YYYY/MM/DD',
+        applyLabel: '決定',
+        cancelLabel: '取消',
+        fromLabel: '開始日',
+        toLabel: '終了日',
+      },
+    });
+  })
+</script>
