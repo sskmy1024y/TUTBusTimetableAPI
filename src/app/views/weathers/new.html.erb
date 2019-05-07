@@ -3,88 +3,104 @@
 
 <div class="container">
 
-  <form>
+  <form action="/weathers" method="POST">
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-        placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="start-data-picker">適用期間</label>
+      <input type="text" class="daterange" />
+      <small id="emailHelp" class="form-text text-muted">時刻表の反映期間を指定してください</small>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+    <ul class="nav nav-tabs">
+      <% @tables.each_with_index do |table, index|  %>
+      <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>A"
+          class="nav-link <%= index == 0 ? 'active' : '' %>" data-toggle="tab"><%= table[:destination_place] %>行</a>
+      </li>
+      <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>B" class="nav-link"
+          data-toggle="tab"><%= table[:school_place] %></a></li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <% @tables.each_with_index do |table, index|  %>
+      <%# 往路情報 %>
+      <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="tabContent<%= index %>A">
+        <div class="container">
+          <dl>
+            <dt>出発地</dt>
+            <dd><%= table[:school_place] %></dd>
+            <dt>到着地</dt>
+            <dd><%= table[:destination_place] %></dd>
+          </dl>
+          <table class="table table-striped table-sm">
+            <tr>
+              <th>出発時刻</th>
+              <th>到着時刻</th>
+              <th>シャトル運行</th>
+            </tr>
+            <% table[:table][:to_destination].each do |row| %>
+            <tr>
+              <td><%= row[:departure_time].strftime('%H:%M') %></td>
+              <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+              <td><%= row[:shuttle] ? "o" : "" %></td>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <%# 復路情報 %>
+      <div class="tab-pane" id="tabContent<%= index %>B">
+        <div class="container">
+          <dl>
+            <dt>出発地</dt>
+            <dd><%= table[:destination_place] %></dd>
+            <dt>到着地</dt>
+            <dd><%= table[:school_place] %></dd>
+          </dl>
+          <table class="table table-striped table-sm">
+            <tr>
+              <th>出発時刻</th>
+              <th>到着時刻</th>
+              <th>シャトル運行</th>
+            </tr>
+            <% table[:table][:to_destination].each do |row| %>
+            <tr>
+              <td><%= row[:departure_time].strftime('%H:%M') %></td>
+              <td><%= row[:arrival_time].strftime('%H:%M') %></td>
+              <td><%= row[:shuttle] ? "o" : "" %></td>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <% end %>
     </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">登録</button>
   </form>
-
-
-  <ul class="nav nav-tabs">
-    <% @tables.each_with_index do |table, index|  %>
-    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>A"
-        class="nav-link <%= index == 0 ? 'active' : '' %>" data-toggle="tab"><%= table[:destination_place] %>行</a></li>
-    <li role="presentation" class="nav-item"><a href="#tabContent<%= index %>B" class="nav-link"
-        data-toggle="tab"><%= table[:school_place] %></a></li>
-    <% end %>
-  </ul>
-
-  <div class="tab-content">
-    <% @tables.each_with_index do |table, index|  %>
-    <%# 往路情報 %>
-    <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="tabContent<%= index %>A">
-      <div class="container">
-        <dl>
-          <dt>出発地</dt>
-          <dd><%= table[:school_place] %></dd>
-          <dt>到着地</dt>
-          <dd><%= table[:destination_place] %></dd>
-        </dl>
-        <table class="table table-striped table-sm">
-          <tr>
-            <th>出発時刻</th>
-            <th>到着時刻</th>
-            <th>シャトル運行</th>
-          </tr>
-          <% table[:table][:to_destination].each do |row| %>
-          <tr>
-            <td><%= row[:departure_time].strftime('%H:%M') %></td>
-            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
-            <td><%= row[:shuttle] ? "o" : "" %></td>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-    <%# 復路情報 %>
-    <div class="tab-pane" id="tabContent<%= index %>B">
-      <div class="container">
-        <dl>
-          <dt>出発地</dt>
-          <dd><%= table[:destination_place] %></dd>
-          <dt>到着地</dt>
-          <dd><%= table[:school_place] %></dd>
-        </dl>
-        <table class="table table-striped table-sm">
-          <tr>
-            <th>出発時刻</th>
-            <th>到着時刻</th>
-            <th>シャトル運行</th>
-          </tr>
-          <% table[:table][:to_destination].each do |row| %>
-          <tr>
-            <td><%= row[:departure_time].strftime('%H:%M') %></td>
-            <td><%= row[:arrival_time].strftime('%H:%M') %></td>
-            <td><%= row[:shuttle] ? "o" : "" %></td>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-    <% end %>
-  </div>
 </div>
+
+<script>
+  $(document).ready(() => {
+    dateFormat = 'yy-mm-dd';
+    $('.date-picker[name=start-data-picker]').datepicker({
+      dateFormat: dateFormat,
+      minDate: 0
+    });
+    $('.date-picker[name=end-data-picker]').datepicker({
+      dateFormat: dateFormat,
+      minDate: 0
+    });
+
+    $('input.daterange').daterangepicker({
+      minDate: moment(),
+      locale: {
+        format: 'YYYY/MM/DD',
+        applyLabel: '決定',
+        cancelLabel: '取消',
+        fromLabel: '開始日',
+        toLabel: '終了日',
+      },
+    });
+  })
+</script>

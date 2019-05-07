@@ -12,8 +12,10 @@
  *
  *   require_tree .
  *   require_self
+ *= require jquery-ui/datepicker
  */
 
- // Custom bootstrap variables must be set or imported *before* bootstrap.
- @import "bootstrap";
- @import "custom";
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "daterangepicker";
+@import "custom";
