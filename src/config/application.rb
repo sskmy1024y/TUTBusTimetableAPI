@@ -16,8 +16,12 @@ module Myapp
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.api_only = true
+    config.api_only = false
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    config.middleware.use ActionDispatch::Flash
+    config.parent_controller = 'ActionController::Base'
+
+    Rails.configuration.action_controller.per_form_csrf_tokens = true
   end
 end

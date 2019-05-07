@@ -1,5 +1,6 @@
 require 'date'
 require 'time'
+require "json"
 require 'nokogiri'
 require 'open-uri'
 
@@ -167,7 +168,18 @@ class WeathersController < ApplicationController
   end
 
   def create
-    
+    table = JSON.parse(params[:tabledate], symbolize_names: true)
+    start_date = params[:limitDatePicker].split(/ - /)
+    logger.debug(start_date)
+
+    # if !table.isEmpty? 
+    #   # [TimetableSet情報を設定] ------------------------
+    #   TimetableSet.transaction do
+    #     timetable_set = TimetableSet.create(start_date: )
+    #     Timetable.transaction do
+    # end
+
+
   end
 end
 

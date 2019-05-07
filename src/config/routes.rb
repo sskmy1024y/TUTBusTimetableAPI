@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :weathers, only: [:index, :new]
+  resources :weathers, only: [:index, :new, :create]
 end
