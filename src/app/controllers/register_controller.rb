@@ -4,7 +4,7 @@ require "json"
 require 'nokogiri'
 require 'open-uri'
 
-class WeathersController < ApplicationController
+class RegisterController < ApplicationController
   def index
 
   end
@@ -177,7 +177,7 @@ class WeathersController < ApplicationController
       end
     end
 
-    redirect_to "/weathers"
+    redirect_to "/register"
   end
 end
 

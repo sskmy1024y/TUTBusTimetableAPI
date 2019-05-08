@@ -3,7 +3,7 @@
 
 <div class="container">
 
-  <%= form_with url: weathers_path do |form| %>
+  <%= form_with model: @register, url: { action: "create" } do |form| %>
   <div class="row">
     <div class="col-7">
       <div class="form-group">
