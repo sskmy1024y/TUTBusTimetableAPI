@@ -176,9 +176,8 @@ class WeathersController < ApplicationController
         end
       end
     end
-  
-    
 
+    redirect_to "/weathers"
   end
 end
 
