@@ -117,8 +117,8 @@ class WeathersController < ApplicationController
     dates = params[:dates].split(/,\n*/)
 
     # [TimetableSet情報を設定] ------------------------
-      # TimetableSet.transaction do
-      timetable_set = TimetableSet.create(name: "とりあえず")
+    TimetableSet.transaction do
+      timetable_set = TimetableSet.create!(name: "とりあえず")
 
       tables.each do | table |
         # [Course情報を取得・登録] ------------------------
@@ -139,11 +139,11 @@ class WeathersController < ApplicationController
         end
         # -----------------------
 
-        # Timetable.transaction do
+        Timetable.transaction do
 
           # 往路の登録
           table[:table][:to_destination].each do |row|
-            Timetable.create(
+            Timetable.create!(
               timetable_set_id: timetable_set.id,
               course_id: course_to_destination.id,
               departure_time: Time.parse(row[:departure_time]),
@@ -153,7 +153,7 @@ class WeathersController < ApplicationController
           end
           # 復路
           table[:table][:to_destination].each do |row|
-            Timetable.create(
+            Timetable.create!(
               timetable_set_id: timetable_set.id,
               course_id: course_to_school.id,
               departure_time: Time.parse(row[:departure_time]),
@@ -161,10 +161,24 @@ class WeathersController < ApplicationController
               is_shuttle: row[:shuttle]
             )
           end
-
-        # end
         end
-      # end
+      end
+
+      # [対応する日付情報を登録] --------------------------
+      DateSet.transaction do
+        dates.each do |date|
+          dateset = DateSet.find_by(date: date)
+          if dateset.blank?
+            DateSet.create!(date: date, timetable_set_id: timetable_set.id)
+          else
+            dateset.update!(timetable_set_id: timetable_set.id)
+          end
+        end
+      end
+    end
+  
+    
+
   end
 end
 
