@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
-      resources :users
+      resources :timetables
     end
   end
 
