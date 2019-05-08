@@ -3,12 +3,12 @@
 
 <div class="container">
 
-  <%= form_with url: weathers_path do |form| %>
+  <%= form_with model: @register, url: { action: "create" } do |form| %>
   <div class="row">
     <div class="col-7">
       <div class="form-group">
         <label for="limit-date-picker">適用期間</label>
-        <%= form.text_area :limitDatePicker, class: "form-control", rows: "10", id: "input-date-textarea", placeholder: ",(コンマ)で区切ってください" %>
+        <%= form.text_area :dates, class: "form-control", rows: "10", id: "input-date-textarea", placeholder: ",(コンマ)で区切ってください" %>
         <small id="emailHelp" class="form-text text-muted">時刻表の反映期間をテキストエリアに入力してください。</small>
       </div>
     </div>
@@ -144,7 +144,6 @@
       }
 
       $('#input-date-textarea').val(dates.sort().join(',\n'))
-
     });
 
     $('input.daterange').daterangepicker({

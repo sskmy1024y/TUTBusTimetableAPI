@@ -4,7 +4,7 @@ require "json"
 require 'nokogiri'
 require 'open-uri'
 
-class WeathersController < ApplicationController
+class RegisterController < ApplicationController
   def index
 
   end
@@ -43,35 +43,8 @@ class WeathersController < ApplicationController
       # シャトル運行の際、次の時間とそれ以前の時間とを比較して、間隔文をDB挿入する。
       is_shuttle = { status: false, interval: 0 }
 
-      # [TimetableSet情報を設定] ------------------------
-      # TimetableSet.transaction do
-        # timetable_set = TimetableSet.create(start_date: DateTime.now)
-
-        # Timetable.transaction do
-
       table_html.css('tr').each do |row|
         if !row.css('td').empty? 
-
-          # # [Course情報を取得・登録] ------------------------
-          # # 目的地のIDを取得
-          # destination_place = Place.find_by(name: node.css('span strong').inner_text[/(.*)行/, 1]).id
-          # # キャンパス側のIDを取得
-          # school_place = Place.find_by(name: node.css('span strong').inner_text[/［発着所：(.*)］/, 1]).id
-          
-          # # 往路
-          # course_to_school = Course.find_by(arrival_id: destination_place, departure_id: school_place)
-          # # 復路
-          # course_to_destination = Course.find_by(arrival_id: school_place , departure_id: destination_place)
-
-          # if course_to_destination.blank?
-          #   course_to_destination = Course.create(arrival_id: school_place , departure_id: destination_place)
-          # end
-          # if course_to_school.blank?
-          #   course_to_school = Course.create(arrival_id: destination_place, departure_id: school_place)
-          # end
-          # # ------------------------
-
-          
 
           # シャトル運行間隔記載があれば、間隔時間を取得 
           if !row.css('td')[3].blank? && !row.css('td')[3].inner_text.blank?
@@ -94,20 +67,6 @@ class WeathersController < ApplicationController
                 arrival_time: goto_school.last[:arrival_time] + is_shuttle[:interval],
                 shuttle: true
               }
-              # Timetable.create(
-              #   timetable_set_id: timetable_set.id,
-              #   course_id: course_to_destination.id,
-              #   departure_time: goto_destination.last[:departure_time],
-              #   arrival_time: goto_destination.last[:arrival_time],
-              #   is_shuttle: true
-              # )
-              # Timetable.create(
-              #   timetable_set_id: timetable_set.id,
-              #   course_id: course_to_school.id,
-              #   departure_time: goto_school.last[:departure_time],
-              #   arrival_time: goto_school.last[:arrival_time],
-              #   is_shuttle: true
-              # )
             end
 
             is_shuttle = { status: false, interval: 0 } # 値を初期化
@@ -124,27 +83,13 @@ class WeathersController < ApplicationController
               arrival_time: Time.parse(row.css('td')[2].inner_text),
               shuttle: !row.css('td.sbus').blank?
             }
-            # Timetable.create(
-            #   timetable_set_id: timetable_set.id,
-            #   course_id: course_to_destination.id,
-            #   departure_time: goto_destination.last[:departure_time],
-            #   arrival_time: goto_destination.last[:arrival_time],
-            #   is_shuttle: !row.css('td.sbus').blank?
-            # )
-            # Timetable.create(
-            #   timetable_set_id: timetable_set.id,
-            #   course_id: course_to_school.id,
-            #   departure_time: goto_school.last[:departure_time],
-            #   arrival_time: goto_school.last[:arrival_time],
-            #   is_shuttle: !row.css('td.sbus').blank?
-            # )
           end
         end
       end
         # end
       # end
 
-      @tables << { 
+      @tables << {
         title: node.css('span strong').inner_text,
         destination_place: node.css('span strong').inner_text[/(.*)行/, 1],
         school_place: node.css('span strong').inner_text[/［発着所：(.*)］/, 1],
@@ -168,18 +113,71 @@ class WeathersController < ApplicationController
   end
 
   def create
-    table = JSON.parse(params[:tabledate], symbolize_names: true)
-    start_date = params[:limitDatePicker].split(/ - /)
-    logger.debug(start_date)
+    tables = JSON.parse(params[:tabledate], symbolize_names: true)
+    dates = params[:dates].split(/,\n*/)
 
-    # if !table.isEmpty? 
-    #   # [TimetableSet情報を設定] ------------------------
-    #   TimetableSet.transaction do
-    #     timetable_set = TimetableSet.create(start_date: )
-    #     Timetable.transaction do
-    # end
+    # [TimetableSet情報を設定] ------------------------
+    TimetableSet.transaction do
+      timetable_set = TimetableSet.create!(name: "とりあえず")
 
+      tables.each do | table |
+        # [Course情報を取得・登録] ------------------------
+        # 目的地のIDを取得
+        destination_place = Place.find_by(name: table[:destination_place]).id
+        # キャンパス側のIDを取得
+        school_place = Place.find_by(name: table[:school_place]).id
+        
+        course_to_school = Course.find_by(arrival_id: destination_place, departure_id: school_place) # 往路      
+        course_to_destination = Course.find_by(arrival_id: school_place , departure_id: destination_place) # 復路
 
+        # 登録がなければ新規登録
+        if course_to_destination.blank?
+          course_to_destination = Course.create(arrival_id: school_place , departure_id: destination_place)
+        end
+        if course_to_school.blank?
+          course_to_school = Course.create(arrival_id: destination_place, departure_id: school_place)
+        end
+        # -----------------------
+
+        Timetable.transaction do
+
+          # 往路の登録
+          table[:table][:to_destination].each do |row|
+            Timetable.create!(
+              timetable_set_id: timetable_set.id,
+              course_id: course_to_destination.id,
+              departure_time: Time.parse(row[:departure_time]),
+              arrival_time: Time.parse(row[:arrival_time]),
+              is_shuttle: row[:shuttle]
+            )
+          end
+          # 復路
+          table[:table][:to_destination].each do |row|
+            Timetable.create!(
+              timetable_set_id: timetable_set.id,
+              course_id: course_to_school.id,
+              departure_time: Time.parse(row[:departure_time]),
+              arrival_time: Time.parse(row[:arrival_time]),
+              is_shuttle: row[:shuttle]
+            )
+          end
+        end
+      end
+
+      # [対応する日付情報を登録] --------------------------
+      DateSet.transaction do
+        dates.each do |date|
+          dateset = DateSet.find_by(date: date)
+          if dateset.blank?
+            DateSet.create!(date: date, timetable_set_id: timetable_set.id)
+          else
+            dateset.update!(timetable_set_id: timetable_set.id)
+          end
+        end
+      end
+    end
+
+    redirect_to "/register"
   end
 end
 
