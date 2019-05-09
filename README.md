@@ -1,63 +1,44 @@
-# Dockerfile Template for Ruby on Rails
-This program is a Dockerfile template optimized for developing Rails using docker.
+# TUT Bus Timetable API
+東京工科大学の学バスの時刻表を返すAPI
 
-## How to use
+## How to build
 
-0. Prepare environmental variables.
-  
-```bash
-cp .env.example .env
-```
+### Require
+* dokcer
+* docker-compose
 
-### Create new project
-
-1. If you want to create a new project, please execute the following command.
-
-```bash
-$ docker-compose run web bundle exec rails new . --force --skip-bundle --database=mysql
-```
-
-2. Then execute the following command to create a container.
-
+### run command
 ```bash
 $ docker-compose build
+$ docker-compose up -d
 ```
 
-3. And you should change `database.yml`.
+out port is `:3000`
 
-```yml
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'root' } %>
-  host: <%= ENV.fetch('MYSQL_HOST') { 'localhost' } %>
+## API
 
-development:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
+### get timetable
+| method | endpoint                   |
+| ------ | -------------------------- |
+| GET    | `base_url/api/v1/timetable |
 
-test:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
+* request params
 
-production:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'test' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'test' } %>
+| params   | type     | require | detail                                                  |
+| -------- | -------- | ------- | ------------------------------------------------------- |
+| key      | `string` | o       | token                                                   |
+| from     | `int`    |         | [Bus stop code](#BusStationCode) of departure place     |
+| to       | `int`    | o       | [Bus stop code](#BusStationCode) of arrival place       |
+| datetime | `int`    |         | Specify the time to search. Default is **current time** |
+| limit    | `int`    |         | Maximum number of searches. The default is **5**        |
 
-```
+### BusStationCode
 
-4. Create a database
-```bash
-$ docker-compose run web bundle exec rails db:create
-```
-
-### Run an existing project
-If you want to run a project that already exists, please execute the following command.
-
-```bash
-$ docker-compose build
-```
+| code | bus stop name      |
+| ---- | ------------------ |
+| 1    | `八王子みなみ野駅` |
+| 2    | `図書館棟前`       |
+| 3    | `八王子駅南口`     |
+| 4    | `厚生棟前`         |
+| 5    | `学生会館`         |
+| 6    | `正門ロータリー前` |
