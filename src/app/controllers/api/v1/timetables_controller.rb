@@ -3,16 +3,22 @@ require 'date'
 
 class Api::V1::TimetablesController < ApplicationController
 
-  def index(datetime=DateTime.now.to_s, limit=5)
+  def index(datetime=DateTime.now.to_s)
     @date = Date.parse(datetime)
     @time = Time.parse(datetime)
-    @limit = limit
+    @limit = params[:limit] ? params[:limit] : 3
 
-    @course = Course.find_by(departure_id: params[:from], arrival_id: params[:to])
-
+    if !params[:to].blank?
+      @course = Course.find_by(arrival_id: params[:to])
+    elsif  !params[:from].blank?
+      @course = Course.find_by(departure_id: params[:from])
+    else
+      return render json: { success: false, errors: '' }, status: :unprocessable_entity
+    end
+    
     @timetables = DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", @course.id, @time ).limit(@limit)
 
-    render json: { success: true, timetable: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
+    render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
   end
 
   private

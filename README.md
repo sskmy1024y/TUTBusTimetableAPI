@@ -27,7 +27,7 @@ out port is `:3000`
 | params   | type     | require | detail                                                  |
 | -------- | -------- | ------- | ------------------------------------------------------- |
 | key      | `string` | o       | token                                                   |
-| from     | `int`    | o       | [Bus stop code](#BusStationCode) of departure place     |
+| from     | `int`    |         | [Bus stop code](#BusStationCode) of departure place     |
 | to       | `int`    | o       | [Bus stop code](#BusStationCode) of arrival place       |
 | datetime | `int`    |         | Specify the time to search. Default is **current time** |
 | limit    | `int`    |         | Maximum number of searches. The default is **5**        |
