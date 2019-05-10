@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
+  root 'static_pages#index'
   resources :register, only: [:index, :new, :create]
 end
