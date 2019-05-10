@@ -13,7 +13,7 @@ services:
     volumes:
       - ./src:/myapp
     ports:
-      - "3000:3000"
+      - "22222:3000"
     depends_on:
       - db
       
