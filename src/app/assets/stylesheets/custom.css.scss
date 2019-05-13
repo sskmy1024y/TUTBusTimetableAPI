@@ -93,4 +93,164 @@ footer ul li {
   height: 80px;
 }
 
-#home {}
+#home {
+
+  .main-icon {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      text-align: center;
+      font-size: 3em;
+    }
+  }
+
+  .bulletin-board {
+    background-color: rgb(76, 83, 109);
+    color: #fff;
+
+    .board-header {
+      padding: 5px;
+      padding-left: 40px;
+      border-bottom: 1px solid rgb(36, 41, 58);
+
+      .destination {
+        .place {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .board-body {
+      background-color: #222;
+      padding: 0 50px;
+
+      .board-body-column {
+        .type {
+          display: inline-block;
+          width: 25%;
+          font-size: 24px;
+          color: greenyellow;
+        }
+
+        .time {
+          display: inline-block;
+          width: 25%;
+          font-size: 25px;
+          color: orange;
+        }
+
+        .detail {
+          display: inline-block;
+          width: 48%;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+
+  .card-img-top {
+    height: 240px;
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+
+  $duration-speed: 6s;
+
+  p {
+    margin: 0;
+    padding-left: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    background-color: transparent;
+    -webkit-animation-name: marquee;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: $duration-speed;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: marquee;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: $duration-speed;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-name: marquee;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: $duration-speed;
+    -ms-animation-iteration-count: infinite;
+    -o-animation-name: marquee;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: $duration-speed;
+    -o-animation-iteration-count: infinite;
+    animation-name: marquee;
+    animation-timing-function: linear;
+    animation-duration: $duration-speed;
+    animation-iteration-count: infinite;
+
+    &:after {
+      content: "";
+      white-space: nowrap;
+      padding-right: 50px;
+    }
+
+  }
+
+}
+
+
+@-webkit-keyframes marquee {
+  from {
+    -webkit-transform: translate(0%);
+  }
+
+  99%,
+  to {
+    -webkit-transform: translate(-100%);
+  }
+}
+
+@-moz-keyframes marquee {
+  from {
+    -moz-transform: translate(0%);
+  }
+
+  99%,
+  to {
+    -moz-transform: translate(-100%);
+  }
+}
+
+@-ms-keyframes marquee {
+  from {
+    -ms-transform: translate(0%);
+  }
+
+  99%,
+  to {
+    -ms-transform: translate(-100%);
+  }
+}
+
+@-o-keyframes marquee {
+  from {
+    -o-transform: translate(0%);
+  }
+
+  99%,
+  to {
+    -o-transform: translate(-100%);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate(0%);
+  }
+
+  99%,
+  to {
+    transform: translate(-100%);
+  }
+}
