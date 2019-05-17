@@ -47,7 +47,7 @@ class RegisterController < ApplicationController
         if !row.css('td').empty? 
 
           # シャトル運行間隔記載があれば、間隔時間を取得 
-          if !row.css('td')[3].blank? && !row.css('td')[3].inner_text.blank?
+          if !row.css('td')[3].blank? && !row.css('td')[3].inner_text.blank? && row.css('td')[3].inner_text =~ /\s*約(\d*)～(\d*)分\s*/
             interval = row.css('td')[3].inner_text.split(/\s*約(\d*)～(\d*)分\s*/)
             is_shuttle = {
               status: true,
