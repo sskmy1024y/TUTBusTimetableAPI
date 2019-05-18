@@ -132,6 +132,22 @@
   function renderBulletinBoard(data) {
     $('#board-place').html("")
 
+    if (data.length < 1) {
+      let board = $(
+        `<div class="bulletin-board"><div class="board-header"><div class="destination"><span class="place">休日</span></div></div></div>`
+      )
+      let body = $("<div />").addClass("board-body");
+      const col = $(
+        `<div class="board-body-column"><div class="row"><div class="detail col-12 col-md-12"><div class="marquee">
+                      <p><span style="color:orange;">本日の運行はありません</span></p>
+                    </div></div><div></div>`
+      )
+      body.append(col)
+      board.append(body)
+      $('#board-place').append(board)
+      return true
+    }
+
     data.forEach(list => {
       let board = $("<div />").addClass("bulletin-board");
       const header = $(

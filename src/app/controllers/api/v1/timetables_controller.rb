@@ -13,11 +13,16 @@ class Api::V1::TimetablesController < ApplicationController
     elsif  !params[:from].blank?
       @course = Course.find_by(departure_id: params[:from])
     else
-      return render json: { success: false, errors: '' }, status: :unprocessable_entity
+      return render json: { success: false, errors: '400 Bat Request. Please check require parameter.' }, status: :bad_request
     end
     
     begin
-      @timetables = DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", @course.id, @time ).limit(@limit)
+      @dateset = DateSet.find_by(date: @date)
+      if @dateset
+        @timetables = @dateset.timetable_set.timetables.where("course_id = ? AND departure_time >= ?", @course.id, @time ).limit(@limit)
+      else
+        @timetables = []
+      end
       render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
     rescue => exception
       render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
@@ -32,19 +37,25 @@ class Api::V1::TimetablesController < ApplicationController
     @time = params[:datetime] ? Time.parse(params[:datetime]) : Time.parse(datetime)
     @limit = params[:limit] ? params[:limit] : 2
 
-    course_ids = DateSet.find_by(date: @date).timetable_set.timetables.group(:course_id).select(:course_id)
-    
     @timetables = []
-    for c in course_ids do
-      @timetables << {
-        departure: Course.find(c.course_id).departure,
-        arrival: Course.find(c.course_id).arrival,
-        timetables: DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", c.course_id, @time ).limit(2)
-      }
-    end
-    @timetables = @timetables.uniq
 
+    dateset = DateSet.find_by(date: @date)
+
+    if dateset
+      course_ids = DateSet.find_by(date: @date).timetable_set.timetables.group(:course_id).select(:course_id)
+        
+      for c in course_ids do
+        @timetables << {
+          departure: Course.find(c.course_id).departure,
+          arrival: Course.find(c.course_id).arrival,
+          timetables: dateset ? DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", c.course_id, @time ).limit(2) : []
+        }
+      end
+      @timetables = @timetables.uniq
+    end
     render json: { success: true, data: @timetables }, status: :ok
+  rescue => e
+    render json: { success: false, errors: '500 internal server error. Please contact the administrator.' }, status: :internal
   end
 
   private
