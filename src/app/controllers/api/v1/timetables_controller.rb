@@ -4,8 +4,8 @@ require 'date'
 class Api::V1::TimetablesController < ApplicationController
 
   def index(datetime=DateTime.now.to_s)
-    @date = Date.parse(datetime)
-    @time = Time.parse(datetime)
+    @date = params[:datetime] ? Date.parse(params[:datetime]) : Date.parse(datetime)
+    @time = params[:datetime] ? Time.parse(params[:datetime]) : Time.parse(datetime)
     @limit = params[:limit] ? params[:limit] : 3
 
     if !params[:to].blank?
@@ -16,9 +16,14 @@ class Api::V1::TimetablesController < ApplicationController
       return render json: { success: false, errors: '' }, status: :unprocessable_entity
     end
     
-    @timetables = DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", @course.id, @time ).limit(@limit)
-
-    render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
+    begin
+      @timetables = DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", @course.id, @time ).limit(@limit)
+      render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
+    rescue => exception
+      render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
+    end
+  rescue => e
+    render json: { success: false, errors: '500 internal error. Please contact the administrator.' }, status: :internal
   end
 
   private
