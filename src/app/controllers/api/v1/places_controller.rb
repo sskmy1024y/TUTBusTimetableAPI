@@ -3,7 +3,7 @@ require 'date'
 class Api::V1::PlacesController < ApplicationController
 
   def index
-    @places = Place.all()
+    @places = Place.all().select(:id, :name)
     render json: @places.to_json()
   end
 
