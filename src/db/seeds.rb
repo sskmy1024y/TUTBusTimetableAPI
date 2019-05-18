@@ -21,3 +21,11 @@ Place.create!(
    }
 ])
 
+TimetableSet.create!(
+  [
+    {
+      name: 'No Bus Running'
+    }
+  ]
+)
+

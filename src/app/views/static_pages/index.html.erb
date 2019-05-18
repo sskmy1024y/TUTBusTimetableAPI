@@ -8,39 +8,9 @@
     <div class="col-md-8">
       <div class="jumbotron">
         <h3 class="display-4">次の学バスは……</h3>
-        <div class="bulletin-board">
-          <div class="board-header">
-            <div class="destination"><span class="place">図書館棟前</span><span>行き（八王子みなみ野発）</span></div>
-          </div>
-          <div class="board-body">
-            <div class="board-body-column">
-              <div class="row">
-                <div class="type col-6 col-md-3">先発</div>
-                <div class="time col-6 col-md-3">11:00</div>
-                <div class="detail col-12 col-md-6">
-                  <div class="marquee">
-                    <p><span style="color:orange;">シャトル運行中</span><span style="color:greenyellow;">のため、</span><span
-                        style="color:orange;">時間が前後する場合</span><span style="color:greenyellow;">がございます。</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="board-body-column">
-              <div class="row">
-                <div class="type col-6 col-md-3">次発</div>
-                <div class="time col-6 col-md-3">11:00</div>
-                <div class="detail col-12 col-md-6">
-                  <div class="marquee">
-                    <p><span style="color:orange;">シャトル運行中</span><span style="color:greenyellow;">のため、</span><span
-                        style="color:orange;">時間が前後する場合</span><span style="color:greenyellow;">がございます。</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="lead"><small>この時刻表は、<a
-              href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
+        <div id="board-place"></div>
+        <p class="lead"><small>この時刻表は、<a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable"
+              target="blank">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
         </p>
         <hr class="my-4">
         <p>TUT学バスAPIは、Webサイトに掲載された東京工科大学・日本工学院八王子キャンパスにおけるスクールバスの正確な時刻表情報を配信します。
@@ -158,4 +128,78 @@
   if (isIOS) {
     $(".get-shortcut").removeClass("disabled");
   }
+
+  function renderBulletinBoard(data) {
+    $('#board-place').html("")
+
+    data.forEach(list => {
+      let board = $("<div />").addClass("bulletin-board");
+      const header = $(
+        `<div class="board-header"><div class="destination"><span class="place">${list.arrival.name}</span><span>行き（${list.departure.name}発）</span></div></div>`
+      )
+      board.append(header)
+
+      let body = $("<div />").addClass("board-body");
+      const labels = ["先発", "次発", "次々発", "四発", "五発"];
+      if (list.timetables.length > 0) {
+        list.timetables.forEach((timetable, index) => {
+          const detail = timetable.is_shuttle ? `<div class="marquee">
+                      <p><span style="color:orange;">シャトル運行中</span><span style="color:greenyellow;">のため、</span><span
+                          style="color:orange;">時間が前後する場合</span><span style="color:greenyellow;">があります。</span></p>
+                    </div>` : ""
+          const col = $(`<div class="board-body-column">
+                <div class="row">
+                  <div class="type col-6 col-md-3">${labels[index]}</div>
+                  <div class="time col-6 col-md-3">${formatTime(new Date(timetable.departure_time))}</div>
+                  <div class="detail col-12 col-md-6">${detail}</div><div></div>`)
+          body.append(col)
+        })
+      } else {
+        const detail = `<div class="marquee">
+                      <p><span style="color:orange;">本日の運行は終了しました</span></p>
+                    </div>`
+        const col = $(
+          `<div class="board-body-column"><div class="row"><div class="detail col-12 col-md-12">${detail}</div><div></div>`
+        )
+        body.append(col)
+      }
+      board.append(body)
+      $('#board-place').append(board)
+    });
+  }
+
+  function loadTimetable() {
+    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal`)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error();
+        }
+      })
+      .then(datas => renderBulletinBoard(datas.data))
+  }
+
+  function formatTime(date, format) {
+    if (!format) format = 'hh:mm';
+    format = format.replace(/YYYY/g, date.getFullYear());
+    format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+    format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+    format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
+    format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+    format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+    if (format.match(/S/g)) {
+      var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
+      var length = format.match(/S/g).length;
+      for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+    }
+    return format;
+  };
+
+  $(() => {
+    loadTimetable()
+    setInterval(() => {
+      loadTimetable()
+    }, 20000);
+  })
 </script>
