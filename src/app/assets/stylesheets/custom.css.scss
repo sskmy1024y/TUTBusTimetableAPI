@@ -1,3 +1,5 @@
+$medium-width: 768px;
+
 /* universal */
 
 body {
@@ -95,11 +97,22 @@ footer ul li {
 
 #home {
 
+  h3 {
+    @media screen and (max-width: $medium-width) {
+      display: none;
+    }
+  }
+
+
   .main-icon {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: $medium-width) {
+      display: none;
+    }
 
     p {
       text-align: center;
@@ -111,41 +124,60 @@ footer ul li {
     background-color: rgb(76, 83, 109);
     color: #fff;
 
+
+
     .board-header {
+      @media screen and (min-width: $medium-width) {
+        padding-left: 40px;
+      }
+
       padding: 5px;
-      padding-left: 40px;
       border-bottom: 1px solid rgb(36, 41, 58);
 
       .destination {
         .place {
-          font-size: 20px;
+          font-size: 23px;
+          font-weight: bold;
+          letter-spacing: 0.1em;
         }
       }
     }
 
     .board-body {
       background-color: #222;
-      padding: 0 50px;
+
+      @media screen and (min-width: $medium-width) {
+        padding: 0 50px;
+      }
+
+      @media screen and (max-width: $medium-width) {
+        padding: 0 5px;
+      }
 
       .board-body-column {
+
         .type {
-          display: inline-block;
-          width: 25%;
           font-size: 24px;
           color: greenyellow;
         }
 
         .time {
-          display: inline-block;
-          width: 25%;
           font-size: 25px;
           color: orange;
         }
 
         .detail {
           display: inline-block;
-          width: 48%;
           font-size: 22px;
+        }
+
+        [class*="col-"] {
+          display: inline-block;
+
+          // @media screen and (max-width: $medium-width) {
+          //   padding-left: 0px;
+          //   padding-right: 0px;
+          // }
         }
       }
     }
@@ -158,7 +190,6 @@ footer ul li {
 
 .marquee {
   overflow: hidden;
-  position: relative;
 
   $duration-speed: 6s;
 
