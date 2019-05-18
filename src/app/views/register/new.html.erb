@@ -103,7 +103,7 @@
             <th>到着時刻</th>
             <th>シャトル運行</th>
           </tr>
-          <% table[:table][:to_destination].each do |row| %>
+          <% table[:table][:to_school].each do |row| %>
           <tr>
             <td><%= row[:departure_time].strftime('%H:%M') %></td>
             <td><%= row[:arrival_time].strftime('%H:%M') %></td>
