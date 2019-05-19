@@ -1,18 +1,18 @@
 
-# TUT Bus Timetable API
 <!-- TOC -->
 
-- [TUT Bus Timetable API](#tut-bus-timetable-api)
-  - [API](#api)
-    - [get timetable](#get-timetable)
-    - [Get Places](#get-places)
+- [API](#api)
+  - [get timetable](#get-timetable)
+  - [Get All Places](#get-all-places)
       - [BusStationCode](#busstationcode)
-    - [Get Available Places](#get-available-places)
+  - [Get Available Places](#get-available-places)
 
 <!-- /TOC -->
-## API
+# API
 
-### get timetable
+## get timetable
+
+指定したパラメータに合うバスの時刻表を返すエンドポイント
 
 | method | endpoint                     |
 | ------ | ---------------------------- |
@@ -20,12 +20,12 @@
 
 * request params
 
-    | params   | type     | require | detail                                                                           |
-    | -------- | -------- | :-----: | -------------------------------------------------------------------------------- |
-    | from     | `int`    |    △    | [Bus stop code](#BusStationCode) of departure place                              |
-    | to       | `int`    |    △    | [Bus stop code](#BusStationCode) of arrival place                                |
-    | datetime | `string` |         | Specify the time to search. Exp, `2019-05-01 10:00`. Default is **current time** |
-    | limit    | `int`    |         | Maximum number of searches. The default is **5**                                 |
+    | params   | type     | require | detail                                              | default  |
+    | -------- | -------- | :-----: | --------------------------------------------------- | -------- |
+    | from     | `int`    |    △    | 出発地の [バス停ID](#BusStationCode) を指定         | -        |
+    | to       | `int`    |    △    | 行き先の [バス停ID](#BusStationCode) を指定         | -        |
+    | datetime | `string` |         | 検索する日付と時間を指定。(例：`2019-05-01 10:00`). | 現在時刻 |
+    | limit    | `int`    |         | 検索結果の最大数。                                  | 5        |
 
 
 * request url sample:
@@ -33,15 +33,70 @@
   ```url
   base_url/api/v1/timetables?from=2&datetime=2019-05-20%2007:21
   ```
-  スペースは`%20`で置き換え
+  ※スペースのURIEncodeは`%20`
 
 * response body sample:
   * success `200 OK`
     ```json
-
+    {
+        "success": true,
+        "timetables": [
+            {
+                "id": 662,
+                "course_id": 2,
+                "timetable_set_id": 4,
+                "arrival_time": "2000-01-01T07:38:00.000+09:00",
+                "departure_time": "2000-01-01T07:28:00.000+09:00",
+                "is_shuttle": false
+            },
+            {
+                "id": 663,
+                "course_id": 2,
+                "timetable_set_id": 4,
+                "arrival_time": "2000-01-01T07:44:00.000+09:00",
+                "departure_time": "2000-01-01T07:34:00.000+09:00",
+                "is_shuttle": false
+            },
+            {
+                "id": 664,
+                "course_id": 2,
+                "timetable_set_id": 4,
+                "arrival_time": "2000-01-01T07:52:00.000+09:00",
+                "departure_time": "2000-01-01T07:42:00.000+09:00",
+                "is_shuttle": false
+            }
+        ],
+        "course": {
+            "id": 2,
+            "arrival_id": 1,
+            "departure_id": 2,
+            "arrival": {
+                "id": 1,
+                "name": "八王子みなみ野駅"
+            },
+            "departure": {
+                "id": 2,
+                "name": "図書館棟前"
+            }
+        }
+    }
     ```
 
-### Get Places
+  * Error `400 Bad Request` 
+  
+    行き先( `to` )もしくは出発地( `from` )のパラメータを指定していない時など
+    ```json
+    {
+        "success": false,
+        "errors": "400 Bat Request. Please check require parameter."
+    }
+    ```
+ 
+ 
+## Get All Places
+
+バス停の情報一覧を返すエンドポイント
+
 | method | endpoint                 |
 | ------ | ------------------------ |
 | GET    | `base_url/api/v1/places` |
@@ -49,32 +104,35 @@
 * response body sample:
   * success `200 OK`
   ```json
-  [
-      {
-          "id": 1,
-          "name": "八王子みなみ野駅"
-      },
-      {
-          "id": 2,
-          "name": "図書館棟前"
-      },
-      {
-          "id": 3,
-          "name": "八王子駅南口"
-      },
-      {
-          "id": 4,
-          "name": "厚生棟前"
-      },
-      {
-          "id": 5,
-          "name": "学生会館"
-      },
-      {
-          "id": 6,
-          "name": "正門ロータリー前"
-      }
-  ]
+  {
+    "success": true,
+    "places": [
+        {
+            "id": 1,
+            "name": "八王子みなみ野駅"
+        },
+        {
+            "id": 2,
+            "name": "図書館棟前"
+        },
+        {
+            "id": 3,
+            "name": "八王子駅南口"
+        },
+        {
+            "id": 4,
+            "name": "厚生棟前"
+        },
+        {
+            "id": 5,
+            "name": "学生会館"
+        },
+        {
+            "id": 6,
+            "name": "正門ロータリー前"
+        }
+    ]
+  }
   ```
 
 #### BusStationCode
@@ -89,14 +147,55 @@
 | 6    | `正門ロータリー前` |
 
 
-### Get Available Places
+## Get Available Places
+
+運行しているバス停のみを返すエンドポイント
+
 | method | endpoint                           |
 | ------ | ---------------------------------- |
 | GET    | `base_url/api/v1/places/available` |
 
 * request params
+  
+    | params | type     | require | detail                                        | default  |
+    | ------ | -------- | :-----: | --------------------------------------------- | -------- |
+    | date   | `string` |         | 検索する日付と時間を指定。(例：`2019-05-01`). | **今日** |
 
-| params | type     | require | detail                                                             |
-| ------ | -------- | :-----: | ------------------------------------------------------------------ |
-| date   | `string` |         | Specify the time to search. Exp. `2019-10-24` Default is **today** |
+* request body sample:
+  ```url
+  base_url/api/v1/places/available?date=2019-05-18
+  ```
+* response body sample:
+  * success `200 OK`
+    ```json
+    {
+        "success": true,
+        "places": [
+            {
+                "id": 1,
+                "name": "八王子みなみ野駅",
+                "created_at": "2019-05-19T00:24:38.000+09:00",
+                "updated_at": "2019-05-19T00:24:38.000+09:00"
+            },
+            {
+                "id": 2,
+                "name": "図書館棟前",
+                "created_at": "2019-05-19T00:24:38.000+09:00",
+                "updated_at": "2019-05-19T00:24:38.000+09:00"
+            },
+            {
+                "id": 3,
+                "name": "八王子駅南口",
+                "created_at": "2019-05-19T00:24:38.000+09:00",
+                "updated_at": "2019-05-19T00:24:38.000+09:00"
+            },
+            {
+                "id": 4,
+                "name": "厚生棟前",
+                "created_at": "2019-05-19T00:24:38.000+09:00",
+                "updated_at": "2019-05-19T00:24:38.000+09:00"
+            }
+        ]
+    }
+    ```
 
