@@ -23,7 +23,8 @@ class Api::V1::PlacesController < ApplicationController
 
       render json: {success: true, places: @places.to_json()}, status: :ok
     else
-      render json: [], status: :ok
+      render json: {success: true, places: []}, status: :ok
+    end
   rescue => e
     render json: {success: false, error: '500 Internal sever error. Please contact the administrator.' }, status: :internal  
   end
