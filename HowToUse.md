@@ -1,16 +1,6 @@
-
-<!-- TOC -->
-
-- [API](#api)
-  - [get timetable](#get-timetable)
-  - [Get All Places](#get-all-places)
-      - [BusStationCode](#busstationcode)
-  - [Get Available Places](#get-available-places)
-
-<!-- /TOC -->
 # API
 
-## get timetable
+## Get Timetable
 
 指定したパラメータに合うバスの時刻表を返すエンドポイント
 
