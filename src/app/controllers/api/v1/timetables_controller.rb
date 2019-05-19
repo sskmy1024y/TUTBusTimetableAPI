@@ -9,9 +9,9 @@ class Api::V1::TimetablesController < ApplicationController
     @limit = params[:limit] ? params[:limit] : 3
 
     if !params[:to].blank?
-      @course = Course.find_by(arrival_id: params[:to])
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to])
     elsif  !params[:from].blank?
-      @course = Course.find_by(departure_id: params[:from])
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(departure_id: params[:from])
     else
       return render json: { success: false, errors: '400 Bat Request. Please check require parameter.' }, status: :bad_request
     end
@@ -23,7 +23,7 @@ class Api::V1::TimetablesController < ApplicationController
       else
         @timetables = []
       end
-      render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [:arrival, :departure]) ) }, status: :ok
+      render json: { success: true, timetables: @timetables.select(:id, :course_id, :timetable_set_id, :arrival_time, :departure_time, :is_shuttle), course: JSON.parse(@course.to_json(:include => [{arrival: {only: [:id, :name]} }, {departure: {only: [:id, :name]} }]) ) }, status: :ok
     rescue => exception
       render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
     end
