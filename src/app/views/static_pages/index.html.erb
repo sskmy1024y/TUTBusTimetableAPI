@@ -1,125 +1,136 @@
-<div id="home" class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="main-icon">
-        <p><%= fa_icon("bus 5x", class: "large-font") %></p>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="jumbotron">
-        <h3 class="display-4">次の学バスは……</h3>
-        <div id="board-place"></div>
-        <p class="lead"><small>この時刻表は、<a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable"
-              target="blank">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
-        </p>
-        <hr class="my-4">
-        <p>TUT学バスAPIは、Webサイトに掲載された東京工科大学・日本工学院八王子キャンパスにおけるスクールバスの正確な時刻表情報を配信します。
-        </p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">How to Use</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<h2>クライアント一覧</h2>
-
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <div class="media">
-        <img src="/assets/siri_shortcut/icon.png" class="mr-3 icon" alt="SiriShortCutIcon">
-        <div class="media-body">
-          <div class="head-button">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
-              aria-expanded="false" aria-controls="collapseTwo">
-              <h5 class="mt-0">Siri ショートカット</h5>
-            </button>
-          </div>
-          Siriショートカットを使えば、Siriに話しかけるだけで次のバスの時間がわかります。
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="main-icon">
+          <p><%= fa_icon("bus 5x", class: "large-font") %></p>
         </div>
       </div>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <img src="/assets/siri_shortcut/for_select_details.jpeg" class="card-img-top" alt="detail-image">
-              <div class="card-body">
-                <h5 class="card-title">次の学バスは？</h5>
-                <p class="card-text">行き先を指定すると、バスの出発時刻を<b>アラート</b>で返します。</p>
-                <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
-                  class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img src="/assets/siri_shortcut/for_select_details3.jpeg" class="card-img-top" alt="detail-image">
-              <div class="card-body">
-                <h5 class="card-title">次の学校行きのバスは？</h5>
-                <p class="card-text">現在地から一番近いバス停から、学校行きのバスの時刻を返します。</p>
-                <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
-                  class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
-              </div>
-            </div>
-          </div>
+      <div class="col-md-8">
+        <div class="jumbotron">
+          <h3 class="display-4">次の学バスは……</h3>
+          <div id="board-place"></div>
+          <p class="lead"><small>この時刻表は、<a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable"
+                target="blank">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
+          </p>
+          <hr class="my-4">
+          <p><b>TUT学バスAPI</b>は、Webサイトに掲載された東京工科大学・日本工学院八王子キャンパスにおけるスクールバスの正確な時刻表情報を配信します。
+          </p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">How to Use</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
-          aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h2>
+
+
+
+  <h2>クライアント一覧</h2>
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <div class="media">
+          <img src="/assets/siri_shortcut/icon.png" class="mr-3 icon" alt="SiriShortCutIcon">
+          <div class="media-body">
+            <div class="head-button">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="false" aria-controls="collapseTwo">
+                <h5 class="mt-0">Siri ショートカット</h5>
+              </button>
+            </div>
+            Siriショートカットを使えば、Siriに話しかけるだけで次のバスの時間がわかります。
+          </div>
+        </div>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 my-2 my-lg-0">
+              <div class="card">
+                <img src="/assets/siri_shortcut/for_select_details.jpeg" class="card-img-top" alt="detail-image">
+                <div class="card-body">
+                  <h5 class="card-title">次の学バスは？</h5>
+                  <p class="card-text">行き先を指定すると、バスの出発時刻を<b>アラート</b>で返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
+                    class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 my-2 my-lg-0">
+              <div class="card">
+                <img src="/assets/siri_shortcut/for_select_details3.jpeg" class="card-img-top" alt="detail-image">
+                <div class="card-body">
+                  <h5 class="card-title">次の学校行きのバスは？</h5>
+                  <p class="card-text">現在地から一番近いバス停から、学校行きのバスの時刻を返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
+                    class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-        moon
-        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-        wolf
-        moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
-        anim
-        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-        butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-        probably
-        haven't heard of them accusamus labore sustainable VHS.
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <div class="media">
+          <img src="/assets/line_bot/icon.png" class="mr-3 icon" alt="SiriShortCutIcon">
+          <div class="media-body">
+            <div class="head-button">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                <h5 class="mt-0">LINE Bot</h5>
+              </button>
+            </div>
+            LINEのトーク画面から、次のバスの時間を調べることができます。
+          </div>
+        </div>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5 my-2 my-lg-0">
+              <div class="card">
+                <img src="/assets/line_bot/screen1.jpeg" class="card-img-top" alt="detail-image">
+                <div class="card-body">
+                  <h5 class="card-title">次のバスの時間を教えるよ</h5>
+                  <p class="card-text">出発場所を指定すると、次のバスの出発時刻が返信されます。</p>
+                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301" class=""><img height="36"
+                      border="0" alt="友達追加" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"></a>
+                  <small>Made by @nakainu</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="false" aria-controls="collapseThree">
+            Collapsible Group Item #3
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+          moon
+          officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
+          wolf
+          moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
+          anim
+          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+          butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+          probably
+          haven't heard of them accusamus labore sustainable VHS.
+        </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
-          aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h2>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-        moon
-        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3
-        wolf
-        moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
-        anim
-        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-        butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-        probably
-        haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
 
 </div>
 
