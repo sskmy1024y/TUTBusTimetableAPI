@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
       get '/places/available', to: 'places#available'
       get '/timetables/internal', to: 'timetables#internal'
+
     end
   end
 
   root 'static_pages#index'
+  get 'api/v1/document', to: 'static_pages#document'
   resources :register, only: [:index, :new, :create]
 end
