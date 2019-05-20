@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
   get 'api/v1/document', to: 'static_pages#document'
+  get 'contact', to: 'static_pages#contact'
   resources :register, only: [:index, :new, :create]
 end
