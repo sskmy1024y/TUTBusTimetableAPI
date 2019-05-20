@@ -9,4 +9,8 @@ class StaticPagesController < ApplicationController
   def document
     
   end
+
+  def contact
+    
+  end
 end
