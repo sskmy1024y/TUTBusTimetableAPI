@@ -1,15 +1,26 @@
 <header>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" role="navigation">
-      <%= link_to "TUT Bus Timetable API", '/', id: "logo", class: "navbar-brand col-sm-6 col-md-6" %>
-      <%# <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Pricing</a>
-          <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <div class="container">
+        <%= link_to "TUT Bus Timetable API", '/', id: "logo", class: "navbar-brand" %>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+          <!-- この下の行に mr-auto クラスを付与するだけ -->
+          <ul class="navbar-nav mr-auto">　
+            <li class="nav-item">
+              <%= link_to "Home", '/', class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "API Doc", '/api/v1/document', class: "nav-link" %>
+            </li>
+          </ul>
         </div>
-      </div> %>
+      </div>
     </nav>
   </div>
 </header>
