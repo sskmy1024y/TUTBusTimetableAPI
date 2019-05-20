@@ -4,7 +4,7 @@ class Api::V1::PlacesController < ApplicationController
 
   def index
     @places = Place.all().select(:id, :name)
-    render json: {success: true, places: @places.to_json()}, status: :ok
+    render json: {success: true, places: @places }, status: :ok
   rescue => e
     render json: {success: false, error: '500 Internal sever error. Please contact the administrator.' }, status: :internal
   end
@@ -21,7 +21,7 @@ class Api::V1::PlacesController < ApplicationController
       end
       @places = @places.uniq
 
-      render json: {success: true, places: @places.to_json()}, status: :ok
+      render json: {success: true, places: @places}, status: :ok
     else
       render json: {success: true, places: []}, status: :ok
     end

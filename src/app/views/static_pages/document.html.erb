@@ -1,0 +1,449 @@
+<div id="document">
+  <div id="doc" class="markdown-body container-fluid comment-enabled">
+    <h1 id="API">API</h1>
+    <h2 id="get-timetable">Get Timetable</h2>
+    <p>指定したパラメータに合うバスの時刻表を返すエンドポイント</p>
+    <table>
+      <thead>
+        <tr>
+          <th>method</th>
+          <th>endpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td><code>base_url/api/v1/timetables</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>request params</p>
+        <table>
+          <thead>
+            <tr>
+              <th>params</th>
+              <th>type</th>
+              <th style="text-align:center">require</th>
+              <th>detail</th>
+              <th>default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>from</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>出発地の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>to</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>行き先の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>datetime</td>
+              <td><code>string</code></td>
+              <td style="text-align:center"></td>
+              <td>検索する日付と時間を指定。(例：<code>2019-05-01 10:00</code>).</td>
+              <td>現在時刻</td>
+            </tr>
+            <tr>
+              <td>limit</td>
+              <td><code>int</code></td>
+              <td style="text-align:center"></td>
+              <td>検索結果の最大数。</td>
+              <td>5</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>request url sample:</p>
+        <pre><code class="url hljs">base_url<span class="hljs-meta-keyword">/api/</span>v1/timetables?from=<span class="hljs-number">2</span><span class="hljs-variable">&amp;datetime</span>=<span class="hljs-number">2019</span><span class="hljs-number">-05</span><span class="hljs-number">-20</span>%<span class="hljs-number">2007</span>:<span class="hljs-number">21</span>
+</code></pre>
+        <p>※スペースのURIEncodeは<code>%20</code></p>
+      </li>
+      <li>
+        <p>response body sample:</p>
+        <ul>
+          <li>
+            <p>success <code>200 OK</code></p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"timetables"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">662</span><span class="token punctuation">,</span>
+            <span class="token property">"course_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"timetable_set_id"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">"arrival_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:38:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"departure_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:28:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">663</span><span class="token punctuation">,</span>
+            <span class="token property">"course_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"timetable_set_id"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">"arrival_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:44:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"departure_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:34:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">664</span><span class="token punctuation">,</span>
+            <span class="token property">"course_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"timetable_set_id"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">"arrival_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:52:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"departure_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:42:00.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"course"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival_id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"departure_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子みなみ野駅"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"departure"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"図書館棟前"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+          <li>
+            <p>Error <code>400 Bad Request</code></p>
+            <p>行き先( <code>to</code> )もしくは出発地( <code>from</code> )のパラメータを指定していない時など</p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"errors"</span><span class="token operator">:</span> <span class="token string">"400 Bat Request. Please check require parameter."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="Get-All-Places">Get All Places</h2>
+    <p>バス停の情報一覧を返すエンドポイント</p>
+    <table>
+      <thead>
+        <tr>
+          <th>method</th>
+          <th>endpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td><code>base_url/api/v1/places</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>response body sample:
+        <ul>
+          <li>success <code>200 OK</code></li>
+        </ul>
+        <pre><code class="json hljs"><span class="token punctuation">{</span>
+  <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"places"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子みなみ野駅"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"図書館棟前"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子駅南口"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"厚生棟前"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"学生会館"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+          <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"正門ロータリー前"</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+      </li>
+    </ul>
+    <h4 id="BusStationCode">BusStationCode</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>code</th>
+          <th>bus stop name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><code>八王子みなみ野駅</code></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><code>図書館棟前</code></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><code>八王子駅南口</code></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><code>厚生棟前</code></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><code>学生会館</code></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><code>正門ロータリー前</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="Get-Available-Places">Get Available Places</h2>
+    <p>運行しているバス停のみを返すエンドポイント</p>
+    <table>
+      <thead>
+        <tr>
+          <th>method</th>
+          <th>endpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td><code>base_url/api/v1/places/available</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>request params</p>
+        <table>
+          <thead>
+            <tr>
+              <th>params</th>
+              <th>type</th>
+              <th style="text-align:center">require</th>
+              <th>detail</th>
+              <th>default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>date</td>
+              <td><code>string</code></td>
+              <td style="text-align:center"></td>
+              <td>検索する日付と時間を指定。(例：<code>2019-05-01</code>).</td>
+              <td><strong>今日</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>request body sample:</p>
+        <pre><code class="url hljs">base_url/api/v1/places/available?date=<span class="hljs-number">2019</span><span class="hljs-number">-05</span><span class="hljs-number">-18</span>
+</code></pre>
+      </li>
+      <li>
+        <p>response body sample:</p>
+        <ul>
+          <li>success <code>200 OK</code>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"places"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子みなみ野駅"</span><span class="token punctuation">,</span>
+            <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"updated_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"図書館棟前"</span><span class="token punctuation">,</span>
+            <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"updated_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子駅南口"</span><span class="token punctuation">,</span>
+            <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"updated_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"厚生棟前"</span><span class="token punctuation">,</span>
+            <span class="token property">"created_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span><span class="token punctuation">,</span>
+            <span class="token property">"updated_at"</span><span class="token operator">:</span> <span class="token string">"2019-05-19T00:24:38.000+09:00"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  var markdown = $(".markdown-body");
+  //smooth all hash trigger scrolling
+  function smoothHashScroll() {
+    var hashElements = $("a[href^='#']").toArray();
+    for (var i = 0; i < hashElements.length; i++) {
+      var element = hashElements[i];
+      var $element = $(element);
+      var hash = element.hash;
+      if (hash) {
+        $element.on('click', function (e) {
+          // store hash
+          var hash = this.hash;
+          if ($(hash).length <= 0) return;
+          // prevent default anchor click behavior
+          e.preventDefault();
+          // animate
+          $('body, html').stop(true, true).animate({
+            scrollTop: $(hash).offset().top
+          }, 100, "linear", function () {
+            // when done, add hash to url
+            // (default click behaviour)
+            window.location.hash = hash;
+          });
+        });
+      }
+    }
+  }
+
+  smoothHashScroll();
+  var toc = $('.ui-toc');
+  var tocAffix = $('.ui-affix-toc');
+  var tocDropdown = $('.ui-toc-dropdown');
+  //toc
+  tocDropdown.click(function (e) {
+    e.stopPropagation();
+  });
+
+  var enoughForAffixToc = true;
+
+  function generateScrollspy() {
+    $(document.body).scrollspy({
+      target: ''
+    });
+    $(document.body).scrollspy('refresh');
+    if (enoughForAffixToc) {
+      toc.hide();
+      tocAffix.show();
+    } else {
+      tocAffix.hide();
+      toc.show();
+    }
+    $(document.body).scroll();
+  }
+
+  function windowResize() {
+    //toc right
+    var paddingRight = parseFloat(markdown.css('padding-right'));
+    var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+    toc.css('right', right + 'px');
+    //affix toc left
+    var newbool;
+    var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+    //for ipad or wider device
+    if (rightMargin >= 133) {
+      newbool = true;
+      var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+      var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+      tocAffix.css('left', left + 'px');
+    } else {
+      newbool = false;
+    }
+    if (newbool != enoughForAffixToc) {
+      enoughForAffixToc = newbool;
+      generateScrollspy();
+    }
+  }
+  $(window).resize(function () {
+    windowResize();
+  });
+  $(document).ready(function () {
+    windowResize();
+    generateScrollspy();
+  });
+
+  //remove hash
+  function removeHash() {
+    window.location.hash = '';
+  }
+
+  var backtotop = $('.back-to-top');
+  var gotobottom = $('.go-to-bottom');
+
+  backtotop.click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (scrollToTop)
+      scrollToTop();
+    removeHash();
+  });
+  gotobottom.click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (scrollToBottom)
+      scrollToBottom();
+    removeHash();
+  });
+
+  var toggle = $('.expand-toggle');
+  var tocExpand = false;
+
+  checkExpandToggle();
+  toggle.click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    tocExpand = !tocExpand;
+    checkExpandToggle();
+  })
+
+  function checkExpandToggle() {
+    var toc = $('.ui-toc-dropdown .toc');
+    var toggle = $('.expand-toggle');
+    if (!tocExpand) {
+      toc.removeClass('expand');
+      toggle.text('Expand all');
+    } else {
+      toc.addClass('expand');
+      toggle.text('Collapse all');
+    }
+  }
+
+  function scrollToTop() {
+    $('body, html').stop(true, true).animate({
+      scrollTop: 0
+    }, 100, "linear");
+  }
+
+  function scrollToBottom() {
+    $('body, html').stop(true, true).animate({
+      scrollTop: $(document.body)[0].scrollHeight
+    }, 100, "linear");
+  }
+</script>
