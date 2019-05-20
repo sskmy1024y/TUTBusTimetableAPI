@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.22
+    volumes:
+      - ./db/mysql_data:/var/lib/mysql
+    env_file: .env
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    env_file: .env
+    environment:
+      SOCKET: /rails/tmp/sockets/puma.sock
+      RAILS_ENV: production
+    restart: unless-stopped
+    volumes:
+      - ./src:/myapp
+    ports:
+      - "22222:3000"
+    depends_on:
+      - db
+      

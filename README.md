@@ -13,7 +13,23 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-out port is `:3000`
+### production build
+```bash
+$ rails secret
+```
+
+出てきた値を `.env` に
+```enviroment
+SECRET_KEY_BASE= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+```bash
+$ rails assets:precompile RAILS_ENV=production
+```
+
+
+
+out port is `:22222`
 
 ## API
 
