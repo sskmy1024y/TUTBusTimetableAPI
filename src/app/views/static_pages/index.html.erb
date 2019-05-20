@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="row">
             <div class="col-md-4 my-2 my-lg-0">
@@ -51,30 +51,53 @@
                 <img src="/assets/siri_shortcut/for_select_details.jpeg" class="card-img-top" alt="detail-image">
                 <div class="card-body">
                   <h5 class="card-title">次の学バスは？</h5>
-                  <p class="card-text">行き先を指定すると、バスの出発時刻を<b>アラート</b>もしくは<b>音声</b>で返します。</p>
-                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
+                  <p class="card-text">行き先を指定すると、バスの出発時刻を返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/b476075ff4a640258734bc722978865e"
                     class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
                 </div>
               </div>
             </div>
             <div class="col-md-4 my-2 my-lg-0">
               <div class="card">
-                <img src="/assets/siri_shortcut/for_select_details3.jpeg" class="card-img-top" alt="detail-image">
+                <img src="/assets/siri_shortcut/for_school.jpg" class="card-img-top" alt="detail-image">
                 <div class="card-body">
                   <h5 class="card-title">次の学校行きのバスは？</h5>
                   <p class="card-text">現在地から一番近いバス停から、学校行きのバスの時刻を返します。</p>
-                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
+                  <a href="https://www.icloud.com/shortcuts/35a87e28db634513a8f65252f0b7cb2d"
                     class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
                 </div>
               </div>
             </div>
+            <div class="col-md-4 my-2 my-lg-0">
+              <div class="card">
+                <img src="/assets/siri_shortcut/for_hachiouji.jpg" class="card-img-top" alt="detail-image">
+                <div class="card-body">
+                  <h5 class="card-title">次の八王子駅行きのバスは？</h5>
+                  <p class="card-text">学校から八王子駅へ向かうバスの出発時刻を返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/62464d06af6f4705a8b4e0c6ab1fa5e9"
+                    class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 my-2 my-lg-0">
+              <div class="card">
+                <img src="/assets/siri_shortcut/for_minamino.jpg" class="card-img-top" alt="detail-image">
+                <div class="card-body">
+                  <h5 class="card-title">次のみなみ野行きのバスは？</h5>
+                  <p class="card-text">学校から八王子みなみ野駅へ向かうバスの時刻を返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/5ba8a6d96b4c42658c620d73ad801564"
+                    class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-4 my-2 my-lg-0">
               <div class="card">
                 <img src="/assets/siri_shortcut/for_select_details3.jpeg" class="card-img-top" alt="detail-image">
                 <div class="card-body">
                   <h5 class="card-title">次の○○行きのバスは？</h5>
-                  <p class="card-text">最初に登録した場所へ向かうバスの時刻を返します。</p>
-                  <a href="https://www.icloud.com/shortcuts/52139d339852477bba5f052a67119301"
+                  <p class="card-text">最初に指定した場所へ向かうバスの時刻を返します。</p>
+                  <a href="https://www.icloud.com/shortcuts/f30af10248e9483aac99af5176eddbfe"
                     class="btn btn-primary get-shortcut disabled">ショートカットを取得</a>
                 </div>
               </div>
@@ -107,8 +130,9 @@
                 <div class="card-body">
                   <h5 class="card-title">次のバスの時間を教えるよ</h5>
                   <p class="card-text">出発場所を指定すると、次のバスの出発時刻が返信されます。</p>
-                  <a href="https://line.me/R/ti/p/%40jft2925j" target="_blank" alt="友達追加"><img height="36" border="0"
-                      alt="友達追加" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"></a>
+                  <%# <a href="https://line.me/R/ti/p/%40jft2925j" target="_blank" alt="友達追加"><img height="36" border="0"
+                      alt="友達追加" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"></a> %>
+                  <a class="btn btn-light disabled" role="button">調整中</a>
                   <small>Made by @nakainu</small>
                 </div>
               </div>
@@ -149,11 +173,6 @@
 </div>
 
 <script>
-  const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent)
-  if (isIOS) {
-    $(".get-shortcut").removeClass("disabled");
-  }
-
   function renderBulletinBoard(data) {
     $('#board-place').html("")
 
@@ -238,6 +257,15 @@
   };
 
   $(() => {
+
+    const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent)
+    if (isIOS) {
+      $(".get-shortcut").removeClass("disabled");
+      $('#collapseOne').addClass('show');
+    } else {
+      $('#collapseMore').addClass('show');
+    }
+
     loadTimetable()
     setInterval(() => {
       loadTimetable()
