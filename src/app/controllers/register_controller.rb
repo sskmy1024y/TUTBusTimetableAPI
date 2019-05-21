@@ -63,10 +63,12 @@ class RegisterController < ApplicationController
               # 表記あり時刻に近似しない時刻であることを確認
               while Time.parse(row.css('td')[0].inner_text) > goto_destination.last[:departure_time]+is_shuttle[:interval] * 2
                 goto_destination << {
-                  departure_time: goto_school.last[:departure_time] + is_shuttle[:interval],
+                  departure_time: goto_destination.last[:departure_time] + is_shuttle[:interval],
                   arrival_time: goto_destination.last[:arrival_time] + is_shuttle[:interval],
                   shuttle: true
                 }
+              end
+              while Time.parse(row.css('td')[0].inner_text) > goto_school.last[:departure_time]+is_shuttle[:interval] * 2
                 goto_school << {
                   departure_time: goto_school.last[:departure_time] + is_shuttle[:interval],
                   arrival_time: goto_school.last[:arrival_time] + is_shuttle[:interval],
