@@ -8,7 +8,12 @@ class Api::V1::TimetablesController < ApplicationController
     @time = params[:datetime] ? Time.parse(params[:datetime]) : Time.parse(datetime)
     @limit = params[:limit] ? params[:limit] : 3
 
-    if !params[:to].blank?
+    if params[:from] && params[:to]
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to], departure_id: params[:from])
+      if @course.blank?
+        return render json: { success: false, errors: '416 Range Not Satisfiable. This course is not defined.' }, status: :requested_range_not_satisfiable
+      end
+    elsif !params[:to].blank?
       @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to])
     elsif  !params[:from].blank?
       @course = Course.select(:id, :arrival_id, :departure_id).find_by(departure_id: params[:from])
