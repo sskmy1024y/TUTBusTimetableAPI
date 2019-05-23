@@ -191,6 +191,11 @@ footer ul li {
 }
 
 #document {
+  .last-update {
+    text-align: right;
+    color: #797979;
+  }
+
   .markdown-body {
     font-size: 16px;
     line-height: 1.5;
