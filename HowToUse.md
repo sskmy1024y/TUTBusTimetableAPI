@@ -1,5 +1,7 @@
 # API
 
+`base_url` は、`https://bus.t-lab.cs.teu.ac.jp` に置き換えてご利用ください
+
 ## Get Timetable
 
 指定したパラメータに合うバスの時刻表を返すエンドポイント
@@ -17,6 +19,18 @@
     | datetime | `string` |         | 検索する日付と時間を指定。(例：`2019-05-01 10:00`). | 現在時刻 |
     | limit    | `int`    |         | 検索結果の最大数。                                  | 5        |
 
+* response params
+
+    | params                    | type      | detail                                                |
+    | ------------------------- | --------- | ----------------------------------------------------- |
+    | success                   | `boolean` | 問い合わせが正常に完了したかどうか                    |
+    | timetables.arrival_time   | `Time`    | 該当時刻表における目的地への到着時刻                  |
+    | timetables.departure_time | `Time`    | 該当時刻表におけるバスの出発時刻                      |
+    | timetables.is_shuttle     | `boolean` | シャトルバスか否か（<sup><a href="#1">\*1</a></sup>） |
+    | course.arrival.name       | `string`  | 目的地の名前                                          |
+    | course.departure.name     | `string`  | 出発地の名前                                          |
+
+    <span id="1" style="font-size:small">1: シャトルバスの場合、固定された運行情報はなく一定時間ごとにバスが周回している。その為時刻表の到着時間などはおよその値であり、正確性に欠ける事を示す。</span>
 
 * request url sample:
   
@@ -188,4 +202,5 @@
         ]
     }
     ```
+
 
