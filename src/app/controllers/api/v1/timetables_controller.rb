@@ -28,12 +28,81 @@ class Api::V1::TimetablesController < ApplicationController
       else
         @timetables = []
       end
+
       render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [{arrival: {only: [:id, :name]} }, {departure: {only: [:id, :name]} }]) ) }, status: :ok
     rescue => exception
       render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
     end
   rescue => e
     render json: { success: false, errors: '500 internal error. Please contact the administrator.' }, status: :internal
+  end
+
+  def first()
+    expires_now
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    
+    if params[:from] && params[:to]
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to], departure_id: params[:from])
+      if @course.blank?
+        return render json: { success: false, errors: '416 Range Not Satisfiable. This course is not defined.' }, status: :requested_range_not_satisfiable
+      end
+    elsif !params[:to].blank?
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to])
+    elsif  !params[:from].blank?
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(departure_id: params[:from])
+    else
+      return render json: { success: false, errors: '400 Bat Request. Please check require parameter.' }, status: :bad_request
+    end
+
+    begin
+      @dateset = DateSet.find_by(date: @date)
+      if @dateset
+        @timetables = @dateset.timetable_set.timetables.where("course_id = ?", @course.id).order(:departure_time).select(:id, :course_id, :timetable_set_id, :arrival_time, :departure_time, :is_shuttle).first()
+      else
+        @timetables = []
+      end
+      
+      render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [{arrival: {only: [:id, :name]} }, {departure: {only: [:id, :name]} }]) ) }, status: :ok
+    rescue => exception
+      render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
+    end
+  rescue => e
+    render json: { success: false, errors: '500 internal error. Please contact the administrator.' }, status: :internal
+
+  end
+
+  def last()
+    expires_now
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    
+    if params[:from] && params[:to]
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to], departure_id: params[:from])
+      if @course.blank?
+        return render json: { success: false, errors: '416 Range Not Satisfiable. This course is not defined.' }, status: :requested_range_not_satisfiable
+      end
+    elsif !params[:to].blank?
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to])
+    elsif  !params[:from].blank?
+      @course = Course.select(:id, :arrival_id, :departure_id).find_by(departure_id: params[:from])
+    else
+      return render json: { success: false, errors: '400 Bat Request. Please check require parameter.' }, status: :bad_request
+    end
+
+    begin
+      @dateset = DateSet.find_by(date: @date)
+      if @dateset
+        @timetables = @dateset.timetable_set.timetables.where("course_id = ?", @course.id).order(:departure_time).select(:id, :course_id, :timetable_set_id, :arrival_time, :departure_time, :is_shuttle).last()
+      else
+        @timetables = []
+      end
+      
+      render json: { success: true, timetables: @timetables, course: JSON.parse(@course.to_json(:include => [{arrival: {only: [:id, :name]} }, {departure: {only: [:id, :name]} }]) ) }, status: :ok
+    rescue => exception
+      render json: { success: false, errors: '416 Range Not Satisfiable. Perhaps bus timetable is not defined in this date.' }, status: :requested_range_not_satisfiable  
+    end
+  rescue => e
+    render json: { success: false, errors: '500 internal error. Please contact the administrator.' }, status: :internal
+
   end
 
   def internal(datetime = DateTime.now.to_s)
@@ -57,6 +126,9 @@ class Api::V1::TimetablesController < ApplicationController
         }
       end
       @timetables = @timetables.uniq
+      for timetable in @timetable do
+        timetable[:departure_time].strftime('%T')
+      end
     end
     render json: { success: true, data: @timetables }, status: :ok
   rescue => e

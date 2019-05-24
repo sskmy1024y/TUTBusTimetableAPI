@@ -5,6 +5,23 @@
   <div id="doc" class="markdown-body container-fluid comment-enabled" style="position: relative;">
     <h1 id="API" style="">API</h1>
     <p><code>base_url</code> は、<code>https://bus.t-lab.cs.teu.ac.jp</code> に置き換えてご利用ください</p>
+    <p><span class="toc">
+        <ul>
+          <li><a href="#API" title="API">API</a>
+            <ul>
+              <li><a href="#Get-Timetable" title="Get Timetable">Get Timetable</a></li>
+              <li><a href="#Get-First-Timetable" title="Get First Timetable">Get First Timetable</a></li>
+              <li><a href="#Get-Last-Timetable" title="Get Last Timetable">Get Last Timetable</a></li>
+              <li><a href="#Get-All-Places" title="Get All Places">Get All Places</a>
+                <ul>
+                  <li><a href="#BusStationCode" title="BusStationCode">BusStationCode</a></li>
+                </ul>
+              </li>
+              <li><a href="#Get-Available-Places" title="Get Available Places">Get Available Places</a></li>
+            </ul>
+          </li>
+        </ul>
+      </span></p>
     <h2 id="Get-Timetable" style="">Get Timetable</h2>
     <p>指定したパラメータに合うバスの時刻表を返すエンドポイント</p>
     <table>
@@ -151,6 +168,210 @@
             <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"course"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival_id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"departure_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子みなみ野駅"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"departure"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"図書館棟前"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+          <li>
+            <p>Error <code>400 Bad Request</code></p>
+            <p>行き先( <code>to</code> )もしくは出発地( <code>from</code> )のパラメータを指定していない時など</p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"errors"</span><span class="token operator">:</span> <span class="token string">"400 Bat Request. Please check require parameter."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="Get-First-Timetable" style="">Get First Timetable</h2>
+    <p>始バスの時刻表を返すエンドポイント</p>
+    <table>
+      <thead>
+        <tr>
+          <th>method</th>
+          <th>endpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td><code>base_url/api/v1/timetables/first</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>request params</p>
+        <table>
+          <thead>
+            <tr>
+              <th>params</th>
+              <th>type</th>
+              <th style="text-align:center">require</th>
+              <th>detail</th>
+              <th>default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>from</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>出発地の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>to</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>行き先の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>date</td>
+              <td><code>string</code></td>
+              <td style="text-align:center"></td>
+              <td>検索する日付を指定。(例：<code>2019-05-01 10:00</code>).</td>
+              <td>今日</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>request url sample:</p>
+        <pre><code class="url hljs">base_url<span class="hljs-regexp">/api/</span>v1<span class="hljs-regexp">/timetables/</span>first?<span class="hljs-keyword">from</span>=<span class="hljs-number">2</span>
+</code></pre>
+      </li>
+      <li>
+        <p>response body sample:</p>
+        <ul>
+          <li>
+            <p>success <code>200 OK</code></p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"timetables"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1592</span><span class="token punctuation">,</span>
+        <span class="token property">"course_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"timetable_set_id"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:28:00.000+09:00"</span><span class="token punctuation">,</span>
+        <span class="token property">"departure_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T07:21:00.000+09:00"</span><span class="token punctuation">,</span>
+        <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"course"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival_id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"departure_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"八王子みなみ野駅"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"departure"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"図書館棟前"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+          <li>
+            <p>Error <code>400 Bad Request</code></p>
+            <p>行き先( <code>to</code> )もしくは出発地( <code>from</code> )のパラメータを指定していない時など</p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"errors"</span><span class="token operator">:</span> <span class="token string">"400 Bat Request. Please check require parameter."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="Get-Last-Timetable" style="">Get Last Timetable</h2>
+    <p>終バスの時刻表を返すエンドポイント</p>
+    <table>
+      <thead>
+        <tr>
+          <th>method</th>
+          <th>endpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td><code>base_url/api/v1/timetables/last</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>request params</p>
+        <table>
+          <thead>
+            <tr>
+              <th>params</th>
+              <th>type</th>
+              <th style="text-align:center">require</th>
+              <th>detail</th>
+              <th>default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>from</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>出発地の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>to</td>
+              <td><code>int</code></td>
+              <td style="text-align:center">△</td>
+              <td>行き先の <a href="#BusStationCode">バス停ID</a> を指定</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>date</td>
+              <td><code>string</code></td>
+              <td style="text-align:center"></td>
+              <td>検索する日付を指定。(例：<code>2019-05-01 10:00</code>).</td>
+              <td>今日</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>request url sample:</p>
+        <pre><code class="url hljs">base_url<span class="hljs-regexp">/api/</span>v1<span class="hljs-regexp">/timetables/</span>last?<span class="hljs-keyword">from</span>=<span class="hljs-number">2</span>
+</code></pre>
+      </li>
+      <li>
+        <p>response body sample:</p>
+        <ul>
+          <li>
+            <p>success <code>200 OK</code></p>
+            <pre><code class="json hljs"><span class="token punctuation">{</span>
+    <span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"timetables"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1700</span><span class="token punctuation">,</span>
+        <span class="token property">"course_id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">"timetable_set_id"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+        <span class="token property">"arrival_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T21:27:00.000+09:00"</span><span class="token punctuation">,</span>
+        <span class="token property">"departure_time"</span><span class="token operator">:</span> <span class="token string">"2000-01-01T21:20:00.000+09:00"</span><span class="token punctuation">,</span>
+        <span class="token property">"is_shuttle"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token property">"course"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
         <span class="token property">"arrival_id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
