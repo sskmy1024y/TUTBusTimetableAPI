@@ -2,6 +2,8 @@
 
 `base_url` は、`https://bus.t-lab.cs.teu.ac.jp` に置き換えてご利用ください
 
+[toc]
+
 ## Get Timetable
 
 指定したパラメータに合うバスの時刻表を返すエンドポイント
@@ -96,7 +98,132 @@
     }
     ```
  
- 
+## Get First Timetable
+
+始バスの時刻表を返すエンドポイント
+
+| method | endpoint                           |
+| ------ | ---------------------------------- |
+| GET    | `base_url/api/v1/timetables/first` |
+
+* request params
+
+    | params | type     | require | detail                                        | default |
+    | ------ | -------- | :-----: | --------------------------------------------- | ------- |
+    | from   | `int`    |    △    | 出発地の [バス停ID](#BusStationCode) を指定   | -       |
+    | to     | `int`    |    △    | 行き先の [バス停ID](#BusStationCode) を指定   | -       |
+    | date   | `string` |         | 検索する日付を指定。(例：`2019-05-01 10:00`). | 今日    |
+
+* request url sample:
+  
+  ```url
+  base_url/api/v1/timetables/first?from=2
+  ```
+
+* response body sample:
+  * success `200 OK`
+    ```json
+    {
+        "success": true,
+        "timetables": {
+            "id": 1592,
+            "course_id": 2,
+            "timetable_set_id": 7,
+            "arrival_time": "2000-01-01T07:28:00.000+09:00",
+            "departure_time": "2000-01-01T07:21:00.000+09:00",
+            "is_shuttle": false
+        },
+        "course": {
+            "id": 2,
+            "arrival_id": 1,
+            "departure_id": 2,
+            "arrival": {
+                "id": 1,
+                "name": "八王子みなみ野駅"
+            },
+            "departure": {
+                "id": 2,
+                "name": "図書館棟前"
+            }
+        }
+    }
+    ```
+    
+  * Error `400 Bad Request` 
+  
+    行き先( `to` )もしくは出発地( `from` )のパラメータを指定していない時など
+    ```json
+    {
+        "success": false,
+        "errors": "400 Bat Request. Please check require parameter."
+    }
+    ```
+
+
+## Get Last Timetable
+
+終バスの時刻表を返すエンドポイント
+
+| method | endpoint                          |
+| ------ | --------------------------------- |
+| GET    | `base_url/api/v1/timetables/last` |
+
+* request params
+
+    | params | type     | require | detail                                        | default |
+    | ------ | -------- | :-----: | --------------------------------------------- | ------- |
+    | from   | `int`    |    △    | 出発地の [バス停ID](#BusStationCode) を指定   | -       |
+    | to     | `int`    |    △    | 行き先の [バス停ID](#BusStationCode) を指定   | -       |
+    | date   | `string` |         | 検索する日付を指定。(例：`2019-05-01 10:00`). | 今日    |
+
+* request url sample:
+  
+  ```url
+  base_url/api/v1/timetables/last?from=2
+  ```
+
+* response body sample:
+  * success `200 OK`
+    ```json
+    {
+        "success": true,
+        "timetables": {
+            "id": 1700,
+            "course_id": 2,
+            "timetable_set_id": 7,
+            "arrival_time": "2000-01-01T21:27:00.000+09:00",
+            "departure_time": "2000-01-01T21:20:00.000+09:00",
+            "is_shuttle": false
+        },
+        "course": {
+            "id": 2,
+            "arrival_id": 1,
+            "departure_id": 2,
+            "arrival": {
+                "id": 1,
+                "name": "八王子みなみ野駅"
+            },
+            "departure": {
+                "id": 2,
+                "name": "図書館棟前"
+            }
+        }
+    }
+    ```
+    
+  * Error `400 Bad Request` 
+  
+    行き先( `to` )もしくは出発地( `from` )のパラメータを指定していない時など
+    ```json
+    {
+        "success": false,
+        "errors": "400 Bat Request. Please check require parameter."
+    }
+    ```
+
+
+
+
 ## Get All Places
 
 バス停の情報一覧を返すエンドポイント

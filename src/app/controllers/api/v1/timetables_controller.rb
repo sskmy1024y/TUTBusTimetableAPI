@@ -39,6 +39,7 @@ class Api::V1::TimetablesController < ApplicationController
 
   def first()
     expires_now
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
     
     if params[:from] && params[:to]
       @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to], departure_id: params[:from])
@@ -54,7 +55,7 @@ class Api::V1::TimetablesController < ApplicationController
     end
 
     begin
-      @dateset = DateSet.find_by(date: Date.today)
+      @dateset = DateSet.find_by(date: @date)
       if @dateset
         @timetables = @dateset.timetable_set.timetables.where("course_id = ?", @course.id).order(:departure_time).select(:id, :course_id, :timetable_set_id, :arrival_time, :departure_time, :is_shuttle).first()
       else
@@ -72,6 +73,7 @@ class Api::V1::TimetablesController < ApplicationController
 
   def last()
     expires_now
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
     
     if params[:from] && params[:to]
       @course = Course.select(:id, :arrival_id, :departure_id).find_by(arrival_id: params[:to], departure_id: params[:from])
@@ -87,7 +89,7 @@ class Api::V1::TimetablesController < ApplicationController
     end
 
     begin
-      @dateset = DateSet.find_by(date: Date.today)
+      @dateset = DateSet.find_by(date: @date)
       if @dateset
         @timetables = @dateset.timetable_set.timetables.where("course_id = ?", @course.id).order(:departure_time).select(:id, :course_id, :timetable_set_id, :arrival_time, :departure_time, :is_shuttle).last()
       else
