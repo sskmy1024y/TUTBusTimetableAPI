@@ -126,9 +126,6 @@ class Api::V1::TimetablesController < ApplicationController
         }
       end
       @timetables = @timetables.uniq
-      for timetable in @timetable do
-        timetable[:departure_time].strftime('%T')
-      end
     end
     render json: { success: true, data: @timetables }, status: :ok
   rescue => e
