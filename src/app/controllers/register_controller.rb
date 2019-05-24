@@ -137,15 +137,15 @@ class RegisterController < ApplicationController
         # キャンパス側のIDを取得
         school_place = Place.find_by(name: table[:school_place]).id
         
-        course_to_school = Course.find_by(arrival_id: destination_place, departure_id: school_place) # 往路      
-        course_to_destination = Course.find_by(arrival_id: school_place , departure_id: destination_place) # 復路
+        course_to_destination = Course.find_by(arrival_id: destination_place, departure_id: school_place) # 往路      
+        course_to_school = Course.find_by(arrival_id: school_place , departure_id: destination_place) # 復路
 
         # 登録がなければ新規登録
         if course_to_destination.blank?
-          course_to_destination = Course.create(arrival_id: school_place , departure_id: destination_place)
+          course_to_destination = Course.create(arrival_id: destination_place, departure_id: school_place)
         end
         if course_to_school.blank?
-          course_to_school = Course.create(arrival_id: destination_place, departure_id: school_place)
+          course_to_school = Course.create(arrival_id: school_place , departure_id: destination_place)
         end
         # -----------------------
 
