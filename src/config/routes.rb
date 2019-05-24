@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :places, only: [:index]
 
       get '/places/available', to: 'places#available'
+      get '/timetables/first', to: 'timetables#first'
+      get '/timetables/last', to: 'timetables#last'
       get '/timetables/internal', to: 'timetables#internal'
 
     end
