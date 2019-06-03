@@ -239,7 +239,7 @@
   }
 
   function loadTimetable() {
-    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal?datetime=2019-06-04 21:20`)
+    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal`)
       .then(response => {
         if (response.ok) {
           return response.json();
