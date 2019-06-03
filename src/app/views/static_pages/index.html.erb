@@ -201,12 +201,22 @@
 
       let body = $("<div />").addClass("board-body");
       const labels = ["先発", "次発", "次々発", "四発", "五発"];
-      if (list.timetables.length > 0) {
+      const shuttle_text = `<p><span style="color:orange;">シャトル運行中</span><span style="color:greenyellow;">のため、</span><span
+                          style="color:orange;">時間が前後する場合</span><span style="color:greenyellow;">があります。</span></p>`;
+      if (list.timetables.length == 1) {
+        const timetable = list.timetables[0];
+        const detail =
+          `<div class="marquee"><p><span style="color:orange;">${list.arrival.name}</span><span style="color:greenyellow;">行き</span><span
+                          style="color:red;">最終バス</span><span style="color:greenyellow;">です。</span></p>${timetable.is_shuttle ? shuttle_text : ""}</div>`
+        const col = $(`<div class="board-body-column">
+                <div class="row">
+                  <div class="type col-6 col-md-3"><span style="color:red;">最終</span></div>
+                  <div class="time col-6 col-md-3">${formatTime(new Date(timetable.departure_time))}</div>
+                  <div class="detail col-12 col-md-6">${detail}</div><div></div>`)
+        body.append(col)
+      } else if (list.timetables.length > 0) {
         list.timetables.forEach((timetable, index) => {
-          const detail = timetable.is_shuttle ? `<div class="marquee">
-                      <p><span style="color:orange;">シャトル運行中</span><span style="color:greenyellow;">のため、</span><span
-                          style="color:orange;">時間が前後する場合</span><span style="color:greenyellow;">があります。</span></p>
-                    </div>` : ""
+          const detail = timetable.is_shuttle ? shuttle_text : ""
           const col = $(`<div class="board-body-column">
                 <div class="row">
                   <div class="type col-6 col-md-3">${labels[index]}</div>
@@ -229,7 +239,7 @@
   }
 
   function loadTimetable() {
-    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal`)
+    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal?datetime=2019-06-04 21:20`)
       .then(response => {
         if (response.ok) {
           return response.json();
