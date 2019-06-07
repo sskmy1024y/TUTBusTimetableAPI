@@ -216,7 +216,7 @@
         body.append(col)
       } else if (list.timetables.length > 0) {
         list.timetables.forEach((timetable, index) => {
-          const detail = timetable.is_shuttle ? shuttle_text : ""
+          const detail = timetable.is_shuttle ? `<div class="marquee">${shuttle_text}</div>` : ""
           const col = $(`<div class="board-body-column">
                 <div class="row">
                   <div class="type col-6 col-md-3">${labels[index]}</div>
