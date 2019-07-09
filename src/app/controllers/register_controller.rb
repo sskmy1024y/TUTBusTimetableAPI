@@ -84,12 +84,12 @@ class RegisterController < ApplicationController
                 departure_time: Time.parse(row.css('td')[0].inner_text),
                 arrival_time: Time.parse(row.css('td')[1].inner_text),
                 shuttle: !row.css('td.sbus').blank?
-              }
+              } unless row.css('td')[0].inner_text == "" || row.css('td')[1].inner_text == ""
               goto_school << {
                 departure_time: Time.parse(row.css('td')[1].inner_text),
                 arrival_time: Time.parse(row.css('td')[2].inner_text),
                 shuttle: !row.css('td.sbus').blank?
-              }
+              } unless row.css('td')[1].inner_text === "" || row.css('td')[2].inner_text === ""
             end
           end
         end
