@@ -80,3 +80,6 @@ gem "font-awesome-rails"
 # Date-Range-Picker
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
+
+# Google Analytics
+gem 'google-analytics-rails'
