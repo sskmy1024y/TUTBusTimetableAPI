@@ -94,5 +94,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # トラッキングIDを記載
-  GA.tracker = ENV["GOOGLE_ANALYTICS_ID"]
+  GA.tracker = ENV.fetch("GOOGLE_ANALYTICS_ID")
 end
