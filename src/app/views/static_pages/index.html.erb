@@ -9,7 +9,20 @@
       <div class="col-md-8">
         <div class="jumbotron">
           <h3 class="display-4">次の学バスは……</h3>
-          <div id="board-place"></div>
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active nav-item"><a href="#CurrentTimetableContent" class="nav-link active" aria-selected="true"
+                data-toggle="tab">Current</a></li>
+            <li class="nav-item"><a href="#LastTimetableContent" class="nav-link" data-toggle="tab"
+                aria-selected="false">Last</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="CurrentTimetableContent">
+              <div id="board-place"></div>
+            </div>
+            <div class="tab-pane" id="LastTimetableContent">
+              <p>タブＢの内容</p>
+            </div>
+          </div>
           <p class="lead"><small>この時刻表は、<a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable"
                 target="blank">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
           </p>
