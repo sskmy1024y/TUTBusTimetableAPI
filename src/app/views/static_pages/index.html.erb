@@ -9,7 +9,20 @@
       <div class="col-md-8">
         <div class="jumbotron">
           <h3 class="display-4">次の学バスは……</h3>
-          <div id="board-place"></div>
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active nav-item"><a href="#CurrentTimetableContent" class="nav-link active" aria-selected="true"
+                data-toggle="tab">Current</a></li>
+            <li class="nav-item"><a href="#LastTimetableContent" class="nav-link" data-toggle="tab"
+                aria-selected="false">Last</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="CurrentTimetableContent">
+              <div id="board-place"></div>
+            </div>
+            <div class="tab-pane" id="LastTimetableContent">
+              <div id="board-place-last"></div>
+            </div>
+          </div>
           <p class="lead"><small>この時刻表は、<a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable"
                 target="blank">東京工科大学&nbsp;スクールバス時刻表</a>の情報に基づき掲示されています。</small>
           </p>
@@ -173,8 +186,8 @@
 </div>
 
 <script>
-  function renderBulletinBoard(data) {
-    $('#board-place').html("")
+  function renderBulletinBoard(data, target_id) {
+    $(`#${target_id}`).html("")
 
     if (data.length < 1) {
       let board = $(
@@ -188,7 +201,7 @@
       )
       body.append(col)
       board.append(body)
-      $('#board-place').append(board)
+      $(`#${target_id}`).append(board)
       return true
     }
 
@@ -234,7 +247,7 @@
         body.append(col)
       }
       board.append(body)
-      $('#board-place').append(board)
+      $(`#${target_id}`).append(board)
     });
   }
 
@@ -247,7 +260,19 @@
           throw new Error();
         }
       })
-      .then(datas => renderBulletinBoard(datas.data))
+      .then(datas => renderBulletinBoard(datas.data, 'board-place'))
+  }
+
+  function loadLastTimetable() {
+    fetch(`${location.protocol}//${location.host}/api/v1/timetables/internal/last`)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error();
+        }
+      })
+      .then(datas => renderBulletinBoard(datas.data, 'board-place-last'))
   }
 
   function formatTime(date, format) {
@@ -267,18 +292,34 @@
   };
 
   $(() => {
-
     const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent)
     if (isIOS) {
-      $(".get-shortcut").removeClass("disabled");
-      $('#collapseOne').addClass('show');
+      $(".get-shortcut").removeClass("disabled")
+      $('#collapseOne').addClass('show')
     } else {
-      $('#collapseTwo').addClass('show');
+      $('#collapseTwo').addClass('show')
     }
 
     loadTimetable()
+    loadLastTimetable()
+
+    const l = new Date()
+    let t = {
+      date: l.getDate(),
+      min: l.getMinutes(),
+      hour: l.getHours()
+    }
+
     setInterval(() => {
-      loadTimetable()
-    }, 20000);
+      const _l = new Date()
+      const _t = {
+        date: _l.getDate(),
+        min: _l.getMinutes(),
+        hour: _l.getHours()
+      }
+      if (t.min !== _t.min || t.hour !== _t.hour) loadTimetable()
+      if (t.date !== _t.date) loadLastTimetable()
+      t = _t
+    }, 1000)
   })
 </script>

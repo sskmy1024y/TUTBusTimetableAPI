@@ -184,6 +184,18 @@ footer ul li {
     }
   }
 
+  .nav-link {
+    color: rgb(96, 103, 128);
+    background-color: rgb(131, 139, 170);
+    border-color: #dee2e6 #dee2e6 rgb(54, 59, 75);
+
+    &.active {
+      color: white;
+      background-color: rgb(76, 83, 109);
+      border-color: #dee2e6 #dee2e6 rgb(54, 59, 75);
+    }
+  }
+
   .card-img-top {
     height: 200px;
     object-fit: cover;
