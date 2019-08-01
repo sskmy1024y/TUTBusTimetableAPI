@@ -37,8 +37,20 @@ class RegisterController < ApplicationController
       #  時刻表の解析
       # =============================
       @tables = []
-      doc.css('h6.m-txt-ttl5').each do |node|
-        table_html = node.css('+table')
+      # doc.css('h6.m-txt-ttl5').each do |node|
+      contents = doc.css('div.commonDetailBox01')
+      html_tables = contents.css('>table')
+      html_headers = contents.css('>h6.m-txt-ttl5')
+
+      # p html_headers.length
+
+      # if (html_tables.length != html_headers.length) {
+      #   print('table count error')
+      #   throw exception
+      # }
+
+      html_tables.each do |table_html, index|
+        title_html = html_headers
 
         # 一時格納するための変数を宣言
         goto_school = []
@@ -97,9 +109,9 @@ class RegisterController < ApplicationController
         # end
 
         @tables << {
-          title: node.css('span strong').inner_text,
-          destination_place: node.css('span strong').inner_text[/(.*)行/, 1],
-          school_place: node.css('span strong').inner_text[/［発着所：(.*)］/, 1],
+          title: title_html.css('span strong').inner_text,
+          destination_place: title_html.css('span strong').inner_text[/(.*)行/, 1],
+          school_place: title_html.css('span strong').inner_text[/［発着所：(.*)］/, 1],
           table: {
             to_destination: goto_destination,
             to_school: goto_school
