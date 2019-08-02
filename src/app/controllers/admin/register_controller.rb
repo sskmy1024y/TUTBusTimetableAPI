@@ -1,12 +1,14 @@
 require 'date'
 require 'time'
-require "json"
+require 'json'
 require 'nokogiri'
 require 'open-uri'
 
-class RegisterController < ApplicationController
+class Admin::RegisterController < ApplicationController
   before_action :basic_auth
   protect_from_forgery with: :exception
+
+  layout 'admin'
 
   def index
 
@@ -122,8 +124,6 @@ class RegisterController < ApplicationController
 
       @places = Place.all().select(:id, :name)
     end
-
-    
 
     # 検索方法
     # TimetableSet.find(1).timetables.where("course_id = ? AND departure_time >= ?", [コース情報], Time.now ).limit(3)

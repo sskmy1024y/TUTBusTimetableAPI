@@ -17,6 +17,9 @@
  */
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
+
 @import "bootstrap";
+@import "bootstrap/navbar-fixed-left";
+
 @import "daterangepicker";
 @import "custom";
