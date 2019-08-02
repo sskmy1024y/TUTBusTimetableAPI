@@ -67,9 +67,17 @@
       <div class="container">
         <dl>
           <dt>出発地</dt>
-          <dd><%= table[:school_place] %></dd>
+          <select class="form-control form-control-sm" style="width:200px">
+            <% @places.each_with_index do |place, index|  %>
+            <option <%= "selected" if table[:school_place] === place.name %>><%= place.name %></option>
+            <% end %>
+          </select>
           <dt>到着地</dt>
-          <dd><%= table[:destination_place] %></dd>
+          <select class="form-control form-control-sm" style="width:200px">
+            <% @places.each_with_index do |place, index|  %>
+            <option <%= "selected" if table[:destination_place] === place.name %>><%= place.name %></option>
+            <% end %>
+          </select>
         </dl>
         <table class="table table-striped table-sm">
           <tr>

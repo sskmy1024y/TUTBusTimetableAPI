@@ -119,8 +119,11 @@ class RegisterController < ApplicationController
           to_school: goto_school
         }
       }
+
+      @places = Place.all().select(:id, :name)
     end
 
+    
 
     # 検索方法
     # TimetableSet.find(1).timetables.where("course_id = ? AND departure_time >= ?", [コース情報], Time.now ).limit(3)
