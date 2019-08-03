@@ -24,3 +24,8 @@
 
 //= require moment
 //= require daterangepicker
+
+//= require core/main
+//= require interaction/main
+//= require timegrid/main
+//= require daygrid/main
