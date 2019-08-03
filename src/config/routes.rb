@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'api/v1/document', to: 'static_pages#document'
   get 'contact', to: 'static_pages#contact'
   
+  resources :admin, only: [:index]
   namespace :admin do
     resources :register, only: [:index, :new, :create]
   end

@@ -201,7 +201,7 @@ class Admin::RegisterController < ApplicationController
       end
     end
 
-    redirect_to "/register"
+    redirect_to "/admin/register"
   end
 
   private
