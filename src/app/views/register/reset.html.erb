@@ -1,0 +1,117 @@
+<h2>データベースリセット</h2>
+<p>削除する日付を確認して、リセットしてください。</p>
+
+<div class="container">
+
+  <%= form_with model: @register, url: { action: "timetable_reset" } do |form| %>
+  <div class="row">
+    <div class="col-7">
+      <div class="form-group">
+        <label for="limit-date-picker">適用期間</label>
+        <%= form.text_area :dates, class: "form-control", rows: "10", id: "input-date-textarea", placeholder: ",(コンマ)で区切ってください" %>
+        <small id="emailHelp" class="form-text text-muted">時刻表の反映期間をテキストエリアに入力してください。</small>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">入力補助</span>
+        </div>
+        <input type="text" id="input-date-range" class="form-control daterange">
+      </div>
+      <div class="input-group mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" checked id="check-weekday">
+          <label class="form-check-label" for="check-weekday">
+            平日
+          </label>
+        </div>
+        &nbsp;
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check-saturday">
+          <label class="form-check-label" for="check-saturday">
+            土曜日
+          </label>
+        </div>
+        &nbsp;
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check-sunday">
+          <label class="form-check-label" for="check-sunday">
+            日曜日
+          </label>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <button type="button" id="input-date-button" class="btn btn-primary btn-sm">追加</button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">リセット</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">確認</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          削除しますか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+          <button type="submit" class="btn btn-primary" id="deletebtn" name="deletebtn">はい</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(() => {
+
+    $("#input-date-button").click(function () {
+      let dates = $('#input-date-textarea').val().split(',').length > 1 ?
+        $('#input-date-textarea').val().split(/,\n*/) : [];
+      const _range = $("#input-date-range").val().split(/ - /);
+
+      for (let i = new Date(_range[0]); i.getTime() <= new Date(_range[1]).getTime(); i.setDate(i.getDate() +
+          1)) {
+        const date =
+          `${i.getFullYear()}/${("0"+(i.getMonth()+1)).slice(-2)}/${("0"+(i.getDate())).slice(-2)}`;
+        if (!dates.find(_date => _date == date)) {
+          if (
+            $('#check-weekday').prop('checked') && [1, 2, 3, 4, 5].includes(i.getDay()) || //平日のチェックがあり、平日であれば
+            $('#check-saturday').prop('checked') && [6].includes(i.getDay()) || //土曜のチェックがあり、土曜であれば
+            $('#check-sunday').prop('checked') && [0].includes(i.getDay()) //日曜のチェックがあり、日曜であれば
+          ) {
+            dates.push(date)
+          }
+        }
+      }
+
+      $('#input-date-textarea').val(dates.sort().join(',\n'))
+    });
+
+    $('input.daterange').daterangepicker({
+      minDate: moment(),
+      locale: {
+        format: 'YYYY/MM/DD',
+        applyLabel: '決定',
+        cancelLabel: '取消',
+        fromLabel: '開始日',
+        toLabel: '終了日',
+      },
+    });
+
+    $('.delete-confirm').click(() => {
+      $('#deletebtn').val($(this).val());
+    });
+  })
+</script>
