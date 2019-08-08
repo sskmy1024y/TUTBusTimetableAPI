@@ -201,6 +201,27 @@ class RegisterController < ApplicationController
     redirect_to "/register"
   end
 
+  def reset
+
+  end
+
+  def timetable_reset
+    return render status: 400, json: { status: 400, message: 'Bad Request' } if params[:dates].blank?
+
+    dates = params[:dates].split(/,\n*/)
+
+    DateSet.transaction do
+      dates.each do |date|
+        dateset = DateSet.find_by(date: date)
+        unless dateset.blank?
+          dateset.delete
+        end
+      end
+    end
+
+    redirect_to "/register"
+  end
+
   private
 
   def basic_auth
