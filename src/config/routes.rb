@@ -24,5 +24,10 @@ Rails.application.routes.draw do
   resources :register, only: [:index, :new, :create]
   get '/register/reset', to: 'register#reset'
   post '/register/timetable_reset', to: 'register#timetable_reset'
+  
+  resources :admin, only: [:index]
+  namespace :admin do
+    resources :register, only: [:index, :new, :create]
+  end
 
 end
