@@ -7,6 +7,10 @@
 * dokcer
 * docker-compose
 
+## Prepare
+set admin name and password to `.env`
+
+
 ### run command
 ```bash
 $ docker-compose build
