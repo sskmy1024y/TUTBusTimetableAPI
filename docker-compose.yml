@@ -13,8 +13,8 @@ services:
     env_file: .env
     restart: unless-stopped
     volumes:
-      - ./src:/app
       - bundle-data:/bundle
+      - ./api:/app
     ports:
       - "22222:3000"
     depends_on:
