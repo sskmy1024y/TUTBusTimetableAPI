@@ -6,8 +6,8 @@ services:
       - ./db/mysql_data:/var/lib/mysql
     env_file: .env
 
-  web:
-    build: .
+  api:
+    build: ./api/
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     env_file: .env
     restart: unless-stopped
@@ -17,3 +17,9 @@ services:
       - "22222:3000"
     depends_on:
       - db
+
+  front:
+    build: ./front/
+    command: yarn start
+    volumes:
+      - ./front:/app

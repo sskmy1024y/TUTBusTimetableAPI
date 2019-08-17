@@ -12,12 +12,12 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 
 WORKDIR /myapp
 
-COPY src/Gemfile Gemfile
-COPY src/Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 
 RUN gem install bundler && bundle install --clean
 
 # Add a script to be executed every time the container starts.
-COPY src/entrypoint.sh /usr/bin/
+COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
