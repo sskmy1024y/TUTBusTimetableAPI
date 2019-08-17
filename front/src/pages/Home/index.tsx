@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-import { Button } from "react-bootstrap";
+import { Button } from 'react-bootstrap'
 
 interface HomeProps {
-  name: String;
+  name: String
 }
 
 function Home({ name }: HomeProps) {
-  return <Button variant="primary">{name}</Button>;
+  return <Button variant='primary'>{name}</Button>
 }
 
-export default Home;
+export default Home
