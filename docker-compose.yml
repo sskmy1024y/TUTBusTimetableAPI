@@ -25,6 +25,8 @@ services:
     command: yarn start
     volumes:
       - ./front:/app
+    ports:
+      - "3000:3000"
 
 volumes:
   bundle-data:

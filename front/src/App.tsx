@@ -1,8 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import Home from "./pages/Home/";
+import "./App.css";
 
-const App: React.FC = () => {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
+      <Home name="test" />
     </div>
   );
 }
