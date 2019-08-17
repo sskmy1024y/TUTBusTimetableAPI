@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import Header, { LinkProps } from '.'
 
-const stories = storiesOf('Other|Tooltip', module)
+const stories = storiesOf('Components|Header', module)
 
-stories.addDecorator(withKnobs).add('Tooltip', () => {
+stories.addDecorator(withKnobs).add('Header', () => {
   const title = text('title', 'sample')
 
   const links: LinkProps[] = [
