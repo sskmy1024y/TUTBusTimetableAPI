@@ -25,6 +25,7 @@ services:
     command: yarn start
     volumes:
       - ./front:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
 
