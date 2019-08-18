@@ -3,7 +3,8 @@ import React from 'react'
 import Header, { LinkProps } from './components/Header'
 import Home from './pages/Home/'
 
-import './App.css'
+import { Container } from 'react-bootstrap'
+import styled from 'styled-components'
 
 function App() {
   const headerLinks: LinkProps[] = [
@@ -24,10 +25,15 @@ function App() {
   return (
     <>
       <Header title='TUT Bus Timetable API' navLists={headerLinks} />
-
-      <Home />
+      <MainContainer>
+        <Home />
+      </MainContainer>
     </>
   )
 }
+
+const MainContainer = styled(Container)`
+  padding-top: 60px;
+`
 
 export default App
