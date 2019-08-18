@@ -1,15 +1,11 @@
 import React from 'react'
 
+import { LinkType } from 'lib/types'
 import { Container, Nav, Navbar } from 'react-bootstrap'
-
-export interface LinkProps {
-  url: string
-  name: string
-}
 
 interface HeaderProps {
   title: string
-  navLists: LinkProps[]
+  navLists: LinkType[]
 }
 
 export default function Header({ title, navLists }: HeaderProps) {
@@ -24,7 +20,7 @@ export default function Header({ title, navLists }: HeaderProps) {
               <Nav className='mr-auto'>
                 {navLists.map(nav => {
                   return (
-                    <Nav.Link key={nav.name} href={nav.url}>
+                    <Nav.Link key={nav.name} href={nav.path}>
                       {nav.name}
                     </Nav.Link>
                   )

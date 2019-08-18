@@ -1,17 +1,18 @@
 import { text, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
+import { LinkType } from 'lib/types'
 import React from 'react'
-import Header, { LinkProps } from '.'
+import Header from '.'
 
 const stories = storiesOf('Components|Header', module)
 
 stories.addDecorator(withKnobs).add('Header', () => {
   const title = text('title', 'sample')
 
-  const links: LinkProps[] = [
+  const links: LinkType[] = [
     {
       name: 'nav1',
-      url: '#nav1'
+      path: '#nav1'
     }
   ]
 
