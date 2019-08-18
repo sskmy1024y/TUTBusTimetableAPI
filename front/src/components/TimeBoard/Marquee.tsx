@@ -2,12 +2,14 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-export default function Marguee() {
+interface MaequeeProps {
+  children: React.ReactNode
+}
+
+export default function Marquee({ children }: MaequeeProps) {
   return (
     <MargueeComponent>
-      <Paragraph>
-        <InfoSpan>本日の運行はありません</InfoSpan>
-      </Paragraph>
+      <Paragraph>{children}</Paragraph>
     </MargueeComponent>
   )
 }
@@ -103,8 +105,4 @@ const Paragraph = styled.p`
       transform: translate(-100%);
     }
   }
-`
-
-const InfoSpan = styled.span`
-  color: orange;
 `

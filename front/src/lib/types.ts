@@ -16,9 +16,11 @@ export interface TimetableType {
   id: number
   arrivalTime: Date
   departureTime: Date
-  isShuffle: boolean
+  isShuttle: boolean
 }
 
 export interface TimetableListType {
   list: TimetableType[]
+  departure: PlaceType
+  arrival: PlaceType
 }
