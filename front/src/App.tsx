@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Header from './components/Header'
+import APIDoc from './pages/APIDocs'
 import Contacts from './pages/Contacts'
 import Home from './pages/Home/'
 
@@ -13,15 +14,18 @@ function App() {
   const headerLinks: LinkType[] = [
     {
       name: 'Home',
-      path: '/'
+      path: '/',
+      component: Home
     },
     {
       name: 'API Doc',
-      path: '/api/v1/docs'
+      path: '/api/v1/docs',
+      component: APIDoc
     },
     {
       name: 'Contacts',
-      path: '/contacts'
+      path: '/contacts',
+      component: Contacts
     }
   ]
 
@@ -30,8 +34,9 @@ function App() {
       <Header title='TUT Bus Timetable API' navLists={headerLinks} />
       <MainContainer>
         <Router>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/contacts' component={Contacts} />
+          {headerLinks.map(page => {
+            return <Route exact path={page.path} component={page.component} />
+          })}
         </Router>
       </MainContainer>
     </>
