@@ -14,7 +14,7 @@ export default function Header({ title, navLists }: HeaderProps) {
       <Container>
         <Navbar bg='light' expand='lg' role='navigation' fixed='top'>
           <Container>
-            <Navbar.Brand href='#home'>{title}</Navbar.Brand>
+            <Navbar.Brand href='/'>{title}</Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className='mr-auto'>
