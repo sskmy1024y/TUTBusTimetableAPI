@@ -1,27 +1,27 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Container, Jumbotron, Row } from 'react-bootstrap'
+import { Col, Jumbotron, Row } from 'react-bootstrap'
 import styled from 'styled-components'
 
 function Home() {
   return (
-    <Container>
+    <>
       <Row>
         <Col md='4'>
           <MainIcon>
             <IconPoint>
-              <FontAwesomeIcon icon='bus' />
+              <FontAwesomeIcon icon='bus' size='5x' />
             </IconPoint>
           </MainIcon>
         </Col>
         <Col md='8'>
           <Jumbotron>
-            <h3>次の学バスは……</h3>
+            <h3 className='display-4'>次の学バスは……</h3>
           </Jumbotron>
         </Col>
       </Row>
-    </Container>
+    </>
   )
 }
 

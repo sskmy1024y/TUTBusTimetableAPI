@@ -23,7 +23,11 @@ export default function Header({ title, navLists }: HeaderProps) {
             <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className='mr-auto'>
                 {navLists.map(nav => {
-                  return <Nav.Link href={nav.url}>{nav.name}</Nav.Link>
+                  return (
+                    <Nav.Link key={nav.name} href={nav.url}>
+                      {nav.name}
+                    </Nav.Link>
+                  )
                 })}
               </Nav>
             </Navbar.Collapse>
