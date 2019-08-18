@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Header from './components/Header'
+import Contacts from './pages/Contacts'
 import Home from './pages/Home/'
 
 import { LinkType } from 'lib/types'
@@ -30,6 +31,7 @@ function App() {
       <MainContainer>
         <Router>
           <Route exact path='/' component={Home} />
+          <Route exact path='/contacts' component={Contacts} />
         </Router>
       </MainContainer>
     </>
