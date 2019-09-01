@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { TimetableType } from 'lib/types'
 import { Col, Row } from 'react-bootstrap'
 import Marquee from './Marquee'
 
+import { TimetableType } from 'modules/Timetable/type'
 import styled from 'styled-components'
 import media from 'styled-media-query'
 

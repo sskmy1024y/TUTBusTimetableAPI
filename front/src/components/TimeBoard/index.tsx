@@ -2,21 +2,21 @@ import React from 'react'
 
 import BulletinHeader from './BulletinHeader'
 
-import { TimetableListType } from 'lib/types'
+import { TimetableCollectType } from 'src/modules/Timetable/type'
 import styled from 'styled-components'
 import BulletinBody from './BulletinBody'
 
 interface TimeBoardProps {
-  timetableList: TimetableListType
+  timetables: TimetableCollectType[]
 }
 
-export default function TimeBoard({ timetableList }: TimeBoardProps) {
+export default function TimeBoard({ timetables }: TimeBoardProps) {
   const labels = ['先発', '次発', '次々発', '四発', '五発']
 
   return (
     <BulletinBoard>
       <BulletinHeader text='時刻表' />
-      {timetableList.list.map((timetable, index) => {
+      {timetables.list.map((timetable, index) => {
         return <BulletinBody label={labels[index]} timetable={timetable} />
       })}
     </BulletinBoard>

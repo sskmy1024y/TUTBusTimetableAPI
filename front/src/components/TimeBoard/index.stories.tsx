@@ -3,32 +3,34 @@ import React from 'react'
 import { text, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 
-import { TimetableListType } from 'src/lib/types'
 import TimeBoard from '.'
+import { TimetableCollectType } from '../../modules/Timetable/type'
 import BulletinHeader from './BulletinHeader'
 
 const stories = storiesOf('Components|TimeBoard', module)
 
 stories.addDecorator(withKnobs).add('TimeBoard', () => {
-  const timetableList: TimetableListType = {
-    list: [
-      {
+  const timetableList: TimetableCollectType[] = [
+    {
+      arrival: {
+        id: 2,
+        name: '学校',
+      },
+      departure: {
         id: 1,
-        arrivalTime: new Date(),
-        departureTime: new Date(),
-        isShuttle: true
-      }
-    ],
-    departure: {
-      id: 1,
-      name: 'みなみの'
+        name: 'みなみの',
+      },
+      list: [
+        {
+          arrivalTime: new Date(),
+          departureTime: new Date(),
+          id: 1,
+          isShuttle: true,
+        },
+      ],
     },
-    arrival: {
-      id: 2,
-      name: '学校'
-    }
-  }
-  return <TimeBoard timetableList={timetableList} />
+  ]
+  return <TimeBoard timetables={timetableList} />
 })
 
 stories.addDecorator(withKnobs).add('BulletinHeader', () => {
