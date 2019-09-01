@@ -1,20 +1,15 @@
 {
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
   "rules": {
-    "await-promise": [true, "AxiosPromise"],
-    "deprecation": true,
-    "no-angle-bracket-type-assertion": true,
-    "no-floating-promises": true,
-    "no-redundant-jsdoc": true,
-    "no-unnecessary-class": true,
-    "no-unnecessary-qualifier": true,
-    "no-unnecessary-type-assertion": true,
-    "ordered-imports": [true],
-    "prefer-method-signature": true,
-    "radix": true,
-    "strict-type-predicates": true,
-    "use-isnan": true
-  },
-  "jsRules": {
-    "deprecation": true
+    "prettier": true,
+    "interface-name": false,
+    "jsx-boolean-value": [true, "never"]
   }
 }

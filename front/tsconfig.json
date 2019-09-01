@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -22,16 +21,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "maxNodeModuleJsDepth": 0,
-    "noEmitHelpers": true,
-    "importHelpers": true,
-    "rootDir": "./src",
-    "types": [
-      "node"
-    ]
+    "jsx": "preserve"
   },
   "include": [
     "src"
