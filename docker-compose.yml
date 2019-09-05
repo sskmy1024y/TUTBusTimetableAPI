@@ -2,6 +2,7 @@ version: '3'
 services:
   db:
     image: mysql:5.7.22
+    restart: unless-stopped
     volumes:
       - ./db/mysql_data:/var/lib/mysql
     env_file: .env
@@ -17,4 +18,3 @@ services:
       - "22222:3000"
     depends_on:
       - db
-      
