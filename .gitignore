@@ -1,3 +1,6 @@
 .idea/*
 .env
+*.log
 /db/
+
+*node_modules/

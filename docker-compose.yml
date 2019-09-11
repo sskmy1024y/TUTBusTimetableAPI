@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     image: mysql:5.7.22
@@ -13,8 +13,12 @@ services:
     env_file: .env
     restart: unless-stopped
     volumes:
-      - ./src:/myapp
+      - ./src:/app
+      - bundle-data:/bundle
     ports:
       - "22222:3000"
     depends_on:
       - db
+
+volumes:
+  bundle-data:
