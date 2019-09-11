@@ -3,9 +3,9 @@ import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Marquee from './Marquee'
 
-import { TimetableType } from 'modules/Timetable/type'
 import styled from 'styled-components'
 import media from 'styled-media-query'
+import { TimetableType } from '../../modules/Timetable/type'
 
 export interface BulletinBodyProps {
   label?: string

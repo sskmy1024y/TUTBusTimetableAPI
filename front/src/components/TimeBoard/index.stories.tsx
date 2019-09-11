@@ -10,27 +10,26 @@ import BulletinHeader from './BulletinHeader'
 const stories = storiesOf('Components|TimeBoard', module)
 
 stories.addDecorator(withKnobs).add('TimeBoard', () => {
-  const timetableList: TimetableCollectType[] = [
-    {
-      arrival: {
-        id: 2,
-        name: '学校',
-      },
-      departure: {
-        id: 1,
-        name: 'みなみの',
-      },
-      list: [
-        {
-          arrivalTime: new Date(),
-          departureTime: new Date(),
-          id: 1,
-          isShuttle: true,
-        },
-      ],
+  const timetableList: TimetableCollectType = {
+    arrival: {
+      id: 2,
+      name: '学校',
     },
-  ]
-  return <TimeBoard timetables={timetableList} />
+    departure: {
+      id: 1,
+      name: 'みなみの',
+    },
+    list: [
+      {
+        arrivalTime: new Date(),
+        departureTime: new Date(),
+        id: 1,
+        isShuttle: true,
+      },
+    ],
+  }
+
+  return <TimeBoard timetable={timetableList} />
 })
 
 stories.addDecorator(withKnobs).add('BulletinHeader', () => {

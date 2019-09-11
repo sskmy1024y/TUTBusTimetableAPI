@@ -4,7 +4,7 @@
 export interface LinkType {
   name: string
   path: string
-  component?(): JSX.Element
+  component?: any
 }
 
 export interface PlaceType {

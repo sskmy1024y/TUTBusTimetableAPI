@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { PlaceType } from 'lib/types'
 import styled from 'styled-components'
+import { PlaceType } from '../../lib/types'
 
 interface BulletinHeaderProps {
   text?: string
