@@ -22,6 +22,16 @@ module Myapp
     config.middleware.use ActionDispatch::Flash
     config.parent_controller = 'ActionController::Base'
 
+    # Permit cross origin
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+          headers: :any,
+          methods: [:get, :post, :options, :head]
+      end
+    end
+
     Rails.configuration.action_controller.per_form_csrf_tokens = true
   end
 end
