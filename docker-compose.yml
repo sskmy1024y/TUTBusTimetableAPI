@@ -13,8 +13,8 @@ services:
     env_file: .env
     restart: unless-stopped
     volumes:
-      - bundle-data:/bundle
       - ./api:/app
+      - bundle-data:/bundle
     ports:
       - "22222:3000"
     depends_on:
@@ -22,7 +22,7 @@ services:
 
   front:
     build: ./front/
-    command: yarn start
+    command: "yarn start"
     volumes:
       - ./front:/app
       - /app/node_modules

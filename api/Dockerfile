@@ -16,8 +16,8 @@ ENV BUNDLE_JOBS=4 \
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
-COPY src/Gemfile $APP_DIR
-COPY src/Gemfile.lock $APP_DIR
+COPY Gemfile $APP_DIR
+COPY Gemfile.lock $APP_DIR
 
 RUN gem install bundler && \
   gem install rails && \
