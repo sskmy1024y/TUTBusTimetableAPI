@@ -55,13 +55,14 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # 2019-9-23 chromedriver is depricated.
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.10.4'
 gem 'openurl'
 
 # 検索結果を整形する
@@ -83,3 +84,4 @@ gem 'bootstrap-daterangepicker-rails'
 
 # Google Analytics
 gem 'google-analytics-rails'
+
