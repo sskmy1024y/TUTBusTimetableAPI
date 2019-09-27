@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if [[ -f /.dockerenv ]]; then sshpass -p `/pploy-dist/environment.sh decrypt ${SSH_HOST_PASS}` ssh -t -o StrictHostKeyChecking=no -p ${SSH_HOST_PORT} ${SSH_HOST_USER}@${SSH_HOST} cd ${HOST_CURRENT_DIR}/app/projects/$(cd $(dirname $0)/../..;basename $(pwd)) \&\& "DEPLOY_USER=$(printf %q "$DEPLOY_USER") DEPLOY_PASS=$(printf %q `/pploy-dist/environment.sh decrypt ${DEPLOY_PASS}`) bash" < $0;exit 0;fi
+if [[ -f /.dockerenv ]]; then host_root_dir=${HOST_CURRENT_DIR}/app/projects/$(cd $(dirname $0)/../..;basename $(pwd)); sshpass -p `/pploy-dist/environment.sh decrypt ${SSH_HOST_PASS}` ssh -t -o StrictHostKeyChecking=no -p ${SSH_HOST_PORT} ${SSH_HOST_USER}@${SSH_HOST} cd ${host_root_dir} \&\& "DEPLOY_USER=$(printf %q "$DEPLOY_USER") DEPLOY_PASS=$(printf %q `/pploy-dist/environment.sh decrypt ${DEPLOY_PASS}`) ROOT_DIR=${host_root_dir} bash" < $0;exit 0;fi
 
 echo started at: $(date +"%F %T")
 
-ROOT_DIR=$(cd $(dirname $(dirname $0)); cd ..;pwd)
 LOCK_FILE="${ROOT_DIR}/.deploy/lock"
 
 if ! [ -f "${LOCK_FILE}" ]
