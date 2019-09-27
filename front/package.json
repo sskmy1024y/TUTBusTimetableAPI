@@ -50,19 +50,19 @@
     "@types/storybook__addon-knobs": "^5.0.3",
     "@types/styled-components": "^4.1.18",
     "bootstrap": "^4.3.1",
+    "prettier": "^1.18.2",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-docgen-typescript-loader": "^3.1.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
+    "react-scripts": "3.1.2",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2",
     "styled-media-query": "^2.1.2",
-    "typescript": "3.5.3",
-    "prettier": "^1.18.2",
     "tslint": "^5.17.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "tslint-react": "^4.0.0"
+    "tslint-react": "^4.0.0",
+    "typescript": "3.5.3"
   }
 }
