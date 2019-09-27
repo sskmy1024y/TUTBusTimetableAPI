@@ -1,0 +1,31 @@
+#!/bin/bash -eu
+
+if [[ -f /.dockerenv ]]; then sshpass -p `/pploy-dist/environment.sh decrypt ${SSH_HOST_PASS}` ssh -t -o StrictHostKeyChecking=no -p ${SSH_HOST_PORT} ${SSH_HOST_USER}@${SSH_HOST} cd ${HOST_CURRENT_DIR}/app/projects/$(cd $(dirname $0)/../..;basename $(pwd)) \&\& "DEPLOY_USER=$(printf %q "$DEPLOY_USER") DEPLOY_PASS=$(printf %q `/pploy-dist/environment.sh decrypt ${DEPLOY_PASS}`) bash" < $0;exit 0;fi
+
+echo started at: $(date +"%F %T")
+
+ROOT_DIR=$(cd $(dirname $(dirname $0)); cd ..;pwd)
+LOCK_FILE="${ROOT_DIR}/.deploy/lock"
+
+if ! [ -f "${LOCK_FILE}" ]
+then
+  (
+    # bashならtrap '...' EXITで
+    # - 一連のコマンドが正常終了してサブシェルを抜けた場合
+    # - 一部のコマンドが異常終了して途中でサブシェルを抜けた場合
+    # - 途中でシグナルを受けて異常終了してサブシェルを抜けた場合
+    # 以上のいずれの場合でも設定したコマンドが実行される。
+    # trap '...' INT TERM QUIT ... と明記する方法も有るが、
+    # 漏れが有ると怖いのでEXITだけにした。
+    trap 'rm -f "${LOCK_FILE}"' EXIT
+
+    touch "${LOCK_FILE}"
+    ${ROOT_DIR}/.deploy/bin/deploy_body.sh $DEPLOY_PASS || {
+      echo '*** deploy aborted!! ***'
+    }
+  )
+else
+  echo '*** deploy has been canceled. another deploy is still running ***'
+fi
+
+echo finished at: $(date +"%F %T")
