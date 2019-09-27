@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash
 
 if [[ -f /.dockerenv ]]; then sshpass -p `/pploy-dist/environment.sh decrypt ${SSH_HOST_PASS}` ssh -t -o StrictHostKeyChecking=no -p ${SSH_HOST_PORT} ${SSH_HOST_USER}@${SSH_HOST} cd ${HOST_CURRENT_DIR}/app/projects/$(cd $(dirname $0)/../..;basename $(pwd)) \&\& "DEPLOY_USER=$(printf %q "$DEPLOY_USER") DEPLOY_PASS=$(printf %q `/pploy-dist/environment.sh decrypt ${DEPLOY_PASS}`) bash" < $0;exit 0;fi
 
