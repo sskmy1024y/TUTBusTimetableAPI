@@ -23,6 +23,7 @@ const Paragraph = styled.p`
   padding-left: 100%;
   display: inline-block;
   white-space: nowrap;
+  vertical-align: middle;
   background-color: transparent;
   -webkit-animation-name: marquee;
   -webkit-animation-timing-function: linear;

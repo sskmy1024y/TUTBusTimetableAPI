@@ -13,18 +13,28 @@ export interface BulletinBodyProps {
 }
 
 export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
+  const fmtDate = (date: Date, format = 'h:m') => {
+    format = format.replace(/Y/g, `${date.getFullYear()}`)
+    format = format.replace(/M/g, `${date.getMonth() + 1}`)
+    format = format.replace(/D/g, `${date.getDate()}`)
+    format = format.replace(/h/g, `${date.getHours()}`)
+    format = format.replace(/m/g, `${date.getMinutes()}`)
+    format = format.replace(/s/g, `${date.getSeconds()}`)
+    return format
+  }
+
   return (
     <BoardBody>
       <div>
         {timetable ? (
           <Row>
-            <Type lg={6} md={3}>
+            <Type xl={6} md={3}>
               {label}
             </Type>
-            <Time lg={6} md={3}>
-              {timetable.departureTime.getTime()}
+            <Time xl={6} md={3}>
+              {fmtDate(timetable.departureTime)}
             </Time>
-            <Detail lg={12} md={6}>
+            <Detail xl={12} md={6}>
               {timetable.isShuttle && (
                 <Marquee>
                   <NowShattle />
@@ -34,7 +44,7 @@ export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
           </Row>
         ) : (
           <Row>
-            <Detail lg={12} md={12}>
+            <Detail xl={12} md={12}>
               <Marquee>
                 <AttentionSpan>本日の運行はありません</AttentionSpan>
               </Marquee>
@@ -61,11 +71,11 @@ const BoardBody = styled.div`
   background-color: #222;
 
   ${media.lessThan('medium')`
-    padding: 0 50px;
+    padding: 0 5px;
   `}
 
   ${media.greaterThan('medium')`
-    padding: 0 5px;
+    padding: 0 50px;
   `}
 `
 
@@ -77,7 +87,8 @@ const Type = styled(Col)`
 
 const Time = styled(Col)`
   display: inline-block;
-  font-size: 25px;
+  font-size: 26px;
+  line-height: 35px;
   color: orange;
 `
 

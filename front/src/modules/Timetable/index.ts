@@ -15,5 +15,5 @@ export function reducer(state: State = [], action: Action) {
 }
 
 export const actionCreators = {
-  getTimetable
+  getTimetable,
 }

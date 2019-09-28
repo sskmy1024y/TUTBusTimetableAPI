@@ -6,8 +6,10 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import styled from 'styled-components'
+import TimeBoardItem from '../../components/TimeBoard/TimeBoardItem'
 import { thunkActionCreators } from '../../middleware/thunkAction'
 import { RootState } from '../../modules'
+import { TimetableCollectType } from '../../modules/Timetable/type'
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, Action>) => {
   return {
@@ -30,6 +32,31 @@ function Home({ fetchTimetable }: HomeProps) {
     fetchTimetable(new Date())
   })
 
+  const timetableList: TimetableCollectType = {
+    arrival: {
+      id: 2,
+      name: '学校',
+    },
+    departure: {
+      id: 1,
+      name: 'みなみの',
+    },
+    list: [
+      {
+        arrivalTime: new Date(),
+        departureTime: new Date(),
+        id: 1,
+        isShuttle: true,
+      },
+      {
+        arrivalTime: new Date(),
+        departureTime: new Date(),
+        id: 1,
+        isShuttle: true,
+      },
+    ],
+  }
+
   return (
     <>
       <Row>
@@ -41,9 +68,10 @@ function Home({ fetchTimetable }: HomeProps) {
           </MainIcon>
         </Col>
         <Col md="8">
-          <Jumbotron>
+          <JumbotronContainer>
             <h3 className="display-4">次の学バスは……</h3>
-          </Jumbotron>
+            <TimeBoardItem timetable={timetableList} />
+          </JumbotronContainer>
         </Col>
       </Row>
     </>
@@ -60,6 +88,10 @@ const MainIcon = styled.div`
 const IconPoint = styled.p`
   text-align: center;
   font-size: 3em;
+`
+
+const JumbotronContainer = styled(Jumbotron)`
+  padding: 2rem 1rem;
 `
 
 export default connect(
