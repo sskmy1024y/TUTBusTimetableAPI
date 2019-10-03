@@ -16,8 +16,9 @@ ENV BUNDLE_JOBS=4 \
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
-COPY Gemfile $APP_DIR
-COPY Gemfile.lock $APP_DIR
+COPY package.json $APP_DIR/package.json
+COPY Gemfile $APP_DIR/Gemfile
+COPY Gemfile.lock $APP_DIR/Gemfile.lock
 
 RUN gem install bundler && \
   gem install rails && \
@@ -27,3 +28,6 @@ RUN gem install bundler && \
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0"]
