@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import styled from 'styled-components'
-import TimeBoardItem from '../../components/TimeBoard/TimeBoardItem'
+import TimeBoard from '../../components/TimeBoard'
 import { thunkActionCreators } from '../../middleware/thunkAction'
 import { RootState } from '../../modules'
 import { TimetableCollectType } from '../../modules/Timetable/type'
@@ -32,30 +32,32 @@ function Home({ fetchTimetable }: HomeProps) {
     fetchTimetable(new Date())
   })
 
-  const timetableList: TimetableCollectType = {
-    arrival: {
-      id: 2,
-      name: '学校',
-    },
-    departure: {
-      id: 1,
-      name: 'みなみの',
-    },
-    list: [
-      {
-        arrivalTime: new Date(),
-        departureTime: new Date(),
-        id: 1,
-        isShuttle: true,
+  const timetableLists: TimetableCollectType[] = [
+    {
+      arrival: {
+        id: 2,
+        name: '学校',
       },
-      {
-        arrivalTime: new Date(),
-        departureTime: new Date(),
+      departure: {
         id: 1,
-        isShuttle: true,
+        name: 'みなみの',
       },
-    ],
-  }
+      list: [
+        {
+          arrivalTime: new Date(),
+          departureTime: new Date(),
+          id: 1,
+          isShuttle: true,
+        },
+        {
+          arrivalTime: new Date(),
+          departureTime: new Date(),
+          id: 1,
+          isShuttle: true,
+        },
+      ],
+    },
+  ]
 
   return (
     <>
@@ -70,7 +72,7 @@ function Home({ fetchTimetable }: HomeProps) {
         <Col md="8">
           <JumbotronContainer>
             <h3 className="display-4">次の学バスは……</h3>
-            <TimeBoardItem timetable={timetableList} />
+            <TimeBoard timetables={timetableLists} />
           </JumbotronContainer>
         </Col>
       </Row>

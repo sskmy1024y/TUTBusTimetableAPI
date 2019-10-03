@@ -41,5 +41,5 @@ stories.addDecorator(withKnobs).add('TimeBoardItem', () => {
 stories.addDecorator(withKnobs).add('BulletinHeader', () => {
   const title = text('text', 'sample')
 
-  return <BulletinHeader text={title} />
+  return <BulletinHeader title={title} />
 })

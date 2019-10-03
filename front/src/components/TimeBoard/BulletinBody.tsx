@@ -13,13 +13,13 @@ export interface BulletinBodyProps {
 }
 
 export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
-  const fmtDate = (date: Date, format = 'h:m') => {
-    format = format.replace(/Y/g, `${date.getFullYear()}`)
-    format = format.replace(/M/g, `${date.getMonth() + 1}`)
-    format = format.replace(/D/g, `${date.getDate()}`)
-    format = format.replace(/h/g, `${date.getHours()}`)
-    format = format.replace(/m/g, `${date.getMinutes()}`)
-    format = format.replace(/s/g, `${date.getSeconds()}`)
+  const fmtDate = (date: Date, format = 'hh:mm') => {
+    format = format.replace(/YYYY/g, `${date.getFullYear()}`)
+    format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2))
+    format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2))
+    format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2))
+    format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2))
+    format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2))
     return format
   }
 

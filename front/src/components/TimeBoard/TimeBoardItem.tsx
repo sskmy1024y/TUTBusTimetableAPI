@@ -14,7 +14,7 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   const labels = ['先発', '次発', '次々発', '四発', '五発']
   return (
     <BulletinBoard>
-      <BulletinHeader text="時刻表" />
+      <BulletinHeader title={timetable.departure.name} subText={`行き（${timetable.arrival.name}発）`} />
       {timetable.list.map((row, index) => {
         return <BulletinBody key={index} label={labels[index]} timetable={row} />
       })}
