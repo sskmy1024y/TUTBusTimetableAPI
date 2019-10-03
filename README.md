@@ -13,10 +13,10 @@
 
 ```bash
 $ docker-compose build
-$ docker-compose run --rm web rails db:drop db:create db:migrate db:seed
+$ docker-compose run --rm api rails db:drop db:create db:migrate db:seed
 
 # gem更新時 ========================
-$ docker-compose run --rm web bundle install
+$ docker-compose run --rm api bundle install
 # =================================
 
 $ docker-compose up -d
