@@ -16,7 +16,7 @@ services:
       RAILS_ENV: production
     restart: unless-stopped
     volumes:
-      - ./src:/myapp
+      - ./src:/app
       - bundle-data:/bundle
     ports:
       - "22222:3000"
