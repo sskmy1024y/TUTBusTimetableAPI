@@ -72,10 +72,11 @@ class RegisterController < ApplicationController
             is_shuttle = {
               status: true,
               interval: 0,
-              count: rowspan.blank? ? 0 : rowspan.to_i
+              count: rowspan.blank? ? 1 : rowspan.to_i
             }
-          # シャトル運行フラグがあり、次の時間表示の行の場合
-          elsif is_shuttle[:status] && is_shuttle[:interval] > 0 && row.css('td')[0].inner_text != "～"
+          # *** シャトル運行中の間隔情報を元に自動生成 ***
+          # シャトル運行フラグがあり、rowspanのカウントが0の場合、シャトル期間直後のバス時刻表から計算を行う
+          elsif is_shuttle[:status] && is_shuttle[:count] == 0 && is_shuttle[:interval] > 0 && row.css('td')[0].inner_text != "～"
             # 表記あり時刻に近似しない時刻であることを確認
             while Time.parse(row.css('td')[0].inner_text) > goto_destination.last[:departure_time]+is_shuttle[:interval] * 2
               goto_destination << {
@@ -109,8 +110,10 @@ class RegisterController < ApplicationController
             } unless row.css('td')[1].inner_text === "" || row.css('td')[2].inner_text === ""
           end
 
-          is_shuttle[:count] -= 1 #カウンターを下げる
-          is_shuttle = { status: false, interval: 0, count: 0 } if is_shuttle[:count] < 0
+          if is_shuttle[:status]
+            is_shuttle[:count] -= 1 #カウンターを下げる
+            is_shuttle = { status: false, interval: 0, count: 0 } if is_shuttle[:count] < 0
+          end
         end
       end
 
