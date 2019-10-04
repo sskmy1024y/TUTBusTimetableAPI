@@ -39,3 +39,13 @@ $ rails assets:precompile RAILS_ENV=production
 ```
 
 out port is `:22222`
+
+## How to debug
+
+* add `binding.pry` where breakpoint in your source.
+
+and 
+
+```bash
+$ docker-compose run --rm --service-ports web
+```
