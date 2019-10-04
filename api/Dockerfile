@@ -16,18 +16,14 @@ ENV BUNDLE_JOBS=4 \
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
-COPY package.json $APP_DIR/package.json
-COPY Gemfile $APP_DIR/Gemfile
-COPY Gemfile.lock $APP_DIR/Gemfile.lock
+COPY src/Gemfile $APP_DIR
+COPY src/Gemfile.lock $APP_DIR
 
 RUN gem install bundler && \
   gem install rails && \
   bundle install --clean
 
 # Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
+COPY src/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-
-EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
