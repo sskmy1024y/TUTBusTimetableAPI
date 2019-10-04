@@ -56,16 +56,18 @@ class RegisterController < ApplicationController
       table_html.css('tr').each do |row|
         if !row.css('td').empty?
           # シャトル運行間隔記載があれば、間隔時間を取得
-          if !row.css('td')[3].blank? && row.css('td')[3].inner_text.include?('シャトル運行') && row.css('td')[3].inner_text =~ /\s*約(\d*)～(\d*)分\s*/
-            interval = row.css('td')[3].inner_text.split(/\s*約(\d*)～(\d*)分\s*/)
+          ## シャトル運行の記載があるカラムは固定ではないので、全てのカラムで検査する
+          shuttle_notice_td = shuttle_notice_cell(row.css('td'))
+          if !shuttle_notice_td.nil? && shuttle_notice_td.inner_text =~ /\s*約?(\d*)～(\d*)分\s*/
+            interval = shuttle_notice_td.inner_text.split(/\s*約?(\d*)～(\d*)分\s*/)
             is_shuttle = {
               status: true,
               interval: ([interval[1].to_f, interval[2].to_f].average * 60).round,
               count: 1
             }
           # シャトル運行フラグのみがある場合
-          elsif !row.css('td')[3].blank? && row.css('td')[3].inner_text.include?('シャトル運行')
-            rowspan = row.css('td')[3].attribute("rowspan").value.to_i unless row.css('td')[3].attribute("rowspan").nil?
+          elsif !shuttle_notice_td.nil?
+            rowspan = shuttle_notice_td.attribute("rowspan").value.to_i unless shuttle_notice_td.attribute("rowspan").nil?
             is_shuttle = {
               status: true,
               interval: 0,
@@ -92,7 +94,8 @@ class RegisterController < ApplicationController
             is_shuttle = { status: false, interval: 0, count: 0 } if is_shuttle[:count] == 0 # 値を初期化
           end
 
-          if row.css('td')[0].inner_text != "～"
+          
+          if row.css('td').length > 1 && row.css('td')[0].inner_text != "～"
             goto_destination << {
               departure_time: Time.parse(row.css('td')[0].inner_text),
               arrival_time: Time.parse(row.css('td')[1].inner_text),
@@ -228,6 +231,15 @@ class RegisterController < ApplicationController
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV.fetch('BASIC_AUTH_NAME', 'admin') && password == ENV.fetch('BASIC_AUTH_PASSWORD', 'root')
     end
+  end
+
+  # シャトル運行の記載があるセルを返す関数
+  # @params row
+  def shuttle_notice_cell(tabledata)
+    tabledata.each do |td|
+      return td if !td.blank? && td.inner_text.include?('シャトル運行')
+    end
+    return nil
   end
 end
 
