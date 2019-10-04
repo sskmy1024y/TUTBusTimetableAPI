@@ -60,10 +60,11 @@ class RegisterController < ApplicationController
           shuttle_notice_td = shuttle_notice_cell(row.css('td'))
           if !shuttle_notice_td.nil? && shuttle_notice_td.inner_text =~ /\s*約?(\d*)～(\d*)分\s*/
             interval = shuttle_notice_td.inner_text.split(/\s*約?(\d*)～(\d*)分\s*/)
+            rowspan = shuttle_notice_td.attribute("rowspan").value.to_i unless shuttle_notice_td.attribute("rowspan").nil?
             is_shuttle = {
               status: true,
               interval: ([interval[1].to_f, interval[2].to_f].average * 60).round,
-              count: 1
+              count: rowspan.blank? ? 1 : rowspan.to_i
             }
           # シャトル運行フラグのみがある場合
           elsif !shuttle_notice_td.nil?
