@@ -17,7 +17,11 @@ services:
     restart: unless-stopped
     volumes:
       - ./src:/myapp
+      - bundle-data:/bundle
     ports:
       - "22222:3000"
     depends_on:
       - db
+
+volumes:
+  bundle-data:
