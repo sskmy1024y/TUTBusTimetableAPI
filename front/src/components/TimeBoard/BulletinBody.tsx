@@ -28,13 +28,13 @@ export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
       <div>
         {timetable ? (
           <Row>
-            <Type xs={6} lg={3}>
+            <Type xs={6} md={3}>
               {label}
             </Type>
-            <Time xs={6} lg={3}>
+            <Time xs={6} md={3}>
               {fmtDate(timetable.departureTime)}
             </Time>
-            <Detail xs={12} lg={6}>
+            <Detail xs={12} md={6}>
               {timetable.isShuttle && (
                 <Marquee>
                   <NowShattle />
