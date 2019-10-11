@@ -14,7 +14,7 @@ export interface BulletinBodyProps {
 }
 
 export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
-  const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [])
+  const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
 
   return (
     <BoardBody>
