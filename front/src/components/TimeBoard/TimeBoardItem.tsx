@@ -15,7 +15,7 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   return (
     <BulletinBoard>
       <BulletinHeader title={timetable.departure.name} subText={`行き（${timetable.arrival.name}発）`} />
-      {timetable.list.map((row, index) => {
+      {timetable.timetables.map((row, index) => {
         return <BulletinBody key={index} label={labels[index]} timetable={row} />
       })}
     </BulletinBoard>

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { Col, Row } from 'react-bootstrap'
 import Marquee from './Marquee'
 
 import styled from 'styled-components'
 import media from 'styled-media-query'
+import { formatDate } from '../../lib/utils/'
 import { TimetableType } from '../../modules/Timetable/type'
 
 export interface BulletinBodyProps {
@@ -13,15 +14,7 @@ export interface BulletinBodyProps {
 }
 
 export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
-  const fmtDate = (date: Date, format = 'hh:mm') => {
-    format = format.replace(/YYYY/g, `${date.getFullYear()}`)
-    format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2))
-    format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2))
-    format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2))
-    format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2))
-    format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2))
-    return format
-  }
+  const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [])
 
   return (
     <BoardBody>
@@ -32,7 +25,7 @@ export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
               {label}
             </Type>
             <Time xs={6} md={3}>
-              {fmtDate(timetable.departureTime)}
+              {dateStr}
             </Time>
             <Detail xs={12} md={6}>
               {timetable.isShuttle && (

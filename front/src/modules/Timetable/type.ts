@@ -8,7 +8,9 @@ export interface TimetableType {
 }
 
 export interface TimetableCollectType {
-  list: TimetableType[]
+  timetables: TimetableType[]
   departure: PlaceType
   arrival: PlaceType
 }
+
+export type TimetablesType = TimetableCollectType[]

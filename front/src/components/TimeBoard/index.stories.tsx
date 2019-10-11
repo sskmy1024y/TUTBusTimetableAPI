@@ -19,7 +19,7 @@ const timetableData: TimetableCollectType = {
     id: 1,
     name: 'みなみの',
   },
-  list: [
+  timetables: [
     {
       arrivalTime: new Date(),
       departureTime: new Date(),
