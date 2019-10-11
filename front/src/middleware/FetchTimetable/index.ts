@@ -1,31 +1,30 @@
 import { Dispatch } from 'react'
 import { Action } from 'redux'
 import { actionCreator } from '../../modules'
-import { TimetablesType } from '../../modules/Timetable/type'
-import { parseResponse } from '../client'
+import { TimetableType, TimetableCollectType } from '../../modules/Timetable'
+import { fetchTimetable } from '../../lib/api/client'
 import { ThunkActionType } from '../thunkAction'
 
 interface FetchTimetablePayload {
   date: Date
 }
 
-export const fetchTimetable = ({ date }: FetchTimetablePayload): ThunkActionType => async (
+export const getTimetable = ({ date }: FetchTimetablePayload): ThunkActionType => async (
   dispatch: Dispatch<Action>
 ) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_DEV_API_HOST}/api/v1/timetables/internal?datetime=${date.toString()}`,
-    {
-      mode: 'cors',
+  const resultDatas = await fetchTimetable(date)
+  const response = resultDatas.map<TimetableCollectType>(data => {
+    return {
+      timetables: data.timetables.map<TimetableType>(timetable => ({
+        id: timetable.id,
+        arrivalTime: new Date(timetable.arrival_time),
+        departureTime: new Date(timetable.departure_time),
+        isShuttle: timetable.is_shuttle,
+      })),
+      departure: data.departure,
+      arrival: data.arrival,
     }
-  )
-  if (response.ok) {
-    try {
-      const resultDatas = parseResponse<TimetablesType>(await response.json())
-      // console.log(resultDatas)
-      dispatch(actionCreator.getTimetable({ response: resultDatas }))
-    } catch (e) {
-      // tslint:disable-next-line: no-console
-      console.error('ダメでした', e)
-    }
-  }
+  })
+
+  dispatch(actionCreator.getTimetable({ response }))
 }

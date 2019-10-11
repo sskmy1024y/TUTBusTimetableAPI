@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, Action
   return {
     fetchTimetable: (date: Date) => {
       dispatch(
-        thunkActionCreators.fetchTimetable({
+        thunkActionCreators.getTimetable({
           date,
         })
       )
