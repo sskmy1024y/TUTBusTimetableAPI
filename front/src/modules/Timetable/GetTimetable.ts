@@ -1,7 +1,7 @@
-import { TimetableCollectType } from './type'
+import { TimetablesType } from './type'
 
 interface Payload {
-  response: TimetableCollectType[]
+  response: TimetablesType
 }
 
 export interface GetTimetableAction {

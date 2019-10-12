@@ -1,11 +1,11 @@
 import { getTimetable, GetTimetableAction } from './GetTimetable'
-import { TimetableCollectType } from './type'
+import { TimetablesType } from './type'
 
 export * from './type'
 
 export type Action = GetTimetableAction
 
-export type State = TimetableCollectType[]
+export type State = TimetablesType
 
 export function reducer(state: State = [], action: Action) {
   switch (action.type) {

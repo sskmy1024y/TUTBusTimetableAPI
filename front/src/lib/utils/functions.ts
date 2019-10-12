@@ -13,4 +13,20 @@ const formatDate = (date: Date, format = 'hh:mm') => {
   return format
 }
 
-export { formatDate }
+/**
+ * APIが返す日程(datetime)がおかしいのを調整する(暫定措置)
+ * @param srcData
+ * @param refData
+ */
+const adjustDate = (srcData: Date, refData: Date = new Date()) => {
+  return new Date(
+    refData.getFullYear(),
+    refData.getMonth(),
+    refData.getDate(),
+    srcData.getHours(),
+    srcData.getMinutes() + 1,
+    srcData.getSeconds()
+  )
+}
+
+export { formatDate, adjustDate }

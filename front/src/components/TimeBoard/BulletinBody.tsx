@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react'
+import React from 'react'
+import { useMemo, useInterval, useDispatch } from '../../hooks'
 
 import { Col, Row } from 'react-bootstrap'
 import Marquee from './Marquee'
 
 import styled from 'styled-components'
 import media from 'styled-media-query'
-import { formatDate } from '../../lib/utils/'
+import { formatDate, adjustDate } from '../../lib/utils/'
 import { TimetableType } from '../../modules/Timetable/type'
+import { thunkActionCreators } from 'middleware/thunkAction'
 
 export interface BulletinBodyProps {
   label?: string
@@ -14,7 +16,19 @@ export interface BulletinBodyProps {
 }
 
 export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
+  const dispatch = useDispatch()
   const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
+
+  useInterval(() => {
+    const date = new Date()
+    if (timetable !== undefined && adjustDate(timetable.departureTime, date).getTime() < date.getTime()) {
+      dispatch(
+        thunkActionCreators.getTimetable({
+          date,
+        })
+      )
+    }
+  }, 1000)
 
   return (
     <BoardBody>

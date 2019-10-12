@@ -1,35 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Jumbotron, Row } from 'react-bootstrap'
-import { connect } from 'react-redux'
-import { Action } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
 import styled from 'styled-components'
 import TimeBoard from '../../containers/TimeBoard'
+import { useDispatch } from '../../hooks'
 import { thunkActionCreators } from '../../middleware/thunkAction'
-import { RootState } from '../../modules'
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, Action>) => {
-  return {
-    fetchTimetable: (date: Date) => {
-      dispatch(
-        thunkActionCreators.getTimetable({
-          date,
-        })
-      )
-    },
+export default function Home() {
+  const dispatch = useDispatch()
+  dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
+
+  const handler = () => {
+    dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
   }
-}
-
-interface HomeProps {
-  fetchTimetable(date: Date): void
-}
-
-function Home({ fetchTimetable }: HomeProps) {
-  useEffect(() => {
-    fetchTimetable(new Date())
-  })
 
   return (
     <>
@@ -48,6 +32,7 @@ function Home({ fetchTimetable }: HomeProps) {
           </JumbotronContainer>
         </Col>
       </Row>
+      <button onClick={handler}>{'hogehoge'}</button>
     </>
   )
 }
@@ -67,8 +52,3 @@ const IconPoint = styled.p`
 const JumbotronContainer = styled(Jumbotron)`
   padding: 2rem 1rem;
 `
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Home)
