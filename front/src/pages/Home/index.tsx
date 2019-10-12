@@ -11,10 +11,6 @@ export default function Home() {
   const dispatch = useDispatch()
   dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
 
-  const handler = () => {
-    dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
-  }
-
   return (
     <>
       <Row>
@@ -32,7 +28,6 @@ export default function Home() {
           </JumbotronContainer>
         </Col>
       </Row>
-      <button onClick={handler}>{'hogehoge'}</button>
     </>
   )
 }
