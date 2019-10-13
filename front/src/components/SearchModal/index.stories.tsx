@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { useState } from 'hooks'
 
-import SearchModal from '.'
+import { SearchModalBody } from '.'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 
@@ -20,7 +20,7 @@ stories.addDecorator(withKnobs).add('SearchModal', () => {
   return (
     <Container>
       <Button onClick={onClose}>{show ? 'Hide' : 'Show'}</Button>
-      <SearchModal show={show} onHide={() => setShow(false)}></SearchModal>
+      <SearchModalBody show={show} onHide={() => setShow(false)} />
     </Container>
   )
 })

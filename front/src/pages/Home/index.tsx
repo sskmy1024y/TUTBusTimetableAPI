@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDispatch, useState, useEffect } from '../../hooks'
+import { useDispatch, useEffect } from '../../hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Jumbotron, Row, Button } from 'react-bootstrap'
+import { Col, Jumbotron, Row } from 'react-bootstrap'
 
 import TimeBoard from '../../containers/TimeBoard'
 import { thunkActionCreators } from '../../middleware/thunkAction'
@@ -11,14 +11,9 @@ import media from 'styled-media-query'
 import SearchModal from 'components/SearchModal'
 
 export default function Home() {
-  const [showModal, setShowModal] = useState(false)
   const dispatch = useDispatch()
 
   const date = new Date()
-
-  const handleShowModal = () => {
-    setShowModal(!showModal)
-  }
 
   useEffect(() => {
     dispatch(thunkActionCreators.getTimetable({ date }))
@@ -38,14 +33,11 @@ export default function Home() {
           <JumbotronContainer>
             <TitleComponent>
               <Title>次の学バス</Title>
-              <SearchButton onClick={handleShowModal} variant="secondary">
-                <FontAwesomeIcon icon="search" />
-              </SearchButton>
+              <SearchModal />
             </TitleComponent>
             <TimeBoard />
           </JumbotronContainer>
         </Col>
-        <SearchModal show={showModal} onHide={() => setShowModal(false)} />
       </Row>
     </>
   )
@@ -78,11 +70,6 @@ const Title = styled.h3`
 const IconPoint = styled.p`
   text-align: center;
   font-size: 3em;
-`
-
-const SearchButton = styled(Button)`
-  padding: 0px 10px;
-  margin-bottom: 8px;
 `
 
 const JumbotronContainer = styled(Jumbotron)`

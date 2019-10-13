@@ -1,12 +1,33 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { useState } from 'hooks'
 
-interface Props {
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+export default function SearchModal() {
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => {
+    setShowModal(!showModal)
+  }
+
+  return (
+    <>
+      <SearchButton onClick={handleShowModal} variant="secondary">
+        <FontAwesomeIcon icon="search" />
+      </SearchButton>
+      <SearchModalBody show={showModal} onHide={() => setShowModal(false)} />
+    </>
+  )
+}
+
+interface ModalProps {
   show: boolean
   onHide: () => void
 }
 
-export default function SearchModal(props: Props) {
+export function SearchModalBody(props: ModalProps) {
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -25,3 +46,8 @@ export default function SearchModal(props: Props) {
     </Modal>
   )
 }
+
+const SearchButton = styled(Button)`
+  padding: 0px 10px;
+  margin-bottom: 8px;
+`
