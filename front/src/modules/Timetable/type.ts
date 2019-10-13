@@ -13,4 +13,10 @@ export interface TimetableCollectType {
   arrival: PlaceType
 }
 
+export enum TimetableDataType {
+  Time, // 時刻
+  NoBus, // バス運行日ではない時
+  BusFinished, // 今日のバスが終了した時
+}
+
 export type TimetablesType = TimetableCollectType[]

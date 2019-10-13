@@ -7,15 +7,16 @@ import Marquee from './Marquee'
 import styled from 'styled-components'
 import media from 'styled-media-query'
 import { formatDate, adjustDate } from '../../lib/utils/'
-import { TimetableType } from '../../modules/Timetable/type'
+import { TimetableType, TimetableDataType } from '../../modules/Timetable/type'
 import { thunkActionCreators } from 'middleware/thunkAction'
 
 export interface BulletinBodyProps {
+  dataType: TimetableDataType
   label?: string
   timetable?: TimetableType
 }
 
-export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
+export default function BulletinBody({ dataType, timetable, label }: BulletinBodyProps) {
   const dispatch = useDispatch()
   const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
 
@@ -30,37 +31,45 @@ export default function BulletinBody({ timetable, label }: BulletinBodyProps) {
     }
   }, 1000)
 
-  return (
-    <BoardBody>
-      <div>
-        {timetable ? (
-          <Row>
-            <Type xs={6} md={3}>
-              {label}
-            </Type>
-            <Time xs={6} md={3}>
-              {dateStr}
-            </Time>
-            <Detail xs={12} md={6}>
-              {timetable.isShuttle && (
-                <Marquee>
-                  <NowShattle />
-                </Marquee>
-              )}
-            </Detail>
-          </Row>
-        ) : (
-          <Row>
-            <Detail xl={12} md={12}>
+  const bodyView = useMemo(
+    () =>
+      dataType === TimetableDataType.Time && timetable !== undefined ? (
+        <Row>
+          <Type xs={6} md={3}>
+            {label}
+          </Type>
+          <Time xs={6} md={3}>
+            {dateStr}
+          </Time>
+          <Detail xs={12} md={6}>
+            {timetable.isShuttle && (
               <Marquee>
-                <AttentionSpan>本日の運行はありません</AttentionSpan>
+                <NowShattle />
               </Marquee>
-            </Detail>
-          </Row>
-        )}
-      </div>
-    </BoardBody>
+            )}
+          </Detail>
+        </Row>
+      ) : dataType === TimetableDataType.BusFinished ? (
+        <Row>
+          <Detail xl={12} md={12}>
+            <Marquee>
+              <AttentionSpan>本日の運行は終了しました</AttentionSpan>
+            </Marquee>
+          </Detail>
+        </Row>
+      ) : (
+        <Row>
+          <Detail xl={12} md={12}>
+            <Marquee>
+              <AttentionSpan>本日の運行はありません</AttentionSpan>
+            </Marquee>
+          </Detail>
+        </Row>
+      ),
+    [dataType, dateStr, label, timetable]
   )
+
+  return <BoardBody>{bodyView}</BoardBody>
 }
 
 function NowShattle() {

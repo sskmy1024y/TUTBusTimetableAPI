@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Jumbotron, Row } from 'react-bootstrap'
+import { Col, Jumbotron, Row, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import TimeBoard from '../../containers/TimeBoard'
 import { useDispatch } from '../../hooks'
@@ -24,7 +24,12 @@ export default function Home() {
         </Col>
         <Col md="8">
           <JumbotronContainer>
-            <Title>次の学バス</Title>
+            <TitleComponent>
+              <Title>次の学バス</Title>
+              <SearchButton variant="secondary">
+                <FontAwesomeIcon icon="search" />
+              </SearchButton>
+            </TitleComponent>
             <TimeBoard />
           </JumbotronContainer>
         </Col>
@@ -44,6 +49,13 @@ const MainIcon = styled.div`
   `}
 `
 
+const TitleComponent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+`
+
 const Title = styled.h3`
   font-size: 2.1rem;
   font-weight: 300;
@@ -55,6 +67,15 @@ const IconPoint = styled.p`
   font-size: 3em;
 `
 
+const SearchButton = styled(Button)`
+  padding: 0px 10px;
+  margin-bottom: 8px;
+`
+
 const JumbotronContainer = styled(Jumbotron)`
   padding: 2rem 1rem;
+
+  ${media.lessThan('small')`
+    padding: 1rem 1rem 2rem;
+  `}
 `
