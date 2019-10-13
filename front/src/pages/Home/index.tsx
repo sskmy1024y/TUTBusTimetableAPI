@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TimeBoard from '../../containers/TimeBoard'
 import { useDispatch } from '../../hooks'
 import { thunkActionCreators } from '../../middleware/thunkAction'
+import media from 'styled-media-query'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ export default function Home() {
         </Col>
         <Col md="8">
           <JumbotronContainer>
-            <h3 className="display-4">次の学バスは……</h3>
+            <Title>次の学バス</Title>
             <TimeBoard />
           </JumbotronContainer>
         </Col>
@@ -37,6 +38,16 @@ const MainIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${media.lessThan('small')`
+    display: none;
+  `}
+`
+
+const Title = styled.h3`
+  font-size: 2.1rem;
+  font-weight: 300;
+  line-height: 1.2;
 `
 
 const IconPoint = styled.p`
