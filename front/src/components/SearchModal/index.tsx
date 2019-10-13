@@ -8,7 +8,7 @@ interface Props {
 
 export default function SearchModal(props: Props) {
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">時間指定</Modal.Title>
       </Modal.Header>

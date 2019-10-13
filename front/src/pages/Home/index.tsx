@@ -1,16 +1,28 @@
 import React from 'react'
-
+import { useDispatch, useState, useEffect } from '../../hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Jumbotron, Row, Button } from 'react-bootstrap'
-import styled from 'styled-components'
+
 import TimeBoard from '../../containers/TimeBoard'
-import { useDispatch } from '../../hooks'
 import { thunkActionCreators } from '../../middleware/thunkAction'
+
+import styled from 'styled-components'
 import media from 'styled-media-query'
+import SearchModal from 'components/SearchModal'
 
 export default function Home() {
+  const [showModal, setShowModal] = useState(false)
   const dispatch = useDispatch()
-  dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
+
+  const date = new Date()
+
+  const handleShowModal = () => {
+    setShowModal(!showModal)
+  }
+
+  useEffect(() => {
+    dispatch(thunkActionCreators.getTimetable({ date }))
+  }, [date, dispatch])
 
   return (
     <>
@@ -26,13 +38,14 @@ export default function Home() {
           <JumbotronContainer>
             <TitleComponent>
               <Title>次の学バス</Title>
-              <SearchButton variant="secondary">
+              <SearchButton onClick={handleShowModal} variant="secondary">
                 <FontAwesomeIcon icon="search" />
               </SearchButton>
             </TitleComponent>
             <TimeBoard />
           </JumbotronContainer>
         </Col>
+        <SearchModal show={showModal} onHide={() => setShowModal(false)} />
       </Row>
     </>
   )
