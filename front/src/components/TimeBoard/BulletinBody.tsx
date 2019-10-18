@@ -1,5 +1,5 @@
 import { Col, Row } from 'react-bootstrap'
-import { useDispatch, useInterval, useMemo } from 'hooks'
+import { useDispatch, useInterval, useMemo, useSelector } from 'hooks'
 import React from 'react'
 
 import { TimetableDataType, TimetableType } from 'modules/Timetable/type'
@@ -9,6 +9,7 @@ import Marquee from './Marquee'
 
 import media from 'styled-media-query'
 import styled from 'styled-components'
+import { RootState } from 'modules'
 
 export interface BulletinBodyProps {
   dataType: TimetableDataType
@@ -19,10 +20,11 @@ export interface BulletinBodyProps {
 export default function BulletinBody({ dataType, timetable, label }: BulletinBodyProps) {
   const dispatch = useDispatch()
   const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
+  const isSearch = useSelector<RootState, boolean>(state => state.searchEnable)
 
   useInterval(() => {
     const date = new Date()
-    if (timetable !== undefined && adjustDate(timetable.departureTime, date).getTime() < date.getTime()) {
+    if (timetable !== undefined && isSearch && adjustDate(timetable.departureTime, date).getTime() < date.getTime()) {
       dispatch(
         thunkActionCreators.getTimetable({
           date,

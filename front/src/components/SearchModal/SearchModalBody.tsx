@@ -5,7 +5,7 @@ import React, { useCallback } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SearchType } from 'modules/Search'
-import { actionCreator } from 'modules'
+import { thunkActionCreators } from 'middleware/thunkAction'
 
 interface ModalProps {
   show: boolean
@@ -57,14 +57,10 @@ export function SearchModalBody(props: ModalProps) {
   )
 
   const dispatchSearch = useCallback(() => {
-    const request = {
-      type: targetTimeType,
-      datetime: new Date(`${targetDate} ${targetTime}`),
-    }
-
     dispatch(
-      actionCreator.setSearchRequest({
-        request,
+      thunkActionCreators.searchTimetable({
+        searchType: targetTimeType,
+        datetime: new Date(`${targetDate} ${targetTime}`),
       })
     )
   }, [dispatch, targetDate, targetTime, targetTimeType])

@@ -12,10 +12,12 @@ interface FetchTimetablePayload {
   searchType: SearchType
 }
 
-export const searchTimetable = ({ datetime }: FetchTimetablePayload): ThunkActionType => async (
+export const searchTimetable = ({ datetime, searchType }: FetchTimetablePayload): ThunkActionType => async (
   dispatch: Dispatch<Action>
 ) => {
-  const resultDatas = await fetchTimetable(datetime)
+  dispatch(actionCreator.setSearchRequest({ enable: true }))
+
+  const resultDatas = await fetchTimetable(datetime, searchType)
   const response = resultDatas.map<TimetableCollectType>(data => {
     return {
       timetables: data.timetables.map<TimetableType>(timetable => ({

@@ -1,35 +1,15 @@
-import { CancelSearchRequestAction, cancelSearchRequest } from './CancelSearch'
-import { SearchRequestType, SearchType } from './type'
 import { SetSearchRequestAction, setSearchRequest } from './SetSearchRequest'
 
 export * from './type'
 
-export type Action = SetSearchRequestAction & CancelSearchRequestAction
+export type Action = SetSearchRequestAction
 
-export type State = {
-  isSearch: boolean
-  requestType: SearchRequestType
-}
+export type State = boolean
 
-const initialState = {
-  isSearch: false,
-  requestType: {
-    type: SearchType.Depature,
-  },
-}
-
-export function reducer(state: State = initialState, action: Action) {
+export function reducer(state: State = false, action: Action) {
   switch (action.type) {
     case 'SET_SEARCH_REQUEST':
-      return {
-        isSearch: true,
-        requestType: action.payload.request,
-      }
-    case 'CANCEL_SEARCH_REQUEST':
-      return {
-        ...state,
-        isSearch: false,
-      }
+      return action.payload.enable
     default:
       return state
   }
@@ -37,5 +17,4 @@ export function reducer(state: State = initialState, action: Action) {
 
 export const actionCreators = {
   setSearchRequest,
-  cancelSearchRequest,
 }
