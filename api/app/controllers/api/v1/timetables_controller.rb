@@ -110,6 +110,7 @@ class Api::V1::TimetablesController < ApplicationController
     @date =  params[:datetime] ? Date.parse(params[:datetime]) : Date.parse(datetime)
     @time = params[:datetime] ? Time.parse(params[:datetime]) : Time.parse(datetime)
     @limit = params[:limit] ? params[:limit] : 2
+    @searchType = params[:search] ? params[:search] : "default"
 
     @timetables = []
 
@@ -122,33 +123,15 @@ class Api::V1::TimetablesController < ApplicationController
         @timetables << {
           departure: Course.find(c.course_id).departure,
           arrival: Course.find(c.course_id).arrival,
-          timetables: dateset ? DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time >= ?", c.course_id, @time ).limit(2) : []
-        }
-      end
-      @timetables = @timetables.uniq
-    end
-    render json: { success: true, data: @timetables }, status: :ok
-  rescue => e
-    render json: { success: false, errors: '500 internal server error. Please contact the administrator.' }, status: :internal
-  end
-
-  def internal_last(datetime = DateTime.now.to_s)
-    expires_now
-    @date =  params[:datetime] ? Date.parse(params[:datetime]) : Date.parse(datetime)
-    @limit = params[:limit] ? params[:limit] : 2
-
-    @timetables = []
-
-    dateset = DateSet.find_by(date: @date)
-
-    if dateset
-      course_ids = DateSet.find_by(date: @date).timetable_set.timetables.group(:course_id).select(:course_id)
-      
-      for c in course_ids do
-        @timetables << {
-          departure: Course.find(c.course_id).departure,
-          arrival: Course.find(c.course_id).arrival,
-          timetables: dateset ? DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ?", c.course_id).order(departure_time: "DESC").limit(1) : []
+          timetables: dateset ? 
+            @searchType == "arrival" ? 
+              DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND departure_time > ?", c.course_id, @time ).limit(2)
+              : @searchType == "first" ?
+              DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ?", c.course_id).order(departure_time: "ASC").limit(1)
+              : @searchType == "last" ?
+              DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ?", c.course_id).order(departure_time: "DESC").limit(1)
+              : DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND arrival_time <= ?", c.course_id, @time ).limit(2)
+            : []
         }
       end
       @timetables = @timetables.uniq
