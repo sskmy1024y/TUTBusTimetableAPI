@@ -1,20 +1,14 @@
 import React from 'react'
-import { Modal, Button, Form, Row, Col, InputGroup, FormControlProps, FormControl } from 'react-bootstrap'
-
-import { formatDate, addMonth } from 'lib/utils'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useMemo } from 'hooks'
+import { Modal, Button, Form, Row, Col, InputGroup, FormControlProps, FormControl } from 'react-bootstrap'
+import { formatDate, addMonth } from 'lib/utils'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TargetTimeType } from 'modules/Search'
 
 interface ModalProps {
   show: boolean
   onHide: () => void
-}
-
-enum TargetTimeType {
-  First,
-  Depature,
-  Arrival,
-  Last,
 }
 
 interface TTTOption {
