@@ -7,10 +7,10 @@ import { adjustDate, formatDate } from 'lib/utils/'
 import { thunkActionCreators } from 'middleware/thunkAction'
 import Marquee from './Marquee'
 
+import { PlaceType } from 'lib/types'
+import { RootState } from 'modules'
 import media from 'styled-media-query'
 import styled from 'styled-components'
-import { RootState } from 'modules'
-import { PlaceType } from 'lib/types'
 
 export interface BulletinBodyProps {
   dataType: TimetableDataType

@@ -1,5 +1,5 @@
-import { SetSearchRequestAction, setSearchRequest } from './SetSearchRequest'
 import { SearchRequestType } from './type'
+import { SetSearchRequestAction, setSearchRequest } from './SetSearchRequest'
 
 export * from './type'
 

@@ -1,15 +1,15 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'hooks'
 import { Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'hooks'
+import React from 'react'
 
-import { RootState } from 'modules'
 import * as Search from 'modules/Search'
-import SearchModal from 'components/SearchModal'
+import { RootState } from 'modules'
 import { formatDate } from 'lib/utils'
 import { thunkActionCreators } from 'middleware/thunkAction'
+import SearchModal from 'components/SearchModal'
 
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled from 'styled-components'
 
 export default function TitleComponent() {
   const dispatch = useDispatch()
