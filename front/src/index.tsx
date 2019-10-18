@@ -8,12 +8,11 @@ import { Provider } from 'react-redux'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faBus, faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faBus, faSearch, faStar, faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons'
 import store from './configureStore'
 
-library.add(fab, faBus)
-library.add(fab, faSearch)
-library.add(fab, faStar)
+const importIcons = [fab, faBus, faSearch, faStar, faCalendarAlt, faClock]
+library.add(...importIcons)
 
 ReactDOM.render(
   <Provider store={store}>

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { useState } from 'hooks'
 
-import { SearchModalBody } from '.'
+import { SearchModalBody } from './SearchModalBody'
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 
