@@ -27,4 +27,6 @@ export default function SearchModal() {
 const SearchButton = styled(Button)`
   padding: 0px 10px;
   margin-bottom: 8px;
+  width: 40px;
+  height: 40px;
 `

@@ -58,7 +58,7 @@ export function SearchModalBody(props: ModalProps) {
 
   const dispatchSearch = useCallback(() => {
     dispatch(
-      thunkActionCreators.searchTimetable({
+      thunkActionCreators.getTimetable({
         searchType: targetTimeType,
         datetime: new Date(`${targetDate} ${targetTime}`),
       })
@@ -94,7 +94,7 @@ export function SearchModalBody(props: ModalProps) {
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">時間指定</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">時間指定検索</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={submitSearch}>

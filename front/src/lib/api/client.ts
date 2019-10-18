@@ -18,7 +18,7 @@ export function parseResponse<T>(apiResponse: RawApiResponse<T>, convertCamelCas
   return apiResponse.data
 }
 
-export async function fetchTimetable(date: Date, searchType?: SearchType) {
+export async function fetchTimetable(date: Date, searchType: SearchType | null) {
   const routeParam =
     searchType === SearchType.First
       ? '/first'

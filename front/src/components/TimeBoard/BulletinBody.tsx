@@ -25,11 +25,16 @@ export default function BulletinBody({ dataType, timetable, label, toPlace }: Bu
   const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
 
   useInterval(() => {
-    const date = new Date()
-    if (timetable !== undefined && isSearch && adjustDate(timetable.departureTime, date).getTime() < date.getTime()) {
+    const datetime = new Date()
+    if (
+      timetable !== undefined &&
+      isSearch &&
+      adjustDate(timetable.departureTime, datetime).getTime() < datetime.getTime()
+    ) {
       dispatch(
         thunkActionCreators.getTimetable({
-          date,
+          datetime,
+          searchType: null,
         })
       )
     }
