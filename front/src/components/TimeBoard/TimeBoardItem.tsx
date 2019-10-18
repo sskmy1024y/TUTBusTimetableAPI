@@ -1,10 +1,11 @@
 import React from 'react'
 
-import BulletinHeader from './BulletinHeader'
+import { TimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
 
 import styled from 'styled-components'
-import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
+
 import BulletinBody from './BulletinBody'
+import BulletinHeader from './BulletinHeader'
 
 interface TimeBoardProps {
   timetable: TimetableCollectType

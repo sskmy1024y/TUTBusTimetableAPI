@@ -1,14 +1,14 @@
-import React from 'react'
-import { useMemo, useInterval, useDispatch } from '../../hooks'
-
 import { Col, Row } from 'react-bootstrap'
+import { useDispatch, useInterval, useMemo } from 'hooks'
+import React from 'react'
+
+import { TimetableDataType, TimetableType } from 'modules/Timetable/type'
+import { adjustDate, formatDate } from 'lib/utils/'
+import { thunkActionCreators } from 'middleware/thunkAction'
 import Marquee from './Marquee'
 
-import styled from 'styled-components'
 import media from 'styled-media-query'
-import { formatDate, adjustDate } from '../../lib/utils/'
-import { TimetableType, TimetableDataType } from '../../modules/Timetable/type'
-import { thunkActionCreators } from 'middleware/thunkAction'
+import styled from 'styled-components'
 
 export interface BulletinBodyProps {
   dataType: TimetableDataType

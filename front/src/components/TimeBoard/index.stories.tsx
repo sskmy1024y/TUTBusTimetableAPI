@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { text, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
+import { text, withKnobs } from '@storybook/addon-knobs'
 
-import TimeBoard from '.'
-import { TimetableCollectType } from '../../modules/Timetable/type'
+import { TimetableCollectType } from 'modules/Timetable'
 import BulletinHeader from './BulletinHeader'
+import TimeBoard from '.'
 import TimeBoardItem from './TimeBoardItem'
 
 const stories = storiesOf('Components|TimeBoard', module)

@@ -1,9 +1,10 @@
-import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useState } from 'hooks'
+import React from 'react'
 
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled from 'styled-components'
+
 import { SearchModalBody } from './SearchModalBody'
 
 export default function SearchModal() {

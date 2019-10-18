@@ -1,6 +1,6 @@
-import { setSearchRequest, SetSearchRequestAction } from './SetSearchRequest'
-import { SearchRequestType, TargetTimeType } from './type'
-import { CancelSearchRequestAction } from './CancelSearch'
+import { CancelSearchRequestAction, cancelSearchRequest } from './CancelSearch'
+import { SearchRequestType, SearchType } from './type'
+import { SetSearchRequestAction, setSearchRequest } from './SetSearchRequest'
 
 export * from './type'
 
@@ -14,7 +14,7 @@ export type State = {
 const initialState = {
   isSearch: false,
   requestType: {
-    type: TargetTimeType.Depature,
+    type: SearchType.Depature,
   },
 }
 
@@ -37,4 +37,5 @@ export function reducer(state: State = initialState, action: Action) {
 
 export const actionCreators = {
   setSearchRequest,
+  cancelSearchRequest,
 }

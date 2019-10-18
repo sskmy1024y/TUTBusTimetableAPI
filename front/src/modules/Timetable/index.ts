@@ -1,4 +1,4 @@
-import { getTimetable, GetTimetableAction } from './GetTimetable'
+import { GetTimetableAction, getTimetable } from './GetTimetable'
 import { TimetablesType } from './type'
 
 export * from './type'

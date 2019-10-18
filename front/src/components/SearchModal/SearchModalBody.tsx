@@ -1,10 +1,11 @@
-import React from 'react'
-import { useState, useMemo } from 'hooks'
-import { Modal, Button, Form, Row, Col, InputGroup, FormControlProps, FormControl } from 'react-bootstrap'
-import { formatDate, addMonth } from 'lib/utils'
+import { Button, Col, Form, FormControl, FormControlProps, InputGroup, Modal, Row } from 'react-bootstrap'
+import { addMonth, formatDate } from 'lib/utils'
+import { useDispatch, useMemo, useState } from 'hooks'
+import React, { useCallback } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TargetTimeType } from 'modules/Search'
+import { SearchType } from 'modules/Search'
+import { actionCreator } from 'modules'
 
 interface ModalProps {
   show: boolean
@@ -13,7 +14,7 @@ interface ModalProps {
 
 interface TTTOption {
   label: string
-  value: TargetTimeType
+  value: SearchType
 }
 
 export function SearchModalBody(props: ModalProps) {
@@ -22,36 +23,51 @@ export function SearchModalBody(props: ModalProps) {
   const nowTime = formatDate(today)
   const maxDate = formatDate(addMonth(today, 1), 'YYYY-MM-DD')
 
+  const dispatch = useDispatch()
+
   const [targetDate, setTargetDate] = useState(nowDate)
   const [targetTime, setTargetTime] = useState(nowTime)
-  const [targetTimeType, setTargetTimeType] = useState(TargetTimeType.Depature)
+  const [targetTimeType, setTargetTimeType] = useState(SearchType.Depature)
 
   const selectOptions = useMemo<TTTOption[]>(
     () => [
       {
         label: '始発',
-        value: TargetTimeType.First,
+        value: SearchType.First,
       },
       {
         label: '出発時刻',
-        value: TargetTimeType.Depature,
+        value: SearchType.Depature,
       },
       {
         label: '到着時刻',
-        value: TargetTimeType.Arrival,
+        value: SearchType.Arrival,
       },
       {
         label: '最終',
-        value: TargetTimeType.Last,
+        value: SearchType.Last,
       },
     ],
     []
   )
 
   const enableTargetTime = useMemo(
-    () => targetTimeType === TargetTimeType.Arrival || targetTimeType === TargetTimeType.Depature,
+    () => targetTimeType === SearchType.Arrival || targetTimeType === SearchType.Depature,
     [targetTimeType]
   )
+
+  const dispatchSearch = useCallback(() => {
+    const request = {
+      type: targetTimeType,
+      datetime: new Date(`${targetDate} ${targetTime}`),
+    }
+
+    dispatch(
+      actionCreator.setSearchRequest({
+        request,
+      })
+    )
+  }, [dispatch, targetDate, targetTime, targetTimeType])
 
   const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
@@ -74,13 +90,18 @@ export function SearchModalBody(props: ModalProps) {
     }
   }
 
+  const submitSearch = () => {
+    dispatchSearch()
+    props.onHide()
+  }
+
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">時間指定</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={submitSearch}>
           <Form.Group as={Row} controlId="formPlaintextDate">
             <Form.Label column sm="2">
               日付
@@ -142,7 +163,7 @@ export function SearchModalBody(props: ModalProps) {
         <Button variant="secondary" onClick={props.onHide}>
           閉じる
         </Button>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" onClick={submitSearch}>
           検索
         </Button>
       </Modal.Footer>

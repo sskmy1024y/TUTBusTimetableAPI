@@ -1,12 +1,13 @@
+import { useState } from 'hooks'
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { useState } from 'hooks'
+
+import { Button } from 'react-bootstrap'
+import styled from 'styled-components'
 
 import { SearchModalBody } from './SearchModalBody'
-import styled from 'styled-components'
-import { Button } from 'react-bootstrap'
 
 const stories = storiesOf('Componetns|Modal', module)
 

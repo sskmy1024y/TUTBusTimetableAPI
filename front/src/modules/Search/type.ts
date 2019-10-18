@@ -1,4 +1,4 @@
-export enum TargetTimeType {
+export enum SearchType {
   First,
   Depature,
   Arrival,
@@ -6,6 +6,6 @@ export enum TargetTimeType {
 }
 
 export interface SearchRequestType {
-  type: TargetTimeType
+  type: SearchType
   datetime?: Date
 }

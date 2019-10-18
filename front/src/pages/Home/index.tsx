@@ -1,14 +1,14 @@
-import React from 'react'
-import { useDispatch, useEffect } from '../../hooks'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Jumbotron, Row } from 'react-bootstrap'
+import { useDispatch, useEffect } from 'hooks'
+import React from 'react'
 
-import TimeBoard from '../../containers/TimeBoard'
-import { thunkActionCreators } from '../../middleware/thunkAction'
-
-import styled from 'styled-components'
-import media from 'styled-media-query'
+import { thunkActionCreators } from 'middleware/thunkAction'
 import SearchModal from 'components/SearchModal'
+import TimeBoard from 'containers/TimeBoard'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import media from 'styled-media-query'
+import styled from 'styled-components'
 
 export default function Home() {
   const dispatch = useDispatch()

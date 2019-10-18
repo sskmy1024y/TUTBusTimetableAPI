@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
-import * as Timetable from './Timetable'
+
 import * as Search from './Search'
+import * as Timetable from './Timetable'
 
 export interface RootState {
   timetables: Timetable.State

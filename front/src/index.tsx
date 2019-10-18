@@ -1,15 +1,16 @@
+import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
-import * as serviceWorker from './serviceWorker'
 
 import { Provider } from 'react-redux'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBus, faCalendarAlt, faClock, faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faBus, faSearch, faStar, faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import App from './App'
 import store from './configureStore'
+
+import * as serviceWorker from './serviceWorker'
 
 const importIcons = [fab, faBus, faSearch, faStar, faCalendarAlt, faClock]
 library.add(...importIcons)

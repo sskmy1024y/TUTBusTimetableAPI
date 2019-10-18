@@ -1,7 +1,7 @@
+import { Container, Nav, Navbar } from 'react-bootstrap'
 import React from 'react'
 
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import { LinkType } from '../../lib/types'
+import { LinkType } from 'lib/types'
 
 interface HeaderProps {
   title: string

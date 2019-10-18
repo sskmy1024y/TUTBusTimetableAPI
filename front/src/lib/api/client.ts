@@ -1,5 +1,5 @@
-import { formatDate } from '../utils'
 import { TimetablesApiData } from './type'
+import { formatDate } from '../utils'
 
 interface RawApiResponse<T> {
   success: boolean
