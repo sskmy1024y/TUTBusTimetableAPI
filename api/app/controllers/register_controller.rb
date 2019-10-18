@@ -170,23 +170,25 @@ class RegisterController < ApplicationController
         Timetable.transaction do
 
           # 往路の登録
-          table[:table][:to_destination].each do |row|
+          table[:table][:to_destination].each_with_index do |row, index|
             Timetable.create!(
               timetable_set_id: timetable_set.id,
               course_id: course_to_destination.id,
               departure_time: Time.parse(row[:departure_time]),
               arrival_time: Time.parse(row[:arrival_time]),
-              is_shuttle: row[:shuttle]
+              is_shuttle: row[:shuttle],
+              is_last: index == table[:table][:to_destination].length - 1
             )
           end
           # 復路
-          table[:table][:to_school].each do |row|
+          table[:table][:to_school].each_with_index do |row, index|
             Timetable.create!(
               timetable_set_id: timetable_set.id,
               course_id: course_to_school.id,
               departure_time: Time.parse(row[:departure_time]),
               arrival_time: Time.parse(row[:arrival_time]),
-              is_shuttle: row[:shuttle]
+              is_shuttle: row[:shuttle],
+              is_last: index == table[:table][:to_school].length - 1
             )
           end
         end

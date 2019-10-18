@@ -10,14 +10,16 @@ import Marquee from './Marquee'
 import media from 'styled-media-query'
 import styled from 'styled-components'
 import { RootState } from 'modules'
+import { PlaceType } from 'lib/types'
 
 export interface BulletinBodyProps {
   dataType: TimetableDataType
   label?: string
   timetable?: TimetableType
+  toPlace?: PlaceType
 }
 
-export default function BulletinBody({ dataType, timetable, label }: BulletinBodyProps) {
+export default function BulletinBody({ dataType, timetable, label, toPlace }: BulletinBodyProps) {
   const dispatch = useDispatch()
   const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
   const isSearch = useSelector<RootState, boolean>(state => state.searchEnable)
@@ -38,15 +40,16 @@ export default function BulletinBody({ dataType, timetable, label }: BulletinBod
       dataType === TimetableDataType.Time && timetable !== undefined ? (
         <Row>
           <Type xs={6} md={3}>
-            {label}
+            {timetable.isLast ? <WarningSpan>{label}</WarningSpan> : label}
           </Type>
           <Time xs={6} md={3}>
             {dateStr}
           </Time>
           <Detail xs={12} md={6}>
-            {timetable.isShuttle && (
+            {(timetable.isShuttle || timetable.isLast) && (
               <Marquee>
-                <NowShattle />
+                {timetable.isShuttle && <NowShattle />}
+                {timetable.isLast && toPlace !== undefined && <WaningLastBus place={toPlace} />}
               </Marquee>
             )}
           </Detail>
@@ -68,7 +71,7 @@ export default function BulletinBody({ dataType, timetable, label }: BulletinBod
           </Detail>
         </Row>
       ),
-    [dataType, dateStr, label, timetable]
+    [dataType, dateStr, label, timetable, toPlace]
   )
 
   return <BoardBody>{bodyView}</BoardBody>
@@ -81,6 +84,17 @@ function NowShattle() {
       <InfoSpan>のため、</InfoSpan>
       <AttentionSpan>時間が前後する場合</AttentionSpan>
       <InfoSpan>があります</InfoSpan>
+    </>
+  )
+}
+
+function WaningLastBus({ place }: { place: PlaceType }) {
+  return (
+    <>
+      <AttentionSpan>{place.name}</AttentionSpan>
+      <InfoSpan>行き</InfoSpan>
+      <WarningSpan>最終バス</WarningSpan>
+      <InfoSpan>です。</InfoSpan>
     </>
   )
 }
@@ -121,6 +135,10 @@ const Detail = styled(Col)`
 
 const AttentionSpan = styled.span`
   color: orange;
+`
+
+const WarningSpan = styled.span`
+  color: red;
 `
 
 const InfoSpan = styled.span`

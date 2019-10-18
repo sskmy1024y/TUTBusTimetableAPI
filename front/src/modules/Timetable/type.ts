@@ -5,6 +5,7 @@ export interface TimetableType {
   arrivalTime: Date
   departureTime: Date
   isShuttle: boolean
+  isLast: boolean
 }
 
 export interface TimetableCollectType {

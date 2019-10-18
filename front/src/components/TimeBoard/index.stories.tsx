@@ -25,6 +25,7 @@ const timetableData: TimetableCollectType = {
       departureTime: new Date(),
       id: 1,
       isShuttle: true,
+      isLast: true,
     },
   ],
 }

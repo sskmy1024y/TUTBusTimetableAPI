@@ -5,6 +5,7 @@ interface TimetableApiData {
   arrival_time: string
   departure_time: string
   is_shuttle: boolean
+  is_last?: boolean
 }
 
 interface TimetableCollectApiData {

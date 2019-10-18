@@ -13,13 +13,20 @@ interface TimeBoardProps {
 
 export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   const labels = ['先発', '次発', '次々発', '四発', '五発']
+  const lastLabel = '最終'
 
   return (
     <BulletinBoard>
       <BulletinHeader title={timetable.departure.name} subText={`行き（${timetable.arrival.name}発）`} />
       {timetable.timetables.length > 0 ? (
         timetable.timetables.map((row, index) => (
-          <BulletinBody dataType={TimetableDataType.Time} key={index} label={labels[index]} timetable={row} />
+          <BulletinBody
+            toPlace={timetable.arrival}
+            dataType={TimetableDataType.Time}
+            key={index}
+            label={row.isLast ? lastLabel : labels[index]}
+            timetable={row}
+          />
         ))
       ) : timetable.timetables.length === 0 ? (
         <BulletinBody dataType={TimetableDataType.BusFinished} />

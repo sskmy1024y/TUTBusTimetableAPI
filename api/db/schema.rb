@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_105809) do
+ActiveRecord::Schema.define(version: 2019_10_18_112135) do
 
   create_table "courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "arrival_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_105809) do
     t.boolean "is_shuttle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_last", default: false, null: false
   end
 
 end
