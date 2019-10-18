@@ -2,10 +2,11 @@ import React from 'react'
 import { useSelector, useDispatch } from 'hooks'
 import { Button } from 'react-bootstrap'
 
-import { RootState, actionCreator } from 'modules'
+import { RootState } from 'modules'
 import * as Search from 'modules/Search'
 import SearchModal from 'components/SearchModal'
 import { formatDate } from 'lib/utils'
+import { thunkActionCreators } from 'middleware/thunkAction'
 
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +16,7 @@ export default function TitleComponent() {
   const { isSearch, searchRequest } = useSelector<RootState, Search.State>(state => state.search)
 
   const handleCancel = () => {
-    dispatch(actionCreator.setSearchRequest({ enable: false, searchRequest: null }))
+    dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
   }
 
   return (

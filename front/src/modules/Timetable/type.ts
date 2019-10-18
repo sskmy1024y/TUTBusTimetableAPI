@@ -1,4 +1,4 @@
-import { PlaceType } from '../../lib/types'
+import { PlaceType } from 'lib/types'
 
 export interface TimetableType {
   id: number
