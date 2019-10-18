@@ -5,7 +5,7 @@ import * as Timetable from './Timetable'
 
 export interface RootState {
   timetables: Timetable.State
-  searchEnable: Search.State
+  search: Search.State
 }
 
 export const rootReducer = combineReducers({

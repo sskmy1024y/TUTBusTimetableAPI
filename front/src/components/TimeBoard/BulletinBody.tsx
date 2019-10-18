@@ -22,7 +22,7 @@ export interface BulletinBodyProps {
 export default function BulletinBody({ dataType, timetable, label, toPlace }: BulletinBodyProps) {
   const dispatch = useDispatch()
   const dateStr = useMemo(() => (timetable !== undefined ? formatDate(timetable.departureTime) : ''), [timetable])
-  const isSearch = useSelector<RootState, boolean>(state => state.searchEnable)
+  const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
 
   useInterval(() => {
     const date = new Date()

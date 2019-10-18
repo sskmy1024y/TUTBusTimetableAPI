@@ -1,15 +1,27 @@
 import { SetSearchRequestAction, setSearchRequest } from './SetSearchRequest'
+import { SearchRequestType } from './type'
 
 export * from './type'
 
 export type Action = SetSearchRequestAction
 
-export type State = boolean
+export type State = {
+  isSearch: boolean
+  searchRequest: SearchRequestType | null
+}
 
-export function reducer(state: State = false, action: Action) {
+const initialState = {
+  isSearch: false,
+  searchRequest: null,
+}
+
+export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
     case 'SET_SEARCH_REQUEST':
-      return action.payload.enable
+      return {
+        isSearch: action.payload.enable,
+        searchRequest: action.payload.searchRequest,
+      }
     default:
       return state
   }

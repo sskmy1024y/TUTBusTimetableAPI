@@ -1,5 +1,8 @@
+import { SearchRequestType } from '.'
+
 interface Payload {
   enable: boolean
+  searchRequest: SearchRequestType | null
 }
 
 export interface SetSearchRequestAction {
