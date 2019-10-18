@@ -6,12 +6,15 @@ import styled from 'styled-components'
 
 import BulletinBody from './BulletinBody'
 import BulletinHeader from './BulletinHeader'
+import { useSelector } from 'hooks'
+import { RootState } from 'modules'
 
 interface TimeBoardProps {
   timetable: TimetableCollectType
 }
 
 export default function TimeBoardItem({ timetable }: TimeBoardProps) {
+  const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
   const labels = ['先発', '次発', '次々発', '四発', '五発']
   const lastLabel = '最終'
 
@@ -29,7 +32,7 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
           />
         ))
       ) : timetable.timetables.length === 0 ? (
-        <BulletinBody dataType={TimetableDataType.BusFinished} />
+        <BulletinBody dataType={isSearch ? TimetableDataType.BusNotFound : TimetableDataType.BusFinished} />
       ) : (
         <BulletinBody dataType={TimetableDataType.NoBus} />
       )}

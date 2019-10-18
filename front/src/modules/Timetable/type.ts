@@ -18,6 +18,7 @@ export enum TimetableDataType {
   Time, // 時刻
   NoBus, // バス運行日ではない時
   BusFinished, // 今日のバスが終了した時
+  BusNotFound, // 検索結果がない場合
 }
 
 export type TimetablesType = TimetableCollectType[]

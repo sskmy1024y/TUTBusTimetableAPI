@@ -24,9 +24,9 @@ export default function TitleComponent() {
       <Title>
         {isSearch && searchRequest !== null
           ? searchRequest.type === Search.SearchType.Depature && searchRequest.datetime !== undefined
-            ? `${formatDate(searchRequest.datetime)}までに発車する学バス`
+            ? `${formatDate(searchRequest.datetime)} 出発`
             : searchRequest.type === Search.SearchType.Arrival && searchRequest.datetime !== undefined
-            ? `${formatDate(searchRequest.datetime)}までに到着する学バス`
+            ? `${formatDate(searchRequest.datetime)} 到着`
             : searchRequest.type === Search.SearchType.First
             ? '始バス'
             : searchRequest.type === Search.SearchType.Last

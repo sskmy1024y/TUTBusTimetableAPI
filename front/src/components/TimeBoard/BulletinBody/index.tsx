@@ -5,12 +5,13 @@ import React from 'react'
 import { TimetableDataType, TimetableType } from 'modules/Timetable/type'
 import { adjustDate, formatDate } from 'lib/utils/'
 import { thunkActionCreators } from 'middleware/thunkAction'
-import Marquee from './Marquee'
+import Marquee from '../Marquee'
 
 import { PlaceType } from 'lib/types'
 import { RootState } from 'modules'
 import media from 'styled-media-query'
 import styled from 'styled-components'
+import DateType from '@storybook/addon-knobs/dist/components/types/Date'
 
 export interface BulletinBodyProps {
   dataType: TimetableDataType
@@ -64,6 +65,14 @@ export default function BulletinBody({ dataType, timetable, label, toPlace }: Bu
           <Detail xl={12} md={12}>
             <Marquee>
               <AttentionSpan>本日の運行は終了しました</AttentionSpan>
+            </Marquee>
+          </Detail>
+        </Row>
+      ) : dataType === TimetableDataType.BusNotFound ? (
+        <Row>
+          <Detail xl={12} md={12}>
+            <Marquee>
+              <AttentionSpan>検索条件に合うバスが見つかりませんでした</AttentionSpan>
             </Marquee>
           </Detail>
         </Row>
