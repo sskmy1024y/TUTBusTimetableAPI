@@ -24,8 +24,19 @@ $ docker-compose up -d
 
 ### production build
 
+Reactをbuild
+
 ```bash
-$ rails secret
+$ docker-compose build --no-cache front
+$ docker-compose run --rm front yarn build
+
+$ docker-compose -f docker-compose.production.yml build
+```
+
+`Secret key`を生成
+
+```bash
+$ docker-compose -f docker-compose.production.yml run --rm app rails secret
 ```
 
 出てきた値を `.env` に
@@ -35,7 +46,9 @@ SECRET_KEY_BASE= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ```bash
-$ rails assets:precompile RAILS_ENV=production
+$ docker-compose -f docker-compose.production.yml run --rm app rails assets:precompile RAILS_ENV=production
+
+$ docker-compose -f docker-compose.production.yml up -d
 ```
 
 out port is `:22222`
