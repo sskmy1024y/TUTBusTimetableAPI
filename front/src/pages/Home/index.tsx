@@ -31,6 +31,13 @@ export default function Home() {
           <JumbotronContainer>
             <TitleComponent />
             <TimeBoard />
+            <Annotation>
+              この時刻表は、
+              <a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable" target="blank">
+                東京工科大学&nbsp;スクールバス時刻表
+              </a>
+              の情報に基づき掲示されています。
+            </Annotation>
           </JumbotronContainer>
         </Col>
       </Row>
@@ -60,4 +67,9 @@ const JumbotronContainer = styled(Jumbotron)`
   ${media.lessThan('small')`
     padding: 1rem 1rem 2rem;
   `}
+`
+
+const Annotation = styled.p`
+  font-size: 0.9rem;
+  font-weight: 400;
 `
