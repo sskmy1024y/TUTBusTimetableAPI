@@ -29,7 +29,7 @@ export async function fetchTimetable(date: Date, searchType: SearchType | null) 
       : ''
 
   const response = await fetch(
-    `${process.env.REACT_APP_DEV_API_HOST}/api/v1/timetables/internal${routeParam}?datetime=${formatDate(
+    `${process.env.REACT_APP_API_HOST}/api/v1/timetables/internal${routeParam}?datetime=${formatDate(
       date,
       'YYYY/MM/DD hh:mm'
     )}`,
