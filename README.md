@@ -27,8 +27,8 @@ $ docker-compose up -d
 Reactをbuild
 
 ```bash
-$ docker-compose build --no-cache front
-$ docker-compose run --rm front yarn build
+$ docker-compose build --no-cache spa
+$ docker-compose run --rm spa yarn build
 
 $ docker-compose -f docker-compose.production.yml build
 ```
