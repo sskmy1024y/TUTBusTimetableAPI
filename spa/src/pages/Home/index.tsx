@@ -3,6 +3,7 @@ import { useDispatch, useEffect } from 'hooks'
 import React from 'react'
 
 import { thunkActionCreators } from 'middleware/thunkAction'
+import ClientAccordion from 'components/ClientAccordion'
 import TimeBoard from 'containers/TimeBoard'
 import TitleComponent from 'components/TitleComponent'
 
@@ -38,9 +39,15 @@ export default function Home() {
               </a>
               の情報に基づき掲示されています。
             </Annotation>
+            <Line />
+            <p>
+              TUT学バスAPIは、Webサイトに掲載された東京工科大学・日本工学院八王子キャンパスにおけるスクールバスの正確な時刻表情報を配信します。
+              <small>ただし、非公式APIです。</small>
+            </p>
           </JumbotronContainer>
         </Col>
       </Row>
+      <ClientAccordion />
     </>
   )
 }
@@ -62,14 +69,18 @@ const IconPoint = styled.p`
 `
 
 const JumbotronContainer = styled(Jumbotron)`
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem;
 
   ${media.lessThan('small')`
-    padding: 1rem 1rem 2rem;
+    padding: 1rem 1rem;
   `}
 `
 
 const Annotation = styled.p`
   font-size: 0.9rem;
   font-weight: 400;
+`
+
+const Line = styled.hr`
+  margin: 1.5rem 0;
 `

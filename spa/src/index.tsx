@@ -4,15 +4,14 @@ import ReactDOM from 'react-dom'
 
 import { Provider } from 'react-redux'
 
-import { faBus, faCalendarAlt, faClock, faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faBus, faCalendarAlt, faClock, faSearch, faStar, faTimes, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import App from './App'
 import store from './configureStore'
 
 import * as serviceWorker from './serviceWorker'
 
-const importIcons = [fab, faBus, faSearch, faStar, faCalendarAlt, faClock, faTimes]
+const importIcons = [faBus, faSearch, faStar, faCalendarAlt, faClock, faTimes, faEnvelope]
 library.add(...importIcons)
 
 ReactDOM.render(

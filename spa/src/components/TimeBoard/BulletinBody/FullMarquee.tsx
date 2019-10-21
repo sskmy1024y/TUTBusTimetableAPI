@@ -1,8 +1,8 @@
-import React from 'react'
-import { Detail, AttentionSpan } from './StyledComponents'
-import Marquee from '../Marquee'
+import { AttentionSpan, Detail } from './StyledComponents'
 import { TimetableDataType } from 'modules/Timetable'
 import { useMemo } from 'hooks'
+import Marquee from '../Marquee'
+import React from 'react'
 
 interface MarqueeProps {
   dataType?: TimetableDataType

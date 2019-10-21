@@ -3,7 +3,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, withKnobs } from '@storybook/addon-knobs'
 
-import { TimetableCollectType } from 'modules/Timetable'
+import { BulletinBodyTime, FullMarquee } from './BulletinBody'
+import { TimetableCollectType, TimetableDataType } from 'modules/Timetable'
 import BulletinHeader from './BulletinHeader'
 import TimeBoard from '.'
 import TimeBoardItem from './TimeBoardItem'
@@ -37,6 +38,22 @@ stories.addDecorator(withKnobs).add('TimeBoard', () => {
 
 stories.addDecorator(withKnobs).add('TimeBoardItem', () => {
   return <TimeBoardItem timetable={timetableData} />
+})
+
+stories.addDecorator(withKnobs).add('BulletinBody', () => {
+  return (
+    <>
+      <BulletinBodyTime
+        timetable={{
+          ...timetableData.timetables[0],
+          arrival: timetableData.arrival,
+          departure: timetableData.departure,
+        }}
+        label={'先発'}
+      />
+      <FullMarquee dataType={TimetableDataType.BusFinished} />
+    </>
+  )
 })
 
 stories.addDecorator(withKnobs).add('BulletinHeader', () => {

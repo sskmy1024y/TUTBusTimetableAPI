@@ -1,7 +1,6 @@
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import React from 'react'
 
-import APIDoc from 'pages/APIDocs'
 import Contacts from 'pages/Contacts'
 import Header from 'components/Header'
 import Home from 'pages/Home/'
@@ -10,6 +9,7 @@ import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 
 import { LinkType } from 'lib/types'
+import Footer from 'components/Footer'
 
 function App() {
   const headerLinks: LinkType[] = [
@@ -19,7 +19,10 @@ function App() {
       path: '/',
     },
     {
-      component: APIDoc,
+      component: () => {
+        window.location.href = 'https://github.com/sskmy1024y/TUTBusTimetableAPI/wiki/v1'
+        return null
+      },
       name: 'API Doc',
       path: '/api/v1/docs',
     },
@@ -40,6 +43,7 @@ function App() {
           })}
         </Router>
       </MainContainer>
+      <Footer />
     </>
   )
 }
