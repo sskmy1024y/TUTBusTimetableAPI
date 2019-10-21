@@ -48,9 +48,9 @@ const HeaderTitleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 0 10px;
+  text-align: left;
 `
 const Title = styled.h5`
-  text-align: left;
   color: #007bff;
 
   &:hover {
