@@ -1,12 +1,12 @@
 import { Button, Col, Form, FormControl, FormControlProps, InputGroup, Modal, Row } from 'react-bootstrap'
 import { addMonth, formatDate } from 'lib/utils'
-import { useDispatch, useMemo, useState, useSelector } from 'hooks'
+import { useDispatch, useMemo, useState } from 'hooks'
 import React, { useCallback } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SearchType, SearchRequestType } from 'modules/Search'
+import { SearchType } from 'modules/Search'
 import { thunkActionCreators } from 'middleware/thunkAction'
-import { RootState } from 'modules'
+import styled from 'styled-components'
 
 interface ModalProps {
   show: boolean
@@ -19,12 +19,10 @@ interface TTTOption {
 }
 
 export function SearchModalBody(props: ModalProps) {
-  const beforeDate = useSelector<RootState, SearchRequestType | null>(state => state.search.searchRequest)
-
-  const preDate = beforeDate !== null && beforeDate.datetime !== undefined ? beforeDate.datetime : new Date()
-  const nowDate = formatDate(preDate, 'YYYY-MM-DD')
-  const nowTime = formatDate(preDate)
-  const maxDate = formatDate(addMonth(preDate, 1), 'YYYY-MM-DD')
+  const today = new Date()
+  const nowDate = formatDate(today, 'YYYY-MM-DD')
+  const nowTime = formatDate(today)
+  const maxDate = formatDate(addMonth(today, 1), 'YYYY-MM-DD')
 
   const dispatch = useDispatch()
 
@@ -63,10 +61,10 @@ export function SearchModalBody(props: ModalProps) {
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
-        datetime: new Date(`${preDate}T${targetTime}+09:00`),
+        datetime: new Date(`${targetDate}T${targetTime}+09:00`),
       })
     )
-  }, [dispatch, preDate, targetTime, targetTimeType])
+  }, [dispatch, targetDate, targetTime, targetTimeType])
 
   const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
@@ -87,6 +85,12 @@ export function SearchModalBody(props: ModalProps) {
     if (value !== undefined) {
       setTargetTimeType(parseInt(value))
     }
+  }
+
+  const handleReset = () => {
+    const now = new Date()
+    setTargetDate(formatDate(now, 'YYYY-MM-DD'))
+    setTargetTime(formatDate(now))
   }
 
   const submitSearch = () => {
@@ -159,6 +163,9 @@ export function SearchModalBody(props: ModalProps) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <LeftButton variant="info" onClick={handleReset}>
+          リセット
+        </LeftButton>
         <Button variant="secondary" onClick={props.onHide}>
           閉じる
         </Button>
@@ -169,3 +176,7 @@ export function SearchModalBody(props: ModalProps) {
     </Modal>
   )
 }
+
+const LeftButton = styled(Button)`
+  margin-right: auto !important;
+`
