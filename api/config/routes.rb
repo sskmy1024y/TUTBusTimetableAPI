@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get '/timetables/first', to: 'timetables#first'
       get '/timetables/last', to: 'timetables#last'
       get '/timetables/internal', to: 'timetables#internal'
-      get '/timetables/internal/last', to: 'timetables#internal_last'
+      get '/timetables/internal/:search', to: 'timetables#internal'
 
     end
   end

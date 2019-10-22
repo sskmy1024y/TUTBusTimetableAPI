@@ -1,5 +1,6 @@
-import { formatDate } from '../utils'
+import { SearchType } from 'modules/Search'
 import { TimetablesApiData } from './type'
+import { formatDate } from 'lib/utils'
 
 interface RawApiResponse<T> {
   success: boolean
@@ -17,9 +18,21 @@ export function parseResponse<T>(apiResponse: RawApiResponse<T>, convertCamelCas
   return apiResponse.data
 }
 
-export async function fetchTimetable(date: Date) {
+export async function fetchTimetable(date: Date, searchType: SearchType | null) {
+  const routeParam =
+    searchType === SearchType.First
+      ? '/first'
+      : searchType === SearchType.Last
+      ? '/last'
+      : searchType === SearchType.Arrival
+      ? '/arrival'
+      : ''
+
   const response = await fetch(
-    `${process.env.REACT_APP_DEV_API_HOST}/api/v1/timetables/internal?datetime=${formatDate(date, 'YYYY/MM/DD hh:mm')}`,
+    `${process.env.REACT_APP_DEV_API_HOST}/api/v1/timetables/internal${routeParam}?datetime=${formatDate(
+      date,
+      'YYYY/MM/DD hh:mm'
+    )}`,
     {
       mode: 'cors',
     }

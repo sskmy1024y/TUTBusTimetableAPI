@@ -1,8 +1,10 @@
-import { text, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
+import { text, withKnobs } from '@storybook/addon-knobs'
 import React from 'react'
+
+import { LinkType } from 'lib/types'
+
 import Header from '.'
-import { LinkType } from '../../lib/types'
 
 const stories = storiesOf('Components|Header', module)
 

@@ -1,15 +1,21 @@
+import { Col, Jumbotron, Row } from 'react-bootstrap'
+import { useDispatch, useEffect } from 'hooks'
 import React from 'react'
 
+import { thunkActionCreators } from 'middleware/thunkAction'
+import TimeBoard from 'containers/TimeBoard'
+import TitleComponent from 'components/TitleComponent'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Jumbotron, Row } from 'react-bootstrap'
+import media from 'styled-media-query'
 import styled from 'styled-components'
-import TimeBoard from '../../containers/TimeBoard'
-import { useDispatch } from '../../hooks'
-import { thunkActionCreators } from '../../middleware/thunkAction'
 
 export default function Home() {
   const dispatch = useDispatch()
-  dispatch(thunkActionCreators.getTimetable({ date: new Date() }))
+
+  useEffect(() => {
+    dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
+  }, [dispatch])
 
   return (
     <>
@@ -23,8 +29,15 @@ export default function Home() {
         </Col>
         <Col md="8">
           <JumbotronContainer>
-            <h3 className="display-4">次の学バスは……</h3>
+            <TitleComponent />
             <TimeBoard />
+            <Annotation>
+              この時刻表は、
+              <a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable" target="blank">
+                東京工科大学&nbsp;スクールバス時刻表
+              </a>
+              の情報に基づき掲示されています。
+            </Annotation>
           </JumbotronContainer>
         </Col>
       </Row>
@@ -37,6 +50,10 @@ const MainIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${media.lessThan('small')`
+    display: none;
+  `}
 `
 
 const IconPoint = styled.p`
@@ -46,4 +63,13 @@ const IconPoint = styled.p`
 
 const JumbotronContainer = styled(Jumbotron)`
   padding: 2rem 1rem;
+
+  ${media.lessThan('small')`
+    padding: 1rem 1rem 2rem;
+  `}
+`
+
+const Annotation = styled.p`
+  font-size: 0.9rem;
+  font-weight: 400;
 `

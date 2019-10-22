@@ -1,7 +1,7 @@
 import React from 'react'
 
-import styled from 'styled-components'
 import media from 'styled-media-query'
+import styled from 'styled-components'
 
 interface BulletinHeaderProps {
   title: string
@@ -28,7 +28,10 @@ const Header = styled.div`
 
 const Place = styled.span`
   color: #fff;
-  font-size: 23px;
+  font-size: 22px;
   font-weight: bold;
-  letter-spacing: 0.1em;
+
+  ${media.greaterThan('small')`
+    letter-spacing: 0.1em;
+  `}
 `
