@@ -13,10 +13,10 @@
 
 ```bash
 $ docker-compose build
-$ docker-compose run --rm api rails db:drop db:create db:migrate db:seed
+$ docker-compose run --rm web rails db:drop db:create db:migrate db:seed
 
 # gem更新時 ========================
-$ docker-compose run --rm api bundle install
+$ docker-compose run --rm web bundle install
 # =================================
 
 $ docker-compose up -d
@@ -24,19 +24,8 @@ $ docker-compose up -d
 
 ### production build
 
-Reactをbuild
-
 ```bash
-$ docker-compose build --no-cache spa
-$ docker-compose run --rm spa yarn build
-
-$ docker-compose -f docker-compose.production.yml build
-```
-
-`Secret key`を生成
-
-```bash
-$ docker-compose -f docker-compose.production.yml run --rm app rails secret
+$ rails secret
 ```
 
 出てきた値を `.env` に
@@ -46,9 +35,7 @@ SECRET_KEY_BASE= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ```bash
-$ docker-compose -f docker-compose.production.yml run --rm app rails assets:precompile RAILS_ENV=production
-
-$ docker-compose -f docker-compose.production.yml up -d
+$ rails assets:precompile RAILS_ENV=production
 ```
 
 out port is `:22222`
