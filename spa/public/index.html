@@ -25,6 +25,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <title>TUT Bus Timetable</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_AN_CLIENT%"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    // ↓ ここから　各ページからトラッキングを送信するためグローバルに追加。
+    function gtagPageview(pathname) { gtag('config', '%REACT_APP_GOOGLE_AN_CLIENT%', { 'page_path': pathname }); }
+    // ↑ ここまで　各ページからトラッキングを送信するためグローバルに追加。
+    gtag('js', new Date());
+
+  // gtag('config', 'GA_TRACKING_ID'); // SSRの場合
+  </script>
 </head>
 
 <body>
@@ -41,18 +54,5 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_AN_CLIENT%"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  // ↓ ここから　各ページからトラッキングを送信するためグローバルに追加。
-  function gtagPageview(pathname) { gtag('config', '%REACT_APP_GOOGLE_AN_CLIENT%', { 'page_path': pathname }); }
-  // ↑ ここまで　各ページからトラッキングを送信するためグローバルに追加。
-  gtag('js', new Date());
-
-  // gtag('config', 'GA_TRACKING_ID'); // SSRの場合
-</script>
 
 </html>
