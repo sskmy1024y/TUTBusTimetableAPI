@@ -61,7 +61,7 @@ export function DefaultView({ timetable: { arrival, departureTime, isShuttle, is
         {dateStr}
       </Time>
       <Detail xs={12} md={6}>
-        <Marquee>{marqueeContents}</Marquee>
+        {(marquee || isShuttle || isLast) && <Marquee>{marqueeContents}</Marquee>}
       </Detail>
     </>
   )

@@ -34,13 +34,14 @@ export default function TitleComponent() {
             : ''
           : '次の学バス'}
       </Title>
-      {isSearch && searchRequest !== null ? (
-        <CancelButton onClick={handleCancel} variant="outline-secondary">
-          <FontAwesomeIcon icon="times" />
-        </CancelButton>
-      ) : (
+      <ButtonContainer>
+        {isSearch && searchRequest !== null && (
+          <CancelButton onClick={handleCancel} variant="outline-secondary">
+            <FontAwesomeIcon icon="times" />
+          </CancelButton>
+        )}
         <SearchModal />
-      )}
+      </ButtonContainer>
     </Component>
   )
 }
@@ -56,6 +57,16 @@ const Title = styled.h3`
   font-size: 2.1rem;
   font-weight: 300;
   line-height: 1.2;
+`
+
+const ButtonContainer = styled.div`
+  > button {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 const CancelButton = styled(Button)`

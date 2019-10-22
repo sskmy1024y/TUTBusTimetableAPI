@@ -6,6 +6,7 @@ import React, { useCallback } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SearchType } from 'modules/Search'
 import { thunkActionCreators } from 'middleware/thunkAction'
+import styled from 'styled-components'
 
 interface ModalProps {
   show: boolean
@@ -60,7 +61,7 @@ export function SearchModalBody(props: ModalProps) {
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
-        datetime: new Date(`${targetDate}T${targetTime}`),
+        datetime: new Date(`${targetDate}T${targetTime}+09:00`),
       })
     )
   }, [dispatch, targetDate, targetTime, targetTimeType])
@@ -84,6 +85,12 @@ export function SearchModalBody(props: ModalProps) {
     if (value !== undefined) {
       setTargetTimeType(parseInt(value))
     }
+  }
+
+  const handleReset = () => {
+    const now = new Date()
+    setTargetDate(formatDate(now, 'YYYY-MM-DD'))
+    setTargetTime(formatDate(now))
   }
 
   const submitSearch = () => {
@@ -156,6 +163,9 @@ export function SearchModalBody(props: ModalProps) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        <LeftButton variant="info" onClick={handleReset}>
+          リセット
+        </LeftButton>
         <Button variant="secondary" onClick={props.onHide}>
           閉じる
         </Button>
@@ -166,3 +176,7 @@ export function SearchModalBody(props: ModalProps) {
     </Modal>
   )
 }
+
+const LeftButton = styled(Button)`
+  margin-right: auto !important;
+`
