@@ -56,7 +56,7 @@ export function SearchResult({
         {arrivalTimeStr}
       </Time>
       <Detail xs={12} md={5}>
-        <Marquee>{marqueeContents}</Marquee>
+        {(marquee || isShuttle || isLast) && <Marquee>{marqueeContents}</Marquee>}
       </Detail>
     </>
   )
