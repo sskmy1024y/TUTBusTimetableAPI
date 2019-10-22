@@ -68,14 +68,14 @@ export function SearchModalBody(props: ModalProps) {
   const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
-      setTargetDate(value)
+      setTargetDate(value.replace(/(\d+).*?(\d+).*?(\d+).*?/g, '$1-$2-$3'))
     }
   }
 
   const handleChangeTime = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
-      setTargetTime(value)
+      setTargetTime(value.replace(/(\d+).*?(\d+).*?/g, '$1:$2'))
     }
   }
 
