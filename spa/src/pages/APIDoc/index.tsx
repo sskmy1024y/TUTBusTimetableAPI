@@ -1,5 +1,5 @@
+import { useEffect, useLocation } from 'hooks'
 import React from 'react'
-import { useLocation, useEffect } from 'hooks'
 
 import FetchDoc from 'components/FetchDoc'
 import styled from 'styled-components'

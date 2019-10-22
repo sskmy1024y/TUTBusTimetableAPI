@@ -1,3 +1,4 @@
 export * from './FullMarquee'
 export * from './StyledComponents'
-export * from './Time'
+export * from './DefaultView'
+export * from './SearchResult'

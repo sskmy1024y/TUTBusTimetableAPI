@@ -1,15 +1,15 @@
-import React from 'react'
-import { useSelector } from 'hooks'
 import { Row } from 'react-bootstrap'
+import { useSelector } from 'hooks'
+import React from 'react'
 
 import { TimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
 
-import BulletinHeader from './BulletinHeader'
+import { DefaultView, FullMarquee, SearchResult } from './BulletinBody'
 import { RootState } from 'modules'
-import { BulletinBodyTime, FullMarquee } from './BulletinBody'
+import BulletinHeader from './BulletinHeader'
 
-import styled from 'styled-components'
 import media from 'styled-media-query'
+import styled from 'styled-components'
 
 interface TimeBoardProps {
   timetable: TimetableCollectType
@@ -26,13 +26,21 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
       <BoardBody>
         <Row>
           {timetable.timetables.length > 0 ? (
-            timetable.timetables.map((row, index) => (
-              <BulletinBodyTime
-                key={index}
-                label={row.isLast ? lastLabel : labels[index]}
-                timetable={{ ...row, arrival: timetable.arrival, departure: timetable.departure }}
-              />
-            ))
+            timetable.timetables.map((row, index) =>
+              isSearch ? (
+                <SearchResult
+                  key={index}
+                  label={row.isLast ? lastLabel : index + 1}
+                  timetable={{ ...row, arrival: timetable.arrival, departure: timetable.departure }}
+                />
+              ) : (
+                <DefaultView
+                  key={index}
+                  label={row.isLast ? lastLabel : labels[index]}
+                  timetable={{ ...row, arrival: timetable.arrival, departure: timetable.departure }}
+                />
+              )
+            )
           ) : (
             <FullMarquee
               dataType={

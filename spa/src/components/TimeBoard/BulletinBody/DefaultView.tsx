@@ -1,13 +1,14 @@
+import { useDispatch, useInterval, useMemo, useSelector } from 'hooks'
 import React from 'react'
-import { useMemo, useDispatch, useSelector, useInterval } from 'hooks'
-import { RootState } from 'modules'
 
-import { TimetableType } from 'modules/Timetable/type'
-import { Type, WarningSpan, Time, Detail, AttentionSpan, InfoSpan } from './StyledComponents'
-import Marquee from '../Marquee'
-import { formatDate, adjustDate } from 'lib/utils'
+import { Detail, Time, Type, WarningSpan } from './StyledComponents'
+import { NowShattle, WarningLastBus } from '.'
 import { PlaceType } from 'lib/types'
+import { RootState } from 'modules'
+import { TimetableType } from 'modules/Timetable/type'
+import { adjustDate, formatDate } from 'lib/utils'
 import { thunkActionCreators } from 'middleware/thunkAction'
+import Marquee from '../Marquee'
 
 interface TimeTableSimpleDetail extends TimetableType {
   arrival: PlaceType
@@ -20,11 +21,7 @@ interface TimeProps {
   marquee?: JSX.Element
 }
 
-export function BulletinBodyTime({
-  timetable: { arrival, departureTime, isShuttle, isLast },
-  label,
-  marquee,
-}: TimeProps) {
+export function DefaultView({ timetable: { arrival, departureTime, isShuttle, isLast }, label, marquee }: TimeProps) {
   const dispatch = useDispatch()
   const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
 
@@ -64,30 +61,8 @@ export function BulletinBodyTime({
         {dateStr}
       </Time>
       <Detail xs={12} md={6}>
-        {marquee && <Marquee>{marqueeContents}</Marquee>}
+        <Marquee>{marqueeContents}</Marquee>
       </Detail>
-    </>
-  )
-}
-
-function NowShattle() {
-  return (
-    <>
-      <AttentionSpan>シャトル運行中</AttentionSpan>
-      <InfoSpan>のため、</InfoSpan>
-      <AttentionSpan>時間が前後する場合</AttentionSpan>
-      <InfoSpan>があります</InfoSpan>
-    </>
-  )
-}
-
-function WarningLastBus({ place }: { place: PlaceType }) {
-  return (
-    <>
-      <AttentionSpan>{place.name}</AttentionSpan>
-      <InfoSpan>行き</InfoSpan>
-      <WarningSpan>最終バス</WarningSpan>
-      <InfoSpan>です。</InfoSpan>
     </>
   )
 }
