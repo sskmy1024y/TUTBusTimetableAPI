@@ -1,8 +1,8 @@
-import React from 'react'
 import { Accordion } from 'react-bootstrap'
+import React from 'react'
 
-import ClientLINEBot from './clients/LINEBot'
 import ClientAndmore from './clients/AndMore'
+import ClientLINEBot from './clients/LINEBot'
 
 import styled from 'styled-components'
 

@@ -4,15 +4,35 @@ import ReactDOM from 'react-dom'
 
 import { Provider } from 'react-redux'
 
-import { faBus, faCalendarAlt, faClock, faSearch, faStar, faTimes, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import {
+  faBus,
+  faCalendarAlt,
+  faChevronRight,
+  faClock,
+  faEnvelope,
+  faSearch,
+  faStar,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import App from './App'
 import store from './configureStore'
 
 import * as serviceWorker from './serviceWorker'
 
-const importIcons = [faBus, faSearch, faStar, faCalendarAlt, faClock, faTimes, faEnvelope, faTwitter, faFacebookF]
+const importIcons = [
+  faBus,
+  faSearch,
+  faStar,
+  faCalendarAlt,
+  faClock,
+  faTimes,
+  faEnvelope,
+  faChevronRight,
+  faTwitter,
+  faFacebookF,
+]
 library.add(...importIcons)
 
 if (process.env.NODE_ENV === 'development') {

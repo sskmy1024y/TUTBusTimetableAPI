@@ -125,7 +125,7 @@ class Api::V1::TimetablesController < ApplicationController
           arrival: Course.find(c.course_id).arrival,
           timetables: dateset ? 
             @searchType == "arrival" ? 
-              DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND arrival_time <= ?", c.course_id, @time ).order(departure_time: "DESC").limit(2).reverse
+              DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ? AND arrival_time <= ?", c.course_id, @time ).order(departure_time: "DESC").limit(2)
               : @searchType == "first" ?
               DateSet.find_by(date: @date).timetable_set.timetables.where("course_id = ?", c.course_id).order(departure_time: "ASC").limit(1)
               : @searchType == "last" ?

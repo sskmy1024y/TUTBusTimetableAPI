@@ -1,5 +1,5 @@
+import { Accordion, Button, Card } from 'react-bootstrap'
 import React from 'react'
-import { Accordion, Card, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 
 interface ClientProps {

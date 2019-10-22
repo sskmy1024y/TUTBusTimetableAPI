@@ -1,9 +1,9 @@
-import React from 'react'
 import { Card } from 'react-bootstrap'
 import ClientTemplate from '.'
+import React from 'react'
 
-import Icon from 'assets/images/line_bot/icon.png'
 import HeadImage from 'assets/images/line_bot/screen1.jpeg'
+import Icon from 'assets/images/line_bot/icon.png'
 import styled from 'styled-components'
 
 export default function ClientLINEBot({ eventKey }: { eventKey: string }) {

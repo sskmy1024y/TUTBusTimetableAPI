@@ -1,8 +1,8 @@
-import React from 'react'
 import ClientTemplate from '.'
+import React from 'react'
 
-import Icon from 'assets/images/empty_icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Icon from 'assets/images/empty_icon.png'
 
 export default function ClientAndMore({ eventKey }: { eventKey: string }) {
   return (
