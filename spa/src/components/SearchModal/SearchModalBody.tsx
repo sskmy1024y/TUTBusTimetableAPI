@@ -1,11 +1,12 @@
 import { Button, Col, Form, FormControl, FormControlProps, InputGroup, Modal, Row } from 'react-bootstrap'
 import { addMonth, formatDate } from 'lib/utils'
-import { useDispatch, useMemo, useState } from 'hooks'
+import { useDispatch, useMemo, useState, useSelector } from 'hooks'
 import React, { useCallback } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SearchType } from 'modules/Search'
+import { SearchType, SearchRequestType } from 'modules/Search'
 import { thunkActionCreators } from 'middleware/thunkAction'
+import { RootState } from 'modules'
 
 interface ModalProps {
   show: boolean
@@ -18,10 +19,12 @@ interface TTTOption {
 }
 
 export function SearchModalBody(props: ModalProps) {
-  const today = new Date()
-  const nowDate = formatDate(today, 'YYYY-MM-DD')
-  const nowTime = formatDate(today)
-  const maxDate = formatDate(addMonth(today, 1), 'YYYY-MM-DD')
+  const beforeDate = useSelector<RootState, SearchRequestType | null>(state => state.search.searchRequest)
+
+  const preDate = beforeDate !== null && beforeDate.datetime !== undefined ? beforeDate.datetime : new Date()
+  const nowDate = formatDate(preDate, 'YYYY-MM-DD')
+  const nowTime = formatDate(preDate)
+  const maxDate = formatDate(addMonth(preDate, 1), 'YYYY-MM-DD')
 
   const dispatch = useDispatch()
 
@@ -60,10 +63,10 @@ export function SearchModalBody(props: ModalProps) {
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
-        datetime: new Date(`${targetDate}T${targetTime}+09:00`),
+        datetime: new Date(`${preDate}T${targetTime}+09:00`),
       })
     )
-  }, [dispatch, targetDate, targetTime, targetTimeType])
+  }, [dispatch, preDate, targetTime, targetTimeType])
 
   const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
