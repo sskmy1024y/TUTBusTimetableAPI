@@ -1,63 +1,51 @@
-# Dockerfile Template for Ruby on Rails
-This program is a Dockerfile template optimized for developing Rails using docker.
+# TUT Bus Timetable API
 
-## How to use
+東京工科大学の学バスの時刻表を返すAPI
 
-0. Prepare environmental variables.
-  
-```bash
-cp .env.example .env
-```
+## How to build
 
-### Create new project
+### Require
 
-1. If you want to create a new project, please execute the following command.
+* dokcer
+* docker-compose
 
-```bash
-$ docker-compose run web bundle exec rails new . --force --skip-bundle --database=mysql
-```
-
-2. Then execute the following command to create a container.
+### run command
 
 ```bash
 $ docker-compose build
+$ docker-compose run --rm web rails db:drop db:create db:migrate db:seed
+
+# gem更新時 ========================
+$ docker-compose run --rm web bundle install
+# =================================
+
+$ docker-compose up -d
 ```
 
-3. And you should change `database.yml`.
-
-```yml
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'root' } %>
-  host: <%= ENV.fetch('MYSQL_HOST') { 'localhost' } %>
-
-development:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
-
-test:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
-
-production:
-  <<: *default
-  database: <%= ENV.fetch('MYSQL_DATABASE') { 'test' } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'test' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'test' } %>
-
-```
-
-4. Create a database
-```bash
-$ docker-compose run web bundle exec rails db:create
-```
-
-### Run an existing project
-If you want to run a project that already exists, please execute the following command.
+### production build
 
 ```bash
-$ docker-compose build
+$ rails secret
+```
+
+出てきた値を `.env` に
+
+```enviroment
+SECRET_KEY_BASE= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+```bash
+$ rails assets:precompile RAILS_ENV=production
+```
+
+out port is `:22222`
+
+## How to debug
+
+* add `binding.pry` where breakpoint in your source.
+
+and 
+
+```bash
+$ docker-compose run --rm --service-ports web
 ```

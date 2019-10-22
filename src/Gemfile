@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'pry-rails'
 end
 
 group :test do
@@ -55,8 +57,33 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # 2019-9-23 chromedriver is depricated.
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'
+
+gem 'nokogiri', '>= 1.10.4'
+gem 'openurl'
+
+# 検索結果を整形する
+gem 'hirb'
+gem 'hirb-unicode'
+
+# Bootstrap
+gem 'bootstrap', '>= 4.3.1'
+gem 'autoprefixer-rails', '>= 9.1.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# font-awesome
+gem "font-awesome-rails"
+
+# Date-Range-Picker
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+
+# Google Analytics
+gem 'google-analytics-rails'
+
