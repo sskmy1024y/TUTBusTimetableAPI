@@ -20,11 +20,11 @@ services:
     depends_on:
       - db
 
-  front:
-    build: ./front/
+  spa:
+    build: ./spa/
     command: "yarn start"
     volumes:
-      - ./front:/app
+      - ./spa:/app
       - /app/node_modules
     ports:
       - "3000:3000"
