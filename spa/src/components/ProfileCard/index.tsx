@@ -1,7 +1,7 @@
-import React from 'react'
 import { Card } from 'react-bootstrap'
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
+import styled from 'styled-components'
 
 interface HrefsProps {
   TopLink: string

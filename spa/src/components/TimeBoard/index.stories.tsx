@@ -3,7 +3,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, withKnobs } from '@storybook/addon-knobs'
 
-import { BulletinBodyTime, FullMarquee } from './BulletinBody'
+import { DefaultView, FullMarquee } from './BulletinBody'
 import { TimetableCollectType, TimetableDataType } from 'modules/Timetable'
 import BulletinHeader from './BulletinHeader'
 import TimeBoard from '.'
@@ -43,7 +43,7 @@ stories.addDecorator(withKnobs).add('TimeBoardItem', () => {
 stories.addDecorator(withKnobs).add('BulletinBody', () => {
   return (
     <>
-      <BulletinBodyTime
+      <DefaultView
         timetable={{
           ...timetableData.timetables[0],
           arrival: timetableData.arrival,

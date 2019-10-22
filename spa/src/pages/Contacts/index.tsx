@@ -1,6 +1,6 @@
-import React from 'react'
+import { useEffect, useLocation } from 'hooks'
 import ProfileCard from 'components/ProfileCard'
-import { useLocation, useEffect } from 'hooks'
+import React from 'react'
 
 function Contacts() {
   const location = useLocation()

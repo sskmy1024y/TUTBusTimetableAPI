@@ -2,8 +2,8 @@ import React from 'react'
 
 import ReactMarkdown from 'react-markdown'
 
-import { useState, useEffect } from 'hooks'
 import './style.scss'
+import { useEffect, useState } from 'hooks'
 
 interface DocProps {
   src: string

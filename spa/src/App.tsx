@@ -9,8 +9,8 @@ import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 
 import { LinkType } from 'lib/types'
-import Footer from 'components/Footer'
 import APIDoc from 'pages/APIDoc'
+import Footer from 'components/Footer'
 
 function App() {
   const headerLinks: LinkType[] = [
