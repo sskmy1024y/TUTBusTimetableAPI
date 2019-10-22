@@ -10,6 +10,7 @@ import styled from 'styled-components'
 
 import { LinkType } from 'lib/types'
 import Footer from 'components/Footer'
+import APIDoc from 'pages/APIDoc'
 
 function App() {
   const headerLinks: LinkType[] = [
@@ -19,10 +20,7 @@ function App() {
       path: '/',
     },
     {
-      component: () => {
-        window.location.href = 'https://github.com/sskmy1024y/TUTBusTimetableAPI/wiki/v1'
-        return null
-      },
+      component: APIDoc,
       name: 'API Doc',
       path: '/api/v1/docs',
     },
