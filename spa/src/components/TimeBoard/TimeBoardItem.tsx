@@ -42,16 +42,22 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
               )
             )
           ) : (
-            <FullMarquee
-              dataType={
-                timetable.timetables.length === 0
-                  ? isSearch
-                    ? TimetableDataType.BusNotFound
-                    : TimetableDataType.BusFinished
-                  : TimetableDataType.NoBus
-              }
-            />
+            <FullMarquee dataType={isSearch ? TimetableDataType.BusNotFound : TimetableDataType.BusFinished} />
           )}
+        </Row>
+      </BoardBody>
+    </BulletinBoard>
+  )
+}
+
+// TODO : Want to refactor timebord
+export function NoBusItem() {
+  return (
+    <BulletinBoard>
+      <BulletinHeader title={'本日のバス'} />
+      <BoardBody>
+        <Row>
+          <FullMarquee dataType={TimetableDataType.NoBus} />
         </Row>
       </BoardBody>
     </BulletinBoard>
