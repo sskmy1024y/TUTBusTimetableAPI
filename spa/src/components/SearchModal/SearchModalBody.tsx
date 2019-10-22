@@ -19,9 +19,9 @@ interface TTTOption {
 
 export function SearchModalBody(props: ModalProps) {
   const today = new Date()
-  const nowDate = formatDate(today, 'YYYY-MM-DD')
+  const nowDate = formatDate(today, 'YYYY/MM/DD')
   const nowTime = formatDate(today)
-  const maxDate = formatDate(addMonth(today, 1), 'YYYY-MM-DD')
+  const maxDate = formatDate(addMonth(today, 1), 'YYYY/MM/DD')
 
   const dispatch = useDispatch()
 
@@ -57,6 +57,7 @@ export function SearchModalBody(props: ModalProps) {
   )
 
   const dispatchSearch = useCallback(() => {
+    console.log(new Date(`${targetDate} ${targetTime}`))
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
@@ -68,14 +69,14 @@ export function SearchModalBody(props: ModalProps) {
   const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
-      setTargetDate(value.replace(/(\d+).*?(\d+).*?(\d+).*?/g, '$1-$2-$3'))
+      setTargetDate(value)
     }
   }
 
   const handleChangeTime = (event: React.FormEvent<FormControlProps & FormControl>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
-      setTargetTime(value.replace(/(\d+).*?(\d+).*?/g, '$1:$2'))
+      setTargetTime(value)
     }
   }
 
