@@ -1,5 +1,5 @@
 import { Col, Jumbotron, Row } from 'react-bootstrap'
-import { useDispatch, useEffect } from 'hooks'
+import { useDispatch, useEffect, useLocation } from 'hooks'
 import React from 'react'
 
 import { thunkActionCreators } from 'middleware/thunkAction'
@@ -13,6 +13,11 @@ import styled from 'styled-components'
 
 export default function Home() {
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    window.gtagPageview(location.pathname)
+  }, [location.pathname])
 
   useEffect(() => {
     dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))

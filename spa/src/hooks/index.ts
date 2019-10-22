@@ -14,4 +14,7 @@ export const {
 } = React
 
 export { useDispatch, useSelector } from 'react-redux'
+
+export { useParams, useHistory, useLocation } from 'react-router'
+
 export * from './custom'

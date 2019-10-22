@@ -13,4 +13,6 @@ declare module '*.svg' {
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION__: any
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+  gtagPageview: (path: string) => void
+  'ga-disable-GA_TRACKING_ID': boolean
 }
