@@ -60,7 +60,7 @@ export function SearchModalBody(props: ModalProps) {
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
-        datetime: new Date(`${targetDate} ${targetTime}`),
+        datetime: new Date(`${targetDate}T${targetTime}`),
       })
     )
   }, [dispatch, targetDate, targetTime, targetTimeType])
