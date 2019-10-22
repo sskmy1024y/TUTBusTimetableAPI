@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   end
 
   root 'static_pages#index'
-  get '*path', to: 'static_pages#index'
-
+  
   resources :register, only: [:index, :new, :create]
   get '/register/reset', to: 'register#reset'
   post '/register/timetable_reset', to: 'register#timetable_reset'
+
+  get '*path', to: 'static_pages#index'
 end
