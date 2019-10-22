@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation, useEffect } from 'hooks'
 
 import FetchDoc from 'components/FetchDoc'
+import styled from 'styled-components'
 
 function APIDoc() {
   const location = useLocation()
@@ -11,7 +12,17 @@ function APIDoc() {
     window.gtagPageview(location.pathname)
   }, [location.pathname])
 
-  return <FetchDoc src="https://raw.githubusercontent.com/wiki/sskmy1024y/TUTBusTimetableAPI/v1.md" />
+  return (
+    <>
+      <Label>最終更新日：2019/05/23 10:39</Label>
+      <FetchDoc src="https://raw.githubusercontent.com/wiki/sskmy1024y/TUTBusTimetableAPI/v1.md" />
+    </>
+  )
 }
 
 export default APIDoc
+
+const Label = styled.div`
+  text-align: right;
+  color: #797979;
+`
