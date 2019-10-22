@@ -1,3 +1,4 @@
 {
-  "easysass.compileAfterSave": false
+  "easysass.compileAfterSave": false,
+  "eslint.nodePath": "./front/node_modules"
 }

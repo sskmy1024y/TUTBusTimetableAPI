@@ -7,18 +7,28 @@ services:
       - ./db/mysql_data:/var/lib/mysql
     env_file: .env
 
-  web:
-    build: .
+  api:
+    build: ./api/
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     env_file: .env
     restart: unless-stopped
     volumes:
-      - ./src:/app
+      - ./api:/app
       - bundle-data:/bundle
     ports:
       - "22222:3000"
     depends_on:
       - db
+
+  spa:
+    build: ./spa/
+    command: "yarn start"
+    volumes:
+      - ./spa:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+      - "3001:9009"
 
 volumes:
   bundle-data:

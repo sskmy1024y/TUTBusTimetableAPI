@@ -1,0 +1,1 @@
+export { getTimetable } from './GetTimetable'
