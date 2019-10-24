@@ -51,13 +51,16 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
 }
 
 // TODO : Want to refactor timebord
-export function NoBusItem() {
+interface AnnounceItemProps {
+  type: TimetableDataType
+}
+export function AnnounceItem({ type }: AnnounceItemProps) {
   return (
     <BulletinBoard>
       <BulletinHeader title={'本日のバス'} />
       <BoardBody>
         <Row>
-          <FullMarquee dataType={TimetableDataType.NoBus} />
+          <FullMarquee dataType={type} />
         </Row>
       </BoardBody>
     </BulletinBoard>

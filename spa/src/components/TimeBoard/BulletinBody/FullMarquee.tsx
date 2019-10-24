@@ -1,4 +1,4 @@
-import { AttentionSpan, Detail } from './StyledComponents'
+import { AttentionSpan, Detail, WarningSpan } from './StyledComponents'
 import { TimetableDataType } from 'modules/Timetable'
 import { useMemo } from 'hooks'
 import Marquee from '../Marquee'
@@ -18,6 +18,8 @@ export function FullMarquee({ dataType, marquee }: MarqueeProps) {
           <AttentionSpan>検索条件に合うバスが見つかりませんでした</AttentionSpan>
         )}
         {dataType === TimetableDataType.NoBus && <AttentionSpan>本日の運行はありません</AttentionSpan>}
+        {dataType === TimetableDataType.NowLoading && <AttentionSpan>時刻表データ取得中です</AttentionSpan>}
+        {dataType === TimetableDataType.LoadingFailed && <WarningSpan>時刻表データの取得に失敗しました</WarningSpan>}
         {!!marquee && marquee}
       </>
     ),
