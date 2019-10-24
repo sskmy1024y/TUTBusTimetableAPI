@@ -41,9 +41,8 @@ export async function fetchTimetable(date: Date, searchType: SearchType | null) 
     try {
       return parseResponse<TimetablesApiData>(await response.json())
     } catch (e) {
-      // tslint:disable-next-line: no-console
-      console.error('ダメでした', e)
+      throw e
     }
   }
-  throw Error('')
+  throw Error('fetch error')
 }

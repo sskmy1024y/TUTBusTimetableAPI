@@ -23,20 +23,25 @@ export const getTimetable = ({ datetime, searchType }: FetchTimetablePayload): T
     )
   )
 
-  const resultDatas = await fetchTimetable(datetime, searchType)
-  const response = resultDatas.map<TimetableCollectType>(data => {
-    return {
-      timetables: data.timetables.map<TimetableType>(timetable => ({
-        id: timetable.id,
-        arrivalTime: new Date(timetable.arrival_time),
-        departureTime: new Date(timetable.departure_time),
-        isShuttle: timetable.is_shuttle,
-        isLast: !!timetable.is_last,
-      })),
-      departure: data.departure,
-      arrival: data.arrival,
-    }
-  })
+  dispatch(actionCreator.prepareGetTimetable())
 
-  dispatch(actionCreator.getTimetable({ response }))
+  try {
+    const resultDatas = await fetchTimetable(datetime, searchType)
+    const response = resultDatas.map<TimetableCollectType>(data => {
+      return {
+        timetables: data.timetables.map<TimetableType>(timetable => ({
+          id: timetable.id,
+          arrivalTime: new Date(timetable.arrival_time),
+          departureTime: new Date(timetable.departure_time),
+          isShuttle: timetable.is_shuttle,
+          isLast: !!timetable.is_last,
+        })),
+        departure: data.departure,
+        arrival: data.arrival,
+      }
+    })
+    dispatch(actionCreator.getTimetable({ response }))
+  } catch (e) {
+    dispatch(actionCreator.failedGetTimetable())
+  }
 }
