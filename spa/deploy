@@ -42,7 +42,7 @@ smart-yarn-run-deploy () {
 
       git push origin master
       array=( `git describe --abbrev=0 | tr -s '.' ' '`)
-      prev_tag=array[1]
+      prev_tag=${array[1]}
       tag=${array[0]}.${array[1]}.$((array[2]+1))
       git tag $tag
       git push origin $tag
@@ -56,10 +56,6 @@ smart-yarn-run-deploy () {
   else
     printf 'Not found new develop commit.\n'
     printf "\e[31;1mAborted!!\e[m\n"
-
-    
-    echo $tag
-
     exit 0
   fi
 }
