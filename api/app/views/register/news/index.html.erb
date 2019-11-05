@@ -1,14 +1,13 @@
-<div class="d-flex align-items-center" style="margin: 20px 10px;">
-  <h3>お知らせ管理</h3>
-  <div class="ml-auto posts_button">
-    <%= link_to "新規投稿", new_register_news_path, class: "btn btn-outline-info" %>
-  </div>
-</div>
-
-
 <div class="container">
-  <table class="table table-bordered table-sm">
-    <thead class="thead-light">
+  <div class="d-flex align-items-center" style="margin: 20px 10px;">
+    <h3>お知らせ管理</h3>
+    <div class="ml-auto posts_button">
+      <%= link_to "新規投稿", new_register_news_path, class: "btn btn-outline-info" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered border-primary table-hover table-sm">
+    <thead class="bg-info text-light">
       <tr>
         <th scope="col">#</th>
         <th scope="col">タイトル</th>
@@ -23,6 +22,7 @@
         <td><%= post.title %></td>
         <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
         <td>
+          <%= link_to '編集', edit_register_news_path(post.id), class: 'btn btn-outline-info btn-sm' %>
           <%= link_to '削除', register_news_path(post.id), method: :delete, class: 'btn btn-outline-danger btn-sm' %>
         </td>
       </tr>

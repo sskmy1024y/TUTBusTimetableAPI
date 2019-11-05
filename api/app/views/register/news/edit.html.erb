@@ -1,11 +1,11 @@
 <div class="d-flex align-items-center" style="margin: 20px 10px;">
-  <h3>お知らせ投稿</h3>
+  <h3>お知らせ編集</h3>
   <div class="ml-auto posts_button">
     <%= link_to "投稿一覧", register_news_index_path, class: "btn btn-outline-info" %>
   </div>
 </div>
 
-<%= form_with model: @news, local: true, url: register_news_index_path do |form| %>
+<%= form_with model: @news, local: true, url: register_news_path do |form| %>
 <div class="form-group row">
   <%= form.label :title, "タイトル", class: "col-sm-2 col-form-label" %>
   <div class="col-sm-10">
@@ -17,6 +17,6 @@
   <%= form.text_area :contents, 'data-provider': :summernote, autocomplete: "off" %>
 </div>
 <div style="margin: 20px 0;">
-  <%= form.submit '投稿', class: 'btn btn-info btn-block' %>
+  <%= form.submit '更新', class: 'btn btn-info btn-block' %>
 </div>
 <% end %>
