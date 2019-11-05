@@ -1,0 +1,8 @@
+<h2>お知らせ投稿</h2>
+
+<%= form_with(model: @news, local: true) do |form| %>
+<div class="field">
+  <%= form.label :text %>
+  <%= form.text_area :text, 'data-provider': :summernote %>
+</div>
+<% end %>

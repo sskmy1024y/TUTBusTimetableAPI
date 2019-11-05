@@ -87,6 +87,9 @@ gem "font-awesome-rails"
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 
+# Rich text editor
+gem 'simple_form'
+gem 'summernote-rails', '~> 0.8.12.0'
+
 # Google Analytics
 gem 'google-analytics-rails'
-

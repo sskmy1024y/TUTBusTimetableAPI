@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :register, only: [:index, :new, :create]
 
   resource :register do
-    resources :news, only: [:index]
+    resources :news, only: [:index, :new]
   end
 
   get '/register/reset', to: 'register#reset'

@@ -13,7 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
@@ -24,3 +23,7 @@
 
 //= require moment
 //= require daterangepicker
+//= require summernote/summernote-bs4.min
+//= require summernote-init
+
+//= require_tree .
