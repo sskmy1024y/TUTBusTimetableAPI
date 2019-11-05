@@ -3,7 +3,7 @@ class CreateNews < ActiveRecord::Migration[5.2]
     create_table :news do |t|
       t.string :title
       t.string :contents
-      t.datetime :release_date
+      t.boolean :is_public, default: false
 
       t.timestamps
     end

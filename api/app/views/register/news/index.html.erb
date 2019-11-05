@@ -1,6 +1,32 @@
-<h2>お知らせ管理</h2>
-<p>お知らせの投稿管理ページです</p>
+<div class="d-flex align-items-center" style="margin: 20px 10px;">
+  <h3>お知らせ管理</h3>
+  <div class="ml-auto posts_button">
+    <%= link_to "新規投稿", new_register_news_path, class: "btn btn-outline-info" %>
+  </div>
+</div>
+
 
 <div class="container">
-  <%= link_to 'Add', '/register/news/new' %>
+  <table class="table table-bordered table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">タイトル</th>
+        <th scope="col">作成日時</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @news.each_with_index do |post, index| %>
+      <tr>
+        <th><%= index %></th>
+        <td><%= post.title %></td>
+        <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+          <%= link_to '削除', register_news_path(post.id), method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
