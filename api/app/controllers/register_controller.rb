@@ -9,7 +9,7 @@ class RegisterController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-
+    
   end
 
   def new
@@ -230,7 +230,7 @@ class RegisterController < ApplicationController
 
     redirect_to "/register"
   end
-
+  
   private
 
   def basic_auth
