@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -19,7 +18,6 @@ const now = new Date('2019-01-01T00:00:00')
 const nowMock = jest.spyOn(Date, 'now')
 nowMock.mockImplementation(() => now)
 
-// eslint-disable-next-line jest/no-hooks
 afterAll(() => {
   createPortalMock.mockRestore()
   nowMock.mockRestore()

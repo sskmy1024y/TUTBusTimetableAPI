@@ -16,9 +16,9 @@
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "core-js": "^3.2.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "core-js": "^3.4.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "browserslist": {
     "production": [
@@ -41,9 +41,9 @@
     "@storybook/addon-knobs": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addon-storyshots": "^5.2.5",
-    "@storybook/addon-storysource": "^5.1.11",
     "@storybook/addons": "^5.1.11",
-    "@storybook/react": "^5.1.11",
+    "@storybook/react": "^5.2.5",
+    "@storybook/source-loader": "^5.2.5",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "24.0.17",
@@ -52,6 +52,7 @@
     "@types/react-dom": "16.8.5",
     "@types/react-redux": "^7.1.2",
     "@types/react-router-dom": "^4.3.4",
+    "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.18",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
@@ -75,6 +76,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
     "redux-thunk": "^2.3.0",
+    "require-context.macro": "^1.2.2",
     "styled-components": "^4.3.2",
     "styled-media-query": "^2.1.2",
     "tslint": "^5.17.0",
