@@ -25,7 +25,7 @@ smart-yarn-run-deploy () {
 
     if git status | grep --quiet 'working tree clean'; then
       git checkout master
-      array=( `git describe --abbrev=0 | tr -s '.' ' '`)
+      array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
       git merge origin/develop
       
       if [ "$1" == "service-host" ]; then
