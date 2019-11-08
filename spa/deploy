@@ -63,7 +63,7 @@ smart-yarn-run-deploy () {
 
 case "$verb" in
   'all')
-    smart-yarn-run-deploy
+    smart-yarn-run-deploy $@
     ;;
 
   *)
