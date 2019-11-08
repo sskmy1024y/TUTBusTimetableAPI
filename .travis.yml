@@ -7,10 +7,8 @@ matrix:
         - "stable"
       before_script:
         - cd spa
-        - yarn
-      cache:
-        directories:
-          - node_modules
+        - yarn --frozen-lockfile --ignore-optional
+      cache: npm
       script:
         - yarn typecheck
         - yarn lint
