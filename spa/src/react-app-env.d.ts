@@ -10,6 +10,8 @@ declare module '*.svg' {
   export default '' as string
 }
 
+declare module '@storybook/react/demo'
+
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION__: any
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any

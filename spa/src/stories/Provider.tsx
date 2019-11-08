@@ -1,8 +1,9 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
-import { RootState } from 'modules'
 import thunkMiddleware from 'redux-thunk'
+
+import { Provider } from 'react-redux'
+import { RootState } from 'modules'
 import { initialState } from 'modules'
 
 export default function StorybookProvider({

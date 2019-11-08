@@ -12,6 +12,8 @@ matrix:
         directories:
           - node_modules
       script:
+        - yarn typecheck
+        - yarn lint
         - yarn test
 
 notifications:

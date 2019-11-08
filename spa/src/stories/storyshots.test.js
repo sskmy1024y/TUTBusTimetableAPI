@@ -3,11 +3,8 @@ import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import initStoryshots, { multiSnapshotWithOptions } from '@storybook/addon-storyshots'
-import styleSheetSerializer from 'Jest-styled-components/src/styleSheetSerializer'
+import styleSheetSerializer from 'Jest-styled-components'
 import { addSerializer } from 'Jest-snapshot'
-
-// require.context系が動くようにする。
-require('babel-plugin-require-context-hook/register')()
 
 // mock for createPortal
 function MockReactDOMPortal({ children }) {
