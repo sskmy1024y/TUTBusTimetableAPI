@@ -25,9 +25,10 @@ smart-yarn-run-deploy () {
 
     if git status | grep --quiet 'working tree clean'; then
       git checkout master
+      array=( `git describe --abbrev=0 | tr -s '.' ' '`)
       git merge origin/develop
       
-      if [ "$1" == "service-host" ]; then
+      if ["$1" == "service-host" ]; then
         shift
         if git diff --name-only "$last_deploy_commit_hash".."$last_develop_commit_hash" | grep --quiet '^yarn.lock$'; then
           sudo docker-compose build --no-cache spa
@@ -41,9 +42,10 @@ smart-yarn-run-deploy () {
       fi
 
       git push origin master
-      array=( `git describe --abbrev=0 | tr -s '.' ' '`)
+
       prev_tag=${array[1]}
       tag=${array[0]}.${array[1]}.$((array[2]+1))
+
       git tag $tag
       git push origin $tag
       exit 0
