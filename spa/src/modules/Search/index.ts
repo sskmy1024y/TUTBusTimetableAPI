@@ -10,7 +10,7 @@ export type State = {
   searchRequest: SearchRequestType | null
 }
 
-const initialState = {
+export const initialState = {
   isSearch: false,
   searchRequest: null,
 }

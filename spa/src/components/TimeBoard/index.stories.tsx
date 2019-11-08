@@ -2,6 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { text, withKnobs } from '@storybook/addon-knobs'
+import Provider from 'stories/Provider'
 
 import { DefaultView, FullMarquee } from './BulletinBody'
 import { TimetableCollectType, TimetableDataType } from 'modules/Timetable'
@@ -10,6 +11,10 @@ import TimeBoard from '.'
 import TimeBoardItem from './TimeBoardItem'
 
 const stories = storiesOf('Components|TimeBoard', module)
+stories.addDecorator(story => <Provider story={story} />)
+const decorator = stories.addDecorator(withKnobs)
+
+const datetime = new Date('2019-10-24 10:10')
 
 const timetableData: TimetableCollectType = {
   arrival: {
@@ -22,8 +27,8 @@ const timetableData: TimetableCollectType = {
   },
   timetables: [
     {
-      arrivalTime: new Date(),
-      departureTime: new Date(),
+      arrivalTime: datetime,
+      departureTime: datetime,
       id: 1,
       isShuttle: true,
       isLast: true,
@@ -31,16 +36,16 @@ const timetableData: TimetableCollectType = {
   ],
 }
 
-stories.addDecorator(withKnobs).add('TimeBoard', () => {
+decorator.add('TimeBoard', () => {
   const timetableList: TimetableCollectType[] = [timetableData, timetableData, timetableData]
   return <TimeBoard timetables={timetableList} />
 })
 
-stories.addDecorator(withKnobs).add('TimeBoardItem', () => {
+decorator.add('TimeBoardItem', () => {
   return <TimeBoardItem timetable={timetableData} />
 })
 
-stories.addDecorator(withKnobs).add('BulletinBody', () => {
+decorator.add('BulletinBody', () => {
   return (
     <>
       <DefaultView
@@ -56,7 +61,7 @@ stories.addDecorator(withKnobs).add('BulletinBody', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('BulletinHeader', () => {
+decorator.add('BulletinHeader', () => {
   const title = text('text', 'sample')
 
   return <BulletinHeader title={title} />

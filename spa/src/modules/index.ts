@@ -8,6 +8,11 @@ export interface RootState {
   search: Search.State
 }
 
+export const initialState = {
+  timetables: Timetable.initialState,
+  search: Search.initialState,
+}
+
 export const rootReducer = combineReducers({
   timetables: Timetable.reducer,
   search: Search.reducer,

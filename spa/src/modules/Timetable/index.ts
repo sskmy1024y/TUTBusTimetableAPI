@@ -1,7 +1,7 @@
-import { GetTimetableAction, getTimetable } from './GetTimetable'
-import { TimetablesType } from './type'
 import { FailedGetTimetableAction, failedGetTimetable } from './FailedGetTimetable'
+import { GetTimetableAction, getTimetable } from './GetTimetable'
 import { PrepareGetTimetableAction, prepareGetTimetable } from './PrepareGetTimetables'
+import { TimetablesType } from './type'
 
 export * from './type'
 
@@ -12,7 +12,7 @@ export type State = {
   success: boolean | null
 }
 
-const initialState = {
+export const initialState = {
   data: [],
   success: null,
 }
