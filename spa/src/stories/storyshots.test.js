@@ -3,8 +3,8 @@ import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import initStoryshots, { multiSnapshotWithOptions } from '@storybook/addon-storyshots'
-import styleSheetSerializer from 'Jest-styled-components'
-import { addSerializer } from 'Jest-snapshot'
+import styleSheetSerializer from 'jest-styled-components/src/styleSheetSerializer'
+import { addSerializer } from 'jest-snapshot'
 
 // mock for createPortal
 function MockReactDOMPortal({ children }) {

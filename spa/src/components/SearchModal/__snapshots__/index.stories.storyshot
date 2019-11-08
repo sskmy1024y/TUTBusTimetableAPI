@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Componetns|Modal SearchModal 1`] = `
+.c0 {
+  background-color: #666;
+}
+
 <div
-  className="sc-bwzfXH fMQPPU"
+  className="c0"
 >
   <button
     className="btn btn-primary"
