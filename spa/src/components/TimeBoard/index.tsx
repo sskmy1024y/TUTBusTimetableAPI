@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
-import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
-import { useSelector } from 'hooks'
 import { RootState } from 'modules'
+import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
+import { useSelector } from 'hooks'
+import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 
 interface TimeBoardProps {
   timetables: TimetableCollectType[]

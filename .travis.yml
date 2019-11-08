@@ -1,0 +1,18 @@
+dist: trusty
+sudo: required
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - "stable"
+      before_script:
+        - cd spa
+        - yarn --frozen-lockfile
+      cache: npm
+      script:
+        - yarn typecheck
+        - yarn lint
+        - yarn test
+
+notifications:
+  email: false

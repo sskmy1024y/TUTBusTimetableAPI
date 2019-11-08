@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Componetns|Modal SearchModal 1`] = `
+.c0 {
+  background-color: #666;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Show
+  </button>
+</div>
+`;

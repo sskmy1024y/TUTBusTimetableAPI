@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components|Header Header 1`] = `
+<header>
+  <div
+    className="container"
+  >
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+      role="navigation"
+    >
+      <div
+        className="container"
+      >
+        <a
+          className="navbar-brand"
+          href="/"
+        >
+          sample
+        </a>
+        <button
+          aria-controls="basic-navbar-nav"
+          aria-label="Toggle navigation"
+          className="navbar-toggler collapsed"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </button>
+        <div
+          aria-expanded={null}
+          className="navbar-collapse collapse"
+          id="basic-navbar-nav"
+        >
+          <div
+            className="mr-auto navbar-nav"
+            onKeyDown={[Function]}
+          >
+            <a
+              className="nav-link"
+              data-rb-event-key="#nav1"
+              href="#nav1"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+            >
+              nav1
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+`;

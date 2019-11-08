@@ -5,11 +5,13 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 
 import { Button } from 'react-bootstrap'
+import Provider from 'stories/Provider'
 import styled from 'styled-components'
 
 import { SearchModalBody } from './SearchModalBody'
 
 const stories = storiesOf('Componetns|Modal', module)
+stories.addDecorator(story => <Provider story={story} />)
 
 stories.addDecorator(withKnobs).add('SearchModal', () => {
   const [show, setShow] = useState(false)

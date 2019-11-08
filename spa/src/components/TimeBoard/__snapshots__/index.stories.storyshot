@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components|TimeBoard BulletinBody 1`] = `
+Array [
+  .c0 {
+  display: inline-block;
+  font-size: 24px;
+  color: greenyellow;
+}
+
+.c1 {
+  color: red;
+}
+
+<div
+    className="c0 col-md-3 col-6"
+  >
+    <span
+      className="c1"
+    >
+      先発
+    </span>
+  </div>,
+  .c0 {
+  display: inline-block;
+  font-size: 26px;
+  line-height: 35px;
+  color: orange;
+}
+
+<div
+    className="c0 col-md-3 col-6"
+  >
+    10:10
+  </div>,
+  .c0 {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.c3 {
+  color: orange;
+}
+
+.c5 {
+  color: red;
+}
+
+.c4 {
+  color: greenyellow;
+}
+
+.c1 {
+  overflow: hidden;
+}
+
+.c2 {
+  margin: 0;
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: transparent;
+  -webkit-animation: kFpyMg 6s linear infinite;
+  animation: kFpyMg 6s linear infinite;
+}
+
+.c2:after {
+  content: '';
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+<div
+    className="c0 col-md-6 col-12"
+  >
+    <div
+      className="c1"
+    >
+      <p
+        className="c2"
+      >
+        <span
+          className="c3"
+        >
+          シャトル運行中
+        </span>
+        <span
+          className="c4"
+        >
+          のため、
+        </span>
+        <span
+          className="c3"
+        >
+          時間が前後する場合
+        </span>
+        <span
+          className="c4"
+        >
+          があります
+        </span>
+        <span
+          className="c3"
+        >
+          学校
+        </span>
+        <span
+          className="c4"
+        >
+          行き
+        </span>
+        <span
+          className="c5"
+        >
+          最終バス
+        </span>
+        <span
+          className="c4"
+        >
+          です。
+        </span>
+      </p>
+    </div>
+  </div>,
+  .c0 {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.c3 {
+  color: orange;
+}
+
+.c1 {
+  overflow: hidden;
+}
+
+.c2 {
+  margin: 0;
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: transparent;
+  -webkit-animation: kFpyMg 6s linear infinite;
+  animation: kFpyMg 6s linear infinite;
+}
+
+.c2:after {
+  content: '';
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+<div
+    className="c0 col-xl-12 col-md-12"
+  >
+    <div
+      className="c1"
+    >
+      <p
+        className="c2"
+      >
+        <span
+          className="c3"
+        >
+          本日の運行は終了しました
+        </span>
+      </p>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Storyshots Components|TimeBoard BulletinHeader 1`] = `
+.c0 {
+  background-color: rgb(76,83,109);
+  padding: 5px;
+  border-bottom: 1px solid rgb(36,41,58);
+}
+
+.c1 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    padding-left: 40px;
+  }
+}
+
+@media (min-width:450px) {
+  .c1 {
+    -webkit-letter-spacing: 0.1em;
+    -moz-letter-spacing: 0.1em;
+    -ms-letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+  }
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    sample
+  </span>
+  
+</div>
+`;
+
+exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
+.c4 {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.c7 {
+  color: orange;
+}
+
+.c5 {
+  overflow: hidden;
+}
+
+.c6 {
+  margin: 0;
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: transparent;
+  -webkit-animation: kFpyMg 6s linear infinite;
+  animation: kFpyMg 6s linear infinite;
+}
+
+.c6:after {
+  content: '';
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+.c1 {
+  background-color: rgb(76,83,109);
+  padding: 5px;
+  border-bottom: 1px solid rgb(36,41,58);
+}
+
+.c2 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.c0 {
+  background-color: rgb(76,83,109);
+  color: #fff;
+}
+
+.c3 {
+  background-color: #222;
+}
+
+@media (min-width:768px) {
+  .c1 {
+    padding-left: 40px;
+  }
+}
+
+@media (min-width:450px) {
+  .c2 {
+    -webkit-letter-spacing: 0.1em;
+    -moz-letter-spacing: 0.1em;
+    -ms-letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width:768px) {
+  .c3 {
+    padding: 0 5px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width:1170px) {
+  .c3 {
+    padding: 0 50px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <span
+      className="c2"
+    >
+      本日のバス
+    </span>
+    
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="c4 col-xl-12 col-md-12"
+      >
+        <div
+          className="c5"
+        >
+          <p
+            className="c6"
+          >
+            <span
+              className="c7"
+            >
+              時刻表データ取得中です
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
+.c4 {
+  display: inline-block;
+  font-size: 24px;
+  color: greenyellow;
+}
+
+.c6 {
+  display: inline-block;
+  font-size: 26px;
+  line-height: 35px;
+  color: orange;
+}
+
+.c7 {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.c10 {
+  color: orange;
+}
+
+.c5 {
+  color: red;
+}
+
+.c11 {
+  color: greenyellow;
+}
+
+.c8 {
+  overflow: hidden;
+}
+
+.c9 {
+  margin: 0;
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: transparent;
+  -webkit-animation: kFpyMg 6s linear infinite;
+  animation: kFpyMg 6s linear infinite;
+}
+
+.c9:after {
+  content: '';
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+.c1 {
+  background-color: rgb(76,83,109);
+  padding: 5px;
+  border-bottom: 1px solid rgb(36,41,58);
+}
+
+.c2 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.c0 {
+  background-color: rgb(76,83,109);
+  color: #fff;
+}
+
+.c3 {
+  background-color: #222;
+}
+
+@media (min-width:768px) {
+  .c1 {
+    padding-left: 40px;
+  }
+}
+
+@media (min-width:450px) {
+  .c2 {
+    -webkit-letter-spacing: 0.1em;
+    -moz-letter-spacing: 0.1em;
+    -ms-letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width:768px) {
+  .c3 {
+    padding: 0 5px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width:1170px) {
+  .c3 {
+    padding: 0 50px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <span
+      className="c2"
+    >
+      学校
+    </span>
+    <span>
+      行き（みなみの発）
+    </span>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="c4 col-md-3 col-6"
+      >
+        <span
+          className="c5"
+        >
+          最終
+        </span>
+      </div>
+      <div
+        className="c6 col-md-3 col-6"
+      >
+        10:10
+      </div>
+      <div
+        className="c7 col-md-6 col-12"
+      >
+        <div
+          className="c8"
+        >
+          <p
+            className="c9"
+          >
+            <span
+              className="c10"
+            >
+              シャトル運行中
+            </span>
+            <span
+              className="c11"
+            >
+              のため、
+            </span>
+            <span
+              className="c10"
+            >
+              時間が前後する場合
+            </span>
+            <span
+              className="c11"
+            >
+              があります
+            </span>
+            <span
+              className="c10"
+            >
+              学校
+            </span>
+            <span
+              className="c11"
+            >
+              行き
+            </span>
+            <span
+              className="c5"
+            >
+              最終バス
+            </span>
+            <span
+              className="c11"
+            >
+              です。
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

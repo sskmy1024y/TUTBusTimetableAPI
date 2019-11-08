@@ -38,11 +38,7 @@ export async function fetchTimetable(date: Date, searchType: SearchType | null) 
     }
   )
   if (response.ok) {
-    try {
-      return parseResponse<TimetablesApiData>(await response.json())
-    } catch (e) {
-      throw e
-    }
+    return parseResponse<TimetablesApiData>(await response.json())
   }
   throw Error('fetch error')
 }
