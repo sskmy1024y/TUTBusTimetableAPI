@@ -6,11 +6,10 @@ import { withKnobs } from '@storybook/addon-knobs'
 
 import { Button } from 'react-bootstrap'
 import Provider from 'stories/Provider'
-import styled from 'styled-components'
 
 import { SearchModalBody } from './SearchModalBody'
 
-const stories = storiesOf('Componetns|Modal', module)
+const stories = storiesOf('Components|Modal', module)
 stories.addDecorator(story => <Provider story={story} />)
 
 stories.addDecorator(withKnobs).add('SearchModal', () => {
@@ -21,13 +20,9 @@ stories.addDecorator(withKnobs).add('SearchModal', () => {
   }
 
   return (
-    <Container>
+    <>
       <Button onClick={onClose}>{show ? 'Hide' : 'Show'}</Button>
       <SearchModalBody show={show} onHide={() => setShow(false)} />
-    </Container>
+    </>
   )
 })
-
-const Container = styled.div`
-  background-color: #666;
-`
