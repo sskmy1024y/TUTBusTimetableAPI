@@ -4,9 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 
 import { Provider } from 'react-redux'
 import { RootState } from 'modules'
-import { initialState } from 'modules'
-import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { initialState } from 'modules'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 library.add(fab, fas)
