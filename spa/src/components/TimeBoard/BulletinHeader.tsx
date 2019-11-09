@@ -12,7 +12,7 @@ export default function BulletinHeader({ title, subText = '' }: BulletinHeaderPr
   return (
     <Header>
       <Place>{title}</Place>
-      {subText && <span>{subText}</span>}
+      {subText && <SubText>{subText}</SubText>}
     </Header>
   )
 }
@@ -34,4 +34,8 @@ const Place = styled.span`
   ${media.greaterThan('small')`
     letter-spacing: 0.1em;
   `}
+`
+
+const SubText = styled.span`
+  color: #fff;
 `

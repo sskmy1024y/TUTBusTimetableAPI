@@ -20,7 +20,7 @@ export default function TitleComponent() {
   }
 
   return (
-    <Component>
+    <Container>
       <Title>
         {isSearch && searchRequest !== null
           ? searchRequest.type === Search.SearchType.Depature && searchRequest.datetime !== undefined
@@ -42,11 +42,11 @@ export default function TitleComponent() {
         )}
         <SearchModal />
       </ButtonContainer>
-    </Component>
+    </Container>
   )
 }
 
-const Component = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

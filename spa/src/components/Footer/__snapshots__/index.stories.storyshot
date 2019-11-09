@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components|Footer Footer 1`] = `
+.c0 {
+  margin-top: 50px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  height: 50px;
+}
+
+.c1 {
+  color: #777;
+}
+
+.c2 {
+  color: #555;
+}
+
+.c2:hover {
+  color: #222;
+}
+
+<footer
+  className="c0"
+>
+  <div
+    className="container"
+  >
+    <small
+      className="c1"
+    >
+      © sho (
+      <a
+        className="c2"
+        href="http://github.com/sskmy1024y"
+      >
+        sskmy1024y)
+      </a>
+    </small>
+  </div>
+</footer>
+`;
