@@ -16,9 +16,9 @@ get_last_dir() {
 }
 
 smart-yarn-run-deploy () {
+  git fetch --prune
   local last_deploy_commit_hash="$(git rev-parse HEAD)"
   local last_develop_commit_hash="$(git rev-parse origin/develop)"
-  git fetch --prune
 
   if [ $last_develop_commit_hash != $last_deploy_commit_hash ]; then
     printf "\e[33mFound new develop commit\e[m => ${last_develop_commit_hash}\n"
