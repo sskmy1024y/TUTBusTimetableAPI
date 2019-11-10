@@ -1,4 +1,4 @@
-# TUT Bus Timetable API
+# TUT Bus Timetable API [![Build Status](https://travis-ci.org/sskmy1024y/TUTBusTimetableAPI.svg?branch=develop)](https://travis-ci.org/sskmy1024y/TUTBusTimetableAPI)
 
 東京工科大学の学バスの時刻表を返すAPI
 
