@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       get '/timetables/internal/:search', to: 'timetables#internal'
 
       post '/check', to: 'check#index'
-
     end
   end
 
