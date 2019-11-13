@@ -40,7 +40,7 @@ class Api::V1::CheckController < ApplicationController
         footer_icon: "https://platform.slack-edge.com/img/default_application_icon.png",
         ts: Time.now.to_i
       }
-      notifier.post attachments: [attachments]
+      # notifier.post attachments: [attachments]
     end
 
     render json: { success: true, data: @md5 }, status: :ok

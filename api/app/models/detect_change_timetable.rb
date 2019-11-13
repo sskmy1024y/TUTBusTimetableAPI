@@ -1,0 +1,2 @@
+class DetectChangeTimetable < ApplicationRecord
+end
