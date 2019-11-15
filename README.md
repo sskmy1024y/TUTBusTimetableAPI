@@ -19,6 +19,7 @@ $ docker-compose run --rm api rails db:drop db:create db:migrate db:seed
 $ docker-compose run --rm api bundle install
 # =================================
 
+$ docker-compose run --rm api bundle exec whenever --update-crontab # Cron on
 $ docker-compose up -d
 ```
 
@@ -52,6 +53,17 @@ $ docker-compose -f docker-compose.production.yml up -d
 ```
 
 out port is `:22222`
+
+## Check Origin Timetable
+
+* 設定内容にエラーがないか確認
+  * `bundle exec whenever`
+* 設定されているcronを見る
+  * `crontab -l`
+* cronにデータを反映
+  * `bundle exec whenever --update-crontab`
+* cronからデータを削除
+  * `bundle exec whenever --clear-crontab`
 
 ## How to debug
 

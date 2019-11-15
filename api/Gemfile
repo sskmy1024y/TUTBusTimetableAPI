@@ -90,3 +90,9 @@ gem 'bootstrap-daterangepicker-rails'
 # Google Analytics
 gem 'google-analytics-rails'
 
+# Slack notification
+gem 'slack-notifier'
+
+# Cron for detection change timetable
+gem 'whenever', require: false
+
