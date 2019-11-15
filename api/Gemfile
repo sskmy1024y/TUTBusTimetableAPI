@@ -92,3 +92,7 @@ gem 'google-analytics-rails'
 
 # Slack notification
 gem 'slack-notifier'
+
+# Cron for detection change timetable
+gem 'whenever', require: false
+

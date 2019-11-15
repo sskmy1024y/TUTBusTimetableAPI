@@ -10,7 +10,7 @@ module Cron::DetectTimetableChanges extend self
     # 取得するHTMLのURLを設定
     url = ENV.fetch('CHECK_TIMETABLE_URL', '')
     return bad_request("URL is not specified") if url.empty?
-
+    
     # スクレイピング実行
     charset = nil
     html = open(url) do |f|
