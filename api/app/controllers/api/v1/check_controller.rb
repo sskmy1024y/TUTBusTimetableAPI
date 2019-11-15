@@ -8,15 +8,15 @@ class Api::V1::CheckController < ApplicationController
 
   def index
     result = Cron::DetectTimetableChanges.batch
-    case result.code
+    case result['code']
     when 200
-      success(result.delete(:code))
+      success(result.delete("code"))
     when 204
       no_detected_update
     when 400
-      bad_request(result.delete(:code))
+      bad_request(result.delete("code"))
     when 500
-      internal_error(result.delete(:code))
+      internal_error(result.delete("code"))
     end
 
   end

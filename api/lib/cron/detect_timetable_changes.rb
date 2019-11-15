@@ -26,7 +26,7 @@ module Cron::DetectTimetableChanges extend self
 
     # 直前のMD5と比較して、変更があれば通知を実行
     last_detect_data = DetectChangeTimetable.last()
-    if md5 != last_detect_data&.uuid
+    if md5 == last_detect_data&.uuid
       return not_detected_update
     else
       last_detect_data = DetectChangeTimetable.create(
