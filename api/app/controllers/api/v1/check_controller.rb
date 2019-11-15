@@ -6,8 +6,6 @@ class Api::V1::CheckController < ApplicationController
   before_action :basic_auth
   protect_from_forgery
 
-  HOST_URL = 'http://www.teu.ac.jp'
-
   def index
     result = Cron::DetectTimetableChanges.batch
     case result.code
@@ -46,7 +44,5 @@ class Api::V1::CheckController < ApplicationController
   def internal_error(error_str)
     render json: { success: false, data: error_str }, status: :internal
   end
-
-  
 
 end
