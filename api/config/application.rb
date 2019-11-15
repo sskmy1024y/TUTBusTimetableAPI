@@ -21,7 +21,8 @@ module Myapp
     config.active_record.default_timezone = :local
     config.middleware.use ActionDispatch::Flash
     config.parent_controller = 'ActionController::Base'
-
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.enable_dependency_loading = true
     # Permit cross origin
     config.middleware.insert_before 0, Rack::Cors do
       allow do
