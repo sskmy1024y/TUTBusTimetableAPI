@@ -29,9 +29,9 @@ module Cron::DetectTimetableChanges extend self
     if md5 != last_detect_data&.uuid
       return not_detected_update
     else
-      # last_detect_data = DetectChangeTimetable.create(
-      #   uuid: md5
-      # )
+      last_detect_data = DetectChangeTimetable.create(
+        uuid: md5
+      )
 
       # 掲載されているリンクリストを作成
       dividers = []
@@ -82,7 +82,7 @@ module Cron::DetectTimetableChanges extend self
           end
         end
 
-        notifier = Slack::Notifier.new(slack_webhook_url, username: "時刻表更新Bot")
+        notifier = Slack::Notifier.new(slack_webhook_url, username: "Detection Bot")
         notifier.post attachments: attachments
       end
       # =============================================================
