@@ -1,4 +1,5 @@
-FROM ruby:2.5.5
+# For base image ====================
+FROM ruby:2.5.5 as base
 
 ENV LANG C.UTF-8
 
@@ -15,16 +16,38 @@ ENV BUNDLE_JOBS=4 \
   APP_DIR=/app
 
 RUN mkdir -p $APP_DIR
+# ====================================
+
+# For development ====================
+FROM base as develop
+
 WORKDIR $APP_DIR
 
 COPY Gemfile $APP_DIR
 COPY Gemfile.lock $APP_DIR
 
 RUN gem install bundler && \
-  gem install rails && \
-  bundle install --clean
+  gem install rails
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+# ====================================
+
+# For production =====================
+FROM base as release
+
+WORKDIR $APP_DIR
+
+COPY . $APP_DIR
+
+RUN gem install bundler && \
+  gem install rails && \
+  bundle install --clean && \
+  bundle exec whenever -i
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+# ====================================
 
