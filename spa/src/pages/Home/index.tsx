@@ -7,7 +7,6 @@ import ClientAccordion from 'components/ClientAccordion'
 import TimeBoard from 'containers/TimeBoard'
 import TitleComponent from 'components/TitleComponent'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TUTBusIcon from 'components/icons/TUTBusIcon'
 import media from 'styled-media-query'
 import styled from 'styled-components'

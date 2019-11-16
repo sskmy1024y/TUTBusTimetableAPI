@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import {
-  faBus,
   faCalendarAlt,
   faChevronRight,
   faClock,
