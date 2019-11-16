@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { boolean, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 
 import Provider from 'stories/Provider'
