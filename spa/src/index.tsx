@@ -22,7 +22,6 @@ import store from './configureStore'
 import * as serviceWorker from './serviceWorker'
 
 const importIcons = [
-  faBus,
   faSearch,
   faStar,
   faCalendarAlt,
