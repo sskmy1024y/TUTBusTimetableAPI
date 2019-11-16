@@ -7,7 +7,7 @@ import ClientAccordion from 'components/ClientAccordion'
 import TimeBoard from 'containers/TimeBoard'
 import TitleComponent from 'components/TitleComponent'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import TUTBusIcon from 'components/icons/TUTBusIcon'
 import media from 'styled-media-query'
 import styled from 'styled-components'
 
@@ -49,7 +49,7 @@ export default function Home() {
         <Col md="4">
           <MainIcon>
             <IconPoint>
-              <FontAwesomeIcon icon="bus" size="5x" />
+              <TUTBusIcon size={240} />
             </IconPoint>
           </MainIcon>
         </Col>

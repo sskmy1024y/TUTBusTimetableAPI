@@ -92,5 +92,6 @@
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
     "typescript": "3.7.2"
-  }
+  },
+  "homepage": "https://bus.t-lab.cs.teu.ac.jp"
 }
