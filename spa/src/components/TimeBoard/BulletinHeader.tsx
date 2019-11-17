@@ -27,6 +27,7 @@ const Header = styled.div`
 `
 
 const Place = styled.h4`
+  display: inline-block
   color: #fff;
   font-size: 22px;
   font-weight: 600;
