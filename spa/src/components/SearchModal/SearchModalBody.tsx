@@ -1,4 +1,13 @@
-import { Button, Col, Form, FormControl, FormControlProps, InputGroup, Modal, Row } from 'react-bootstrap'
+import {
+  Button,
+  Col,
+  Form,
+  FormControl,
+  FormControlProps,
+  InputGroup,
+  Modal,
+  Row
+} from 'react-bootstrap'
 import { addMonth, formatDate } from 'lib/utils'
 import { useDispatch, useMemo, useState } from 'hooks'
 import React, { useCallback } from 'react'
@@ -34,20 +43,20 @@ export function SearchModalBody(props: ModalProps) {
     () => [
       {
         label: '始発',
-        value: SearchType.First,
+        value: SearchType.First
       },
       {
         label: '出発時刻',
-        value: SearchType.Depature,
+        value: SearchType.Depature
       },
       {
         label: '到着時刻',
-        value: SearchType.Arrival,
+        value: SearchType.Arrival
       },
       {
         label: '最終',
-        value: SearchType.Last,
-      },
+        value: SearchType.Last
+      }
     ],
     []
   )
@@ -61,7 +70,7 @@ export function SearchModalBody(props: ModalProps) {
     dispatch(
       thunkActionCreators.getTimetable({
         searchType: targetTimeType,
-        datetime: new Date(`${targetDate}T${targetTime}+09:00`),
+        datetime: new Date(`${targetDate}T${targetTime}+09:00`)
       })
     )
   }, [dispatch, targetDate, targetTime, targetTimeType])
@@ -99,42 +108,46 @@ export function SearchModalBody(props: ModalProps) {
   }
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter'>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">時間指定検索</Modal.Title>
+        <Modal.Title id='contained-modal-title-vcenter'>時間指定検索</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={submitSearch}>
-          <Form.Group as={Row} controlId="formPlaintextDate">
-            <Form.Label column sm="2">
+          <Form.Group as={Row} controlId='formPlaintextDate'>
+            <Form.Label column sm='2'>
               日付
             </Form.Label>
-            <Col sm="10">
+            <Col sm='10'>
               <InputGroup>
                 <Form.Control
-                  type="date"
+                  type='date'
                   value={targetDate}
                   min={nowDate}
                   max={maxDate}
-                  aria-describedby="inputGroupPrependDate"
-                  name="targetdate"
+                  aria-describedby='inputGroupPrependDate'
+                  name='targetdate'
                   onChange={handleChangeDate}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text id="inputGroupPrependDate">
-                    <FontAwesomeIcon icon="calendar-alt"></FontAwesomeIcon>
+                  <InputGroup.Text id='inputGroupPrependDate'>
+                    <FontAwesomeIcon icon='calendar-alt'></FontAwesomeIcon>
                   </InputGroup.Text>
                 </InputGroup.Append>
               </InputGroup>
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} controlId="formPlaintextTime">
-            <Form.Label column sm="2">
+          <Form.Group as={Row} controlId='formPlaintextTime'>
+            <Form.Label column sm='2'>
               時間
             </Form.Label>
-            <Col md="4">
-              <Form.Control as="select" value={targetTimeType.toString()} onChange={handleChangeTimeType}>
+            <Col md='4'>
+              <Form.Control
+                as='select'
+                value={targetTimeType.toString()}
+                onChange={handleChangeTimeType}
+              >
                 {selectOptions.map((option: TTTOption) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -142,19 +155,19 @@ export function SearchModalBody(props: ModalProps) {
                 ))}
               </Form.Control>
             </Col>
-            <Col sm="10" md="6">
+            <Col sm='10' md='6'>
               <InputGroup>
                 <Form.Control
-                  type="time"
+                  type='time'
                   value={targetTime}
-                  aria-describedby="inputGroupPrependTime"
-                  name="targettime"
+                  aria-describedby='inputGroupPrependTime'
+                  name='targettime'
                   onChange={handleChangeTime}
                   disabled={!enableTargetTime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text id="inputGroupPrependTime">
-                    <FontAwesomeIcon icon="clock"></FontAwesomeIcon>
+                  <InputGroup.Text id='inputGroupPrependTime'>
+                    <FontAwesomeIcon icon='clock'></FontAwesomeIcon>
                   </InputGroup.Text>
                 </InputGroup.Append>
               </InputGroup>
@@ -163,13 +176,13 @@ export function SearchModalBody(props: ModalProps) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <LeftButton variant="info" onClick={handleReset}>
+        <LeftButton variant='info' onClick={handleReset}>
           リセット
         </LeftButton>
-        <Button variant="secondary" onClick={props.onHide}>
+        <Button variant='secondary' onClick={props.onHide}>
           閉じる
         </Button>
-        <Button variant="primary" onClick={submitSearch}>
+        <Button variant='primary' onClick={submitSearch}>
           検索
         </Button>
       </Modal.Footer>

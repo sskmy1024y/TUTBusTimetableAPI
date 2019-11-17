@@ -13,7 +13,7 @@ library.add(fab, fas)
 
 export default function StorybookProvider({
   story,
-  state: stateProp,
+  state: stateProp
 }: {
   story: React.ReactChild | (() => React.ReactChild)
   state?: RootState | (() => RootState)
@@ -23,7 +23,7 @@ export default function StorybookProvider({
   const mockStore = configureStore([thunkMiddleware])
   const state = {
     ...initialState,
-    ...(typeof stateProp === 'function' ? stateProp() : stateProp),
+    ...(typeof stateProp === 'function' ? stateProp() : stateProp)
   }
   const store = mockStore(state)
 

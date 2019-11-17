@@ -2,7 +2,7 @@ export enum SearchType {
   First,
   Depature,
   Arrival,
-  Last,
+  Last
 }
 
 export interface SearchRequestType {

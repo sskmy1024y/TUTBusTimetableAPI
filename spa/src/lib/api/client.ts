@@ -7,7 +7,10 @@ interface RawApiResponse<T> {
   data: T
 }
 
-export function parseResponse<T>(apiResponse: RawApiResponse<T>, convertCamelCase: boolean = false) {
+export function parseResponse<T>(
+  apiResponse: RawApiResponse<T>,
+  convertCamelCase: boolean = false
+) {
   if (!apiResponse.success) {
     throw new Error('response error')
   }
@@ -29,12 +32,11 @@ export async function fetchTimetable(date: Date, searchType: SearchType | null) 
       : ''
 
   const response = await fetch(
-    `${process.env.REACT_APP_API_HOST}/api/v1/timetables/internal${routeParam}?datetime=${formatDate(
-      date,
-      'YYYY/MM/DD hh:mm'
-    )}`,
+    `${
+      process.env.REACT_APP_API_HOST
+    }/api/v1/timetables/internal${routeParam}?datetime=${formatDate(date, 'YYYY/MM/DD hh:mm')}`,
     {
-      mode: 'cors',
+      mode: 'cors'
     }
   )
   if (response.ok) {

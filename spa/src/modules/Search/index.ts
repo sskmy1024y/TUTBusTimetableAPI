@@ -12,7 +12,7 @@ export type State = {
 
 export const initialState = {
   isSearch: false,
-  searchRequest: null,
+  searchRequest: null
 }
 
 export function reducer(state: State = initialState, action: Action) {
@@ -20,7 +20,7 @@ export function reducer(state: State = initialState, action: Action) {
     case 'SET_SEARCH_REQUEST':
       return {
         isSearch: action.payload.enable,
-        searchRequest: action.payload.searchRequest,
+        searchRequest: action.payload.searchRequest
       }
     default:
       return state
@@ -28,5 +28,5 @@ export function reducer(state: State = initialState, action: Action) {
 }
 
 export const actionCreators = {
-  setSearchRequest,
+  setSearchRequest
 }

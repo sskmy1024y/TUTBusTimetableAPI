@@ -15,7 +15,7 @@ function APIDoc() {
   return (
     <>
       <Label>最終更新日：2019/05/23 10:39</Label>
-      <FetchDoc src="https://raw.githubusercontent.com/wiki/sskmy1024y/TUTBusTimetableAPI/v1.md" />
+      <FetchDoc src='https://raw.githubusercontent.com/wiki/sskmy1024y/TUTBusTimetableAPI/v1.md' />
     </>
   )
 }

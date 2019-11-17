@@ -12,9 +12,10 @@ interface FetchTimetablePayload {
   searchType: SearchType | null
 }
 
-export const getTimetable = ({ datetime, searchType }: FetchTimetablePayload): ThunkActionType => async (
-  dispatch: Dispatch<Action>
-) => {
+export const getTimetable = ({
+  datetime,
+  searchType
+}: FetchTimetablePayload): ThunkActionType => async (dispatch: Dispatch<Action>) => {
   dispatch(
     actionCreator.setSearchRequest(
       searchType !== null
@@ -34,10 +35,10 @@ export const getTimetable = ({ datetime, searchType }: FetchTimetablePayload): T
           arrivalTime: new Date(timetable.arrival_time),
           departureTime: new Date(timetable.departure_time),
           isShuttle: timetable.is_shuttle,
-          isLast: !!timetable.is_last,
+          isLast: !!timetable.is_last
         })),
         departure: data.departure,
-        arrival: data.arrival,
+        arrival: data.arrival
       }
     })
     dispatch(actionCreator.getTimetable({ response }))

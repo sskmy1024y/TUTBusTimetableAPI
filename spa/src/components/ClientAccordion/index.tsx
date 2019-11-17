@@ -10,7 +10,7 @@ export default function ClientAccordion() {
   return (
     <>
       <StyledTitle>Client List</StyledTitle>
-      <Accordion defaultActiveKey="linebot">
+      <Accordion defaultActiveKey='linebot'>
         <ClientLINEBot eventKey={'linebot'} />
         <ClientAndmore eventKey={'andmore'} />
       </Accordion>

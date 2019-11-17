@@ -8,7 +8,7 @@ export default function Footer() {
     <FooterContainer>
       <Container>
         <CopyWrite>
-          &copy; sho (<Link href="http://github.com/sskmy1024y">sskmy1024y)</Link>
+          &copy; sho (<Link href='http://github.com/sskmy1024y'>sskmy1024y)</Link>
         </CopyWrite>
       </Container>
     </FooterContainer>

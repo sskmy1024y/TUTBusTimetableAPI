@@ -21,7 +21,11 @@ interface TimeProps {
   marquee?: JSX.Element
 }
 
-export function DefaultView({ timetable: { arrival, departureTime, isShuttle, isLast }, label, marquee }: TimeProps) {
+export function DefaultView({
+  timetable: { arrival, departureTime, isShuttle, isLast },
+  label,
+  marquee
+}: TimeProps) {
   const dispatch = useDispatch()
   const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
 
@@ -32,7 +36,7 @@ export function DefaultView({ timetable: { arrival, departureTime, isShuttle, is
         dispatch(
           thunkActionCreators.getTimetable({
             datetime,
-            searchType: null,
+            searchType: null
           })
         )
       }

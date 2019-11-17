@@ -13,6 +13,6 @@ export interface SetSearchRequestAction {
 export function setSearchRequest(payload: Payload): SetSearchRequestAction {
   return {
     payload,
-    type: 'SET_SEARCH_REQUEST',
+    type: 'SET_SEARCH_REQUEST'
   }
 }

@@ -11,7 +11,7 @@ import {
   faEnvelope,
   faSearch,
   faStar,
-  faTimes,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -29,7 +29,7 @@ const importIcons = [
   faEnvelope,
   faChevronRight,
   faTwitter,
-  faFacebookF,
+  faFacebookF
 ]
 library.add(...importIcons)
 

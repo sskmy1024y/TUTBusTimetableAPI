@@ -23,17 +23,17 @@ export default function ProfileCard({
   avatarImgSrc,
   title,
   hrefs: { TopLink, Twitter, Facebook, Mail },
-  description,
+  description
 }: ProfileCardProps) {
   return (
     <CardContainer>
       <Card.Img src={headImgSrc} />
       <Avatar>
-        <img src={avatarImgSrc} alt="avatar" />
+        <img src={avatarImgSrc} alt='avatar' />
       </Avatar>
       <InfoContainer>
         <Title>
-          <a target="_blank" rel="noopener noreferrer" href={TopLink}>
+          <a target='_blank' rel='noopener noreferrer' href={TopLink}>
             {title}
           </a>
         </Title>
@@ -41,18 +41,18 @@ export default function ProfileCard({
       </InfoContainer>
       <SocialContainer>
         {Twitter && (
-          <TwitterBtn href={Twitter} target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={['fab', 'twitter']} size="1x" />
+          <TwitterBtn href={Twitter} target='_blank' rel='noopener noreferrer'>
+            <FontAwesomeIcon icon={['fab', 'twitter']} size='1x' />
           </TwitterBtn>
         )}
         {Facebook && (
-          <FacebookBtn href={Facebook} target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={['fab', 'facebook-f']} size="1x" />
+          <FacebookBtn href={Facebook} target='_blank' rel='noopener noreferrer'>
+            <FontAwesomeIcon icon={['fab', 'facebook-f']} size='1x' />
           </FacebookBtn>
         )}
         {Mail && (
           <MailBtn href={Mail}>
-            <FontAwesomeIcon icon={'envelope'} size="1x" />
+            <FontAwesomeIcon icon={'envelope'} size='1x' />
           </MailBtn>
         )}
       </SocialContainer>

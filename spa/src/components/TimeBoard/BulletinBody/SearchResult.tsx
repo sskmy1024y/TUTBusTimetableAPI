@@ -25,7 +25,7 @@ interface TimeProps {
 export function SearchResult({
   timetable: { arrival, arrivalTime, departureTime, isShuttle, isLast },
   label,
-  marquee,
+  marquee
 }: TimeProps) {
   const departureTimeStr = useMemo(() => formatDate(departureTime), [departureTime])
   const arrivalTimeStr = useMemo(() => formatDate(arrivalTime), [arrivalTime])
@@ -50,7 +50,7 @@ export function SearchResult({
         {departureTimeStr}
       </Time>
       <WhiteSpan xs={1} md={1}>
-        <FontAwesomeIcon icon="chevron-right" size="1x" />
+        <FontAwesomeIcon icon='chevron-right' size='1x' />
       </WhiteSpan>
       <Time xs={3} md={2}>
         {arrivalTimeStr}

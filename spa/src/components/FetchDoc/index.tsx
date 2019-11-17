@@ -15,7 +15,7 @@ export default function FetchDoc({ src }: DocProps) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`${src}`, {
-        mode: 'cors',
+        mode: 'cors'
       })
       if (response.ok) {
         setDocData(await response.text())
@@ -26,7 +26,7 @@ export default function FetchDoc({ src }: DocProps) {
   }, [src])
 
   return (
-    <div id="markdown">
+    <div id='markdown'>
       <ReactMarkdown source={docData} />
     </div>
   )

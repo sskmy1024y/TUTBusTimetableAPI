@@ -28,7 +28,7 @@ stories.addDecorator(withKnobs).add('ProfileCard', () => {
           Facebook: facebook ? 'https://www.facebook.com/sho.yamashita.24' : undefined,
           Mail: mail
             ? 'mailto:c011627332@edu.teu.ac.jp?subject=学バスAPIについて&amp;body=以下、メールの本文を記述してください'
-            : undefined,
+            : undefined
         }}
         description={
           <>

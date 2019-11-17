@@ -12,6 +12,6 @@ export interface GetTimetableAction {
 export function getTimetable(payload: Payload): GetTimetableAction {
   return {
     payload,
-    type: 'GET_TIMETABLE',
+    type: 'GET_TIMETABLE'
   }
 }

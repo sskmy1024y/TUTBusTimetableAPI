@@ -15,15 +15,15 @@ export default function ClientLINEBot({ eventKey }: { eventKey: string }) {
       eventKey={eventKey}
     >
       <WideCard>
-        <TopImage variant="top" src={HeadImage} />
+        <TopImage variant='top' src={HeadImage} />
         <Card.Body>
           <Card.Title>次のバスの時間を教えるよ</Card.Title>
           <Card.Text>出発場所を指定すると、次のバスの出発時刻が返信されます。</Card.Text>
-          <a href="https://line.me/R/ti/p/%40jft2925j" rel="noopener noreferrer" target="_blank">
-            <LinkImg src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" />
+          <a href='https://line.me/R/ti/p/%40jft2925j' rel='noopener noreferrer' target='_blank'>
+            <LinkImg src='https://scdn.line-apps.com/n/line_add_friends/btn/ja.png' />
           </a>
           <MadeBy>
-            Made by <a href="http://twitter.com/nakainu_">@nakainu</a>
+            Made by <a href='http://twitter.com/nakainu_'>@nakainu</a>
           </MadeBy>
         </Card.Body>
       </WideCard>

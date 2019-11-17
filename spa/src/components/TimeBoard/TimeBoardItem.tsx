@@ -22,7 +22,10 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
 
   return (
     <BulletinBoard>
-      <BulletinHeader title={timetable.arrival.name} subText={`行き（${timetable.departure.name}発）`} />
+      <BulletinHeader
+        title={timetable.arrival.name}
+        subText={`行き（${timetable.departure.name}発）`}
+      />
       <BoardBody>
         <Row>
           {timetable.timetables.length > 0 ? (
@@ -42,7 +45,9 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
               )
             )
           ) : (
-            <FullMarquee dataType={isSearch ? TimetableDataType.BusNotFound : TimetableDataType.BusFinished} />
+            <FullMarquee
+              dataType={isSearch ? TimetableDataType.BusNotFound : TimetableDataType.BusFinished}
+            />
           )}
         </Row>
       </BoardBody>

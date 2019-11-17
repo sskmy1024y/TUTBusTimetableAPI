@@ -21,7 +21,7 @@ function Contacts() {
           Twitter: 'https://twitter.com/sskmy1024r',
           Facebook: 'https://www.facebook.com/sho.yamashita.24',
           Mail:
-            'mailto:c011627332@edu.teu.ac.jp?subject=学バスAPIについて&amp;body=以下、メールの本文を記述してください',
+            'mailto:c011627332@edu.teu.ac.jp?subject=学バスAPIについて&amp;body=以下、メールの本文を記述してください'
         }}
         description={
           <>
