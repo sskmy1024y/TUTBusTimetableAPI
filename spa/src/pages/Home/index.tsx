@@ -11,13 +11,6 @@ import TUTBusIcon from 'components/icons/TUTBusIcon'
 import media from 'styled-media-query'
 import styled from 'styled-components'
 
-interface HogeProps {
-  hoge?: number
-  fuga?: {
-    hogefuga: number
-  }
-}
-
 export default function Home() {
   const dispatch = useDispatch()
   const location = useLocation()
@@ -27,19 +20,6 @@ export default function Home() {
   }, [location.pathname])
 
   useEffect(() => {
-    const hoge: HogeProps = {
-      hoge: 100,
-      fuga: {
-        hogefuga: 1000,
-      },
-    }
-    const fuga: HogeProps = {
-      hoge: 100,
-    }
-
-    console.log(hoge?.fuga?.hogefuga ?? 'none')
-    console.log(fuga?.fuga?.hogefuga ?? 'none')
-
     dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
   }, [dispatch])
 
@@ -72,7 +52,9 @@ export default function Home() {
           </JumbotronContainer>
         </Col>
       </Row>
-      <ClientAccordion />
+      <aside>
+        <ClientAccordion />
+      </aside>
     </>
   )
 }
