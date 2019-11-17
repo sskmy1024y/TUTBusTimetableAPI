@@ -29,7 +29,7 @@ const Header = styled.div`
 const Place = styled.h4`
   color: #fff;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 33px;
   margin-bottom: 0;
 

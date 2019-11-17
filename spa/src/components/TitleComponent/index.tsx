@@ -55,7 +55,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   font-size: 2.1rem;
-  font-weight: 300;
+  font-weight: 350;
   line-height: 1.2;
 `
 
