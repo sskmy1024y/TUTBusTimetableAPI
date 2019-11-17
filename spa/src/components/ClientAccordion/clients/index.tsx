@@ -10,11 +10,17 @@ interface ClientProps {
   eventKey: string
 }
 
-export default function ClientTemplate({ iconPath, title, subTitle, children, eventKey }: ClientProps) {
+export default function ClientTemplate({
+  iconPath,
+  title,
+  subTitle,
+  children,
+  eventKey
+}: ClientProps) {
   return (
     <Card>
       <Card.Header>
-        <Accordion.Toggle as={Button} variant="block" eventKey={eventKey}>
+        <Accordion.Toggle as={Button} variant='block' eventKey={eventKey}>
           <HeaderContainer>
             <HeaderIcon src={iconPath} />
             <HeaderTitleContainer>

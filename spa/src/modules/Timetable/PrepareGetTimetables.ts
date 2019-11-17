@@ -4,6 +4,6 @@ export interface PrepareGetTimetableAction {
 
 export function prepareGetTimetable(): PrepareGetTimetableAction {
   return {
-    type: 'PREPARE_GET_TIMETABLE',
+    type: 'PREPARE_GET_TIMETABLE'
   }
 }

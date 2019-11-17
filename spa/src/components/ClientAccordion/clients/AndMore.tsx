@@ -18,12 +18,13 @@ export default function ClientAndMore({ eventKey }: { eventKey: string }) {
           &nbsp;は、誰でも無料で使えます。APIを使って、オリジナルのクライアントを作ってみてください！
           <br />
           <br />
-          なおクライアントを制作・公開していただけた方は、この<b>クライアント一覧</b>に追加させて頂きたいと思います。
+          なおクライアントを制作・公開していただけた方は、この<b>クライアント一覧</b>
+          に追加させて頂きたいと思います。
           <br />
           下記の連絡先までご連絡ください！
         </p>
-        <a href="mailto:c011627332@edu.teu.ac.jp?subject=学バスAPIのクライアント作成について&amp;body=以下、メールの本文を記述してください">
-          <FontAwesomeIcon icon="envelope" size="1x" />
+        <a href='mailto:c011627332@edu.teu.ac.jp?subject=学バスAPIのクライアント作成について&amp;body=以下、メールの本文を記述してください'>
+          <FontAwesomeIcon icon='envelope' size='1x' />
           &nbsp;C011627332@edu.teu.ac.jp
         </a>
       </>

@@ -16,16 +16,23 @@ export default function TitleComponent() {
   const { isSearch, searchRequest } = useSelector<RootState, Search.State>(state => state.search)
 
   const handleCancel = () => {
-    dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
+    dispatch(
+      thunkActionCreators.getTimetable({
+        datetime: new Date(),
+        searchType: null
+      })
+    )
   }
 
   return (
     <Container>
       <Title>
         {isSearch && searchRequest !== null
-          ? searchRequest.type === Search.SearchType.Depature && searchRequest.datetime !== undefined
+          ? searchRequest.type === Search.SearchType.Depature &&
+            searchRequest.datetime !== undefined
             ? `${formatDate(searchRequest.datetime)} 出発`
-            : searchRequest.type === Search.SearchType.Arrival && searchRequest.datetime !== undefined
+            : searchRequest.type === Search.SearchType.Arrival &&
+              searchRequest.datetime !== undefined
             ? `${formatDate(searchRequest.datetime)} 到着`
             : searchRequest.type === Search.SearchType.First
             ? '始バス'
@@ -36,8 +43,8 @@ export default function TitleComponent() {
       </Title>
       <ButtonContainer>
         {isSearch && searchRequest !== null && (
-          <CancelButton onClick={handleCancel} variant="outline-secondary">
-            <FontAwesomeIcon icon="times" />
+          <CancelButton onClick={handleCancel} variant='outline-secondary'>
+            <FontAwesomeIcon icon='times' />
           </CancelButton>
         )}
         <SearchModal />
@@ -55,7 +62,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   font-size: 2.1rem;
-  font-weight: 300;
+  font-weight: 350;
   line-height: 1.2;
 `
 

@@ -10,7 +10,7 @@ export const {
   useMemo,
   useReducer,
   useRef,
-  useState,
+  useState
 } = React
 
 export { useDispatch, useSelector } from 'react-redux'

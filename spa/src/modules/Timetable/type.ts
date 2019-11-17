@@ -20,7 +20,7 @@ export enum TimetableDataType {
   BusFinished, // 今日のバスが終了した時
   BusNotFound, // 検索結果がない場合
   NowLoading, // API取得中
-  LoadingFailed, // API取得失敗
+  LoadingFailed // API取得失敗
 }
 
 export type TimetablesType = TimetableCollectType[]

@@ -11,11 +11,11 @@ interface TUTBusIconProps {
 
 function TUTBusIcon({ size }: TUTBusIconProps) {
   return (
-    <Icon viewBox="0 0 100 100" width={size} height={size} fill="none">
+    <Icon viewBox='0 0 100 100' width={size} height={size} fill='none'>
       <path fillRule={'evenodd'} clipRule={'evenodd'} d={path} />
       <path fillRule={'evenodd'} clipRule={'evenodd'} d={path2} />
-      <path fillRule={'evenodd'} clipRule={'evenodd'} d={path3} fillOpacity="0.3" />
-      <rect x={12.4} y={27.8} width={75.2} height={38} fillOpacity="0.3" />
+      <path fillRule={'evenodd'} clipRule={'evenodd'} d={path3} fillOpacity='0.3' />
+      <rect x={12.4} y={27.8} width={75.2} height={38} fillOpacity='0.3' />
     </Icon>
   )
 }

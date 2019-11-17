@@ -26,20 +26,20 @@ export default function Home() {
   return (
     <>
       <Row>
-        <Col md="4">
+        <Col md='4'>
           <MainIcon>
             <IconPoint>
               <TUTBusIcon size={240} />
             </IconPoint>
           </MainIcon>
         </Col>
-        <Col md="8">
+        <Col md='8'>
           <JumbotronContainer>
             <TitleComponent />
             <TimeBoard />
             <Annotation>
               この時刻表は、
-              <a href="https://www.teu.ac.jp/campus/access/006644.html#bustimetable" target="blank">
+              <a href='https://www.teu.ac.jp/campus/access/006644.html#bustimetable' target='blank'>
                 東京工科大学&nbsp;スクールバス時刻表
               </a>
               の情報に基づき掲示されています。

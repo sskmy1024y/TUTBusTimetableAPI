@@ -14,7 +14,7 @@ export type State = {
 
 export const initialState = {
   data: [],
-  success: null,
+  success: null
 }
 
 export function reducer(state: State = initialState, action: Action) {
@@ -22,17 +22,17 @@ export function reducer(state: State = initialState, action: Action) {
     case 'PREPARE_GET_TIMETABLE':
       return {
         success: null,
-        data: [],
+        data: []
       }
     case 'GET_TIMETABLE':
       return {
         success: true,
-        data: action.payload.response,
+        data: action.payload.response
       }
     case 'FAILED_GET_TIMETABLE':
       return {
         success: false,
-        data: [],
+        data: []
       }
     default:
       return state
@@ -42,5 +42,5 @@ export function reducer(state: State = initialState, action: Action) {
 export const actionCreators = {
   getTimetable,
   failedGetTimetable,
-  prepareGetTimetable,
+  prepareGetTimetable
 }

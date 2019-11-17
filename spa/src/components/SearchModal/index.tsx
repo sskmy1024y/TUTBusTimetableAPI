@@ -16,8 +16,8 @@ export default function SearchModal() {
 
   return (
     <>
-      <SearchButton onClick={handleShowModal} variant="secondary">
-        <FontAwesomeIcon icon="search" />
+      <SearchButton onClick={handleShowModal} variant='secondary'>
+        <FontAwesomeIcon icon='search' />
       </SearchButton>
       <SearchModalBody show={showModal} onHide={() => setShowModal(false)} />
     </>

@@ -17,23 +17,23 @@ function App() {
     {
       component: Home,
       name: 'Home',
-      path: '/',
+      path: '/'
     },
     {
       component: APIDoc,
       name: 'API Doc',
-      path: '/api/v1/docs',
+      path: '/api/v1/docs'
     },
     {
       component: Contacts,
       name: 'Contacts',
-      path: '/contacts',
-    },
+      path: '/contacts'
+    }
   ]
 
   return (
     <>
-      <Header title="TUT Bus Timetable API" navLists={headerLinks} />
+      <Header title='TUT Bus Timetable API' navLists={headerLinks} />
       <MainContainer>
         <Router>
           {headerLinks.map(page => {

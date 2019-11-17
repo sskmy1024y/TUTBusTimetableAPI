@@ -18,11 +18,11 @@ const datetime = new Date('2019-10-24 10:10')
 const timetableData1: TimetableCollectType = {
   arrival: {
     id: 2,
-    name: '学校',
+    name: '学校'
   },
   departure: {
     id: 1,
-    name: 'みなみの',
+    name: 'みなみの'
   },
   timetables: [
     {
@@ -30,19 +30,19 @@ const timetableData1: TimetableCollectType = {
       departureTime: datetime,
       id: 1,
       isShuttle: true,
-      isLast: false,
-    },
-  ],
+      isLast: false
+    }
+  ]
 }
 
 const timetableData2: TimetableCollectType = {
   arrival: {
     id: 2,
-    name: '学校',
+    name: '学校'
   },
   departure: {
     id: 3,
-    name: '八王子',
+    name: '八王子'
   },
   timetables: [
     {
@@ -50,21 +50,21 @@ const timetableData2: TimetableCollectType = {
       departureTime: datetime,
       id: 2,
       isShuttle: false,
-      isLast: true,
-    },
-  ],
+      isLast: true
+    }
+  ]
 }
 
 const timetableData3: TimetableCollectType = {
   arrival: {
     id: 1,
-    name: 'みなみの',
+    name: 'みなみの'
   },
   departure: {
     id: 3,
-    name: '八王子',
+    name: '八王子'
   },
-  timetables: [],
+  timetables: []
 }
 
 decorator.add('TimeBoard', () => {
@@ -97,7 +97,7 @@ decorator.add('AnnounceItem', () => {
     BusFinished: TimetableDataType.BusFinished,
     BusNotFound: TimetableDataType.BusNotFound,
     NowLoading: TimetableDataType.NowLoading,
-    LoadingFailed: TimetableDataType.LoadingFailed,
+    LoadingFailed: TimetableDataType.LoadingFailed
   }
   const type = select('Announce Type', timetableDataTypeOptions, TimetableDataType.BusFinished)
 

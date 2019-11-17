@@ -4,6 +4,6 @@ export interface FailedGetTimetableAction {
 
 export function failedGetTimetable(): FailedGetTimetableAction {
   return {
-    type: 'FAILED_GET_TIMETABLE',
+    type: 'FAILED_GET_TIMETABLE'
   }
 }

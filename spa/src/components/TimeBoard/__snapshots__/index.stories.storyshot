@@ -18,7 +18,9 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
 .c3 {
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
 }
 
 .c5 {
@@ -103,11 +105,11 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
     <div
       className="c2"
     >
-      <span
+      <h4
         className="c3"
       >
         本日のバス
-      </span>
+      </h4>
       
     </div>
     <div
@@ -157,7 +159,9 @@ exports[`Storyshots Components|TimeBoard BulletinHeader 1`] = `
 .c2 {
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
 }
 
 .c3 {
@@ -186,11 +190,11 @@ exports[`Storyshots Components|TimeBoard BulletinHeader 1`] = `
   <div
     className="c1"
   >
-    <span
+    <h4
       className="c2"
     >
       sample
-    </span>
+    </h4>
     <span
       className="c3"
     >
@@ -218,7 +222,9 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
 .c3 {
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
 }
 
 .c4 {
@@ -328,11 +334,11 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
     <div
       className="c2"
     >
-      <span
+      <h4
         className="c3"
       >
         学校
-      </span>
+      </h4>
       <span
         className="c4"
       >
@@ -396,11 +402,11 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
     <div
       className="c2"
     >
-      <span
+      <h4
         className="c3"
       >
         学校
-      </span>
+      </h4>
       <span
         className="c4"
       >
@@ -468,11 +474,11 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
     <div
       className="c2"
     >
-      <span
+      <h4
         className="c3"
       >
         みなみの
-      </span>
+      </h4>
       <span
         className="c4"
       >
@@ -526,7 +532,9 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
 .c3 {
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
 }
 
 .c4 {
@@ -632,11 +640,11 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
     <div
       className="c2"
     >
-      <span
+      <h4
         className="c3"
       >
         学校
-      </span>
+      </h4>
       <span
         className="c4"
       >

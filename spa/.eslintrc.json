@@ -8,7 +8,8 @@
     "eslint:recommended",
     "react-app",
     "plugin:@typescript-eslint/eslint-recommended",
-    "prettier",
+    "prettier/react",
+    "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
   "globals": {

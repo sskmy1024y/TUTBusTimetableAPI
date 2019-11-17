@@ -8,6 +8,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prettier": "prettier --check './src/**/*.{ts,tsx}'",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
     "start": "react-app-rewired start",

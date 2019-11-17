@@ -4,7 +4,7 @@ import TimeBoard from '../components/TimeBoard/'
 
 const mapStateToProps = (state: RootState) => {
   return {
-    timetables: state.timetables.data,
+    timetables: state.timetables.data
   }
 }
 

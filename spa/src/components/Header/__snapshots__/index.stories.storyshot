@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Components|Header Header 1`] = `
+.c0 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
 <header>
   <div
     className="container"
@@ -12,12 +19,16 @@ exports[`Storyshots Components|Header Header 1`] = `
       <div
         className="container"
       >
-        <a
-          className="navbar-brand"
-          href="/"
+        <h1
+          className="c0"
         >
-          sample
-        </a>
+          <a
+            className="navbar-brand"
+            href="/"
+          >
+            sample
+          </a>
+        </h1>
         <button
           aria-controls="basic-navbar-nav"
           aria-label="Toggle navigation"

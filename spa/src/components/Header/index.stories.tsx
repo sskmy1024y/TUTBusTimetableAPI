@@ -16,8 +16,8 @@ stories.addDecorator(withKnobs).add('Header', () => {
   const links: LinkType[] = [
     {
       name: 'nav1',
-      path: '#nav1',
-    },
+      path: '#nav1'
+    }
   ]
 
   return <Header title={title} navLists={links} />

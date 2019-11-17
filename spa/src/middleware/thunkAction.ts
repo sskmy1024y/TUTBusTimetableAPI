@@ -8,5 +8,5 @@ import { getTimetable } from './FetchTimetable'
 export type ThunkActionType = ThunkAction<void, RootState, undefined, Action>
 
 export const thunkActionCreators = {
-  getTimetable,
+  getTimetable
 }

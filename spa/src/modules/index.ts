@@ -10,15 +10,15 @@ export interface RootState {
 
 export const initialState = {
   timetables: Timetable.initialState,
-  search: Search.initialState,
+  search: Search.initialState
 }
 
 export const rootReducer = combineReducers({
   timetables: Timetable.reducer,
-  search: Search.reducer,
+  search: Search.reducer
 })
 
 export const actionCreator = {
   ...Timetable.actionCreators,
-  ...Search.actionCreators,
+  ...Search.actionCreators
 }
