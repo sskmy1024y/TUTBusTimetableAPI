@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly TEST=true
+readonly TEST=false
 
 cd "$(dirname $0)"
 verb="$1"
