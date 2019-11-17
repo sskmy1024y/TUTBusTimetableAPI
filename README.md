@@ -2,12 +2,12 @@
 
 東京工科大学の学バスの時刻表を返すAPI
 
-## How to build
-
-### Require
+## Require
 
 * dokcer
 * docker-compose
+
+## How to develop build
 
 ### run command
 
@@ -19,13 +19,22 @@ $ docker-compose run --rm api rails db:drop db:create db:migrate db:seed
 $ docker-compose run --rm api bundle install
 # =================================
 
-$ docker-compose run --rm api bundle exec whenever --update-crontab # Cron on
 $ docker-compose up -d
 ```
 
-### production build
+## How to production build
 
-Reactをbuild
+### Deploy
+
+```bash
+$ ./deploy < all | spa | api >
+```
+
+example `$ ./deploy spa`
+
+### First time
+
+初回ビルドのみこちら
 
 ```bash
 $ docker-compose build --no-cache spa
@@ -47,6 +56,7 @@ SECRET_KEY_BASE= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ```bash
+$ docker-compose -f docker-compose.production.yml run --rm app rails db:drop db:create db:seed db:migrate RAILS_ENV=production
 $ docker-compose -f docker-compose.production.yml run --rm app rails assets:precompile RAILS_ENV=production
 
 $ docker-compose -f docker-compose.production.yml up -d

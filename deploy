@@ -9,6 +9,7 @@ shift
 git fetch --prune
 readonly last_deploy_commit_hash="$(git rev-parse master)"
 readonly last_develop_commit_hash="$(git rev-parse origin/develop)"
+readonly is_production="$([ $TEST != true ] && echo true || echo false)"
 
 set -e
 
@@ -29,7 +30,7 @@ smart-deploy() {
     if git status | grep --quiet 'working tree clean'; then
       git checkout master
       array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
-      [ ! $TEST ] && git merge origin/develop
+      $is_production && git merge origin/develop
       
       case "$deploy_type" in
         'all')
@@ -44,11 +45,11 @@ smart-deploy() {
           ;;
       esac
 
-      [ ! $TEST ] && git push origin master
+      $is_production && git push origin master
       prev_tag=${array[1]}
       tag=${array[0]}.${array[1]}.$((array[2]+1))
-      [ ! $TEST ] && git tag $tag
-      [ ! $TEST ] && git push origin $tag || echo $tag
+      $is_production && git tag $tag
+      $is_production && git push origin $tag || echo $tag
 
       exit 0
     else
@@ -78,7 +79,6 @@ smart-spa-deploy() {
     yarn
     yarn build
   fi
-  exit 0
 }
 
 smart-api-deploy() {
@@ -96,7 +96,6 @@ smart-api-deploy() {
     docker-compose -f docker-compose.production.yml up -d
     docker-compose -f docker-compose.production.yml ps
   fi
-  exit 0
 }
 
 add_tags() {
@@ -107,13 +106,12 @@ add_tags() {
   else
     tag=$0
   fi
-  [ ! $TEST ] && git tag $tag
-  [ ! $TEST ] && git push origin $tag || echo $tag
-  exit 0
+  $is_production && git tag $tag
+  $is_production && git push origin $tag || echo $tag
 }
 
 test () {
-  echo 'hoge'
+  $is_production && echo 'test mode is false' || echo "test mode is true"
 }
 
 case "$verb" in
