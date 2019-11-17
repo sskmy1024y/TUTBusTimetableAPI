@@ -1,0 +1,143 @@
+#!/bin/bash
+
+readonly TEST=true
+
+cd "$(dirname $0)"
+verb="$1"
+shift
+
+git fetch --prune
+readonly last_deploy_commit_hash="$(git rev-parse master)"
+readonly last_develop_commit_hash="$(git rev-parse origin/develop)"
+
+set -e
+
+# =====================================
+#   Functions
+# =====================================
+
+
+smart-deploy() {
+  deploy_type=$1
+  shift
+
+  printf "Now production commit hash\t=> ${last_deploy_commit_hash}\n"
+
+  if [ $last_develop_commit_hash != $last_deploy_commit_hash ]; then
+    printf "\e[33mDetect new develop commit\e[m\t=> ${last_develop_commit_hash}\n"
+
+    if git status | grep --quiet 'working tree clean'; then
+      git checkout master
+      array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
+      [ ! $TEST ] && git merge origin/develop
+      
+      case "$deploy_type" in
+        'all')
+          smart-api-deploy $@
+          smart-spa-deploy $@
+          ;;
+        'api')
+          smart-api-deploy $@
+          ;;
+        'spa')
+          smart-spa-deploy $@
+          ;;
+      esac
+
+      [ ! $TEST ] && git push origin master
+      prev_tag=${array[1]}
+      tag=${array[0]}.${array[1]}.$((array[2]+1))
+      [ ! $TEST ] && git tag $tag
+      [ ! $TEST ] && git push origin $tag || echo $tag
+
+      exit 0
+    else
+      printf "\e[31mExist NOT staged changes or commited some files\e[m\n"
+      printf "\e[31;1mAborted!!\e[m\n"
+      exit 1
+    fi
+  
+  else
+    printf 'Not found new develop commit.\n'
+    printf "\e[31;1mAborted!!\e[m\n"
+    exit 0
+  fi
+}
+
+smart-spa-deploy() {
+  cd "$(dirname $0)"
+  if [ "$1" == "service-host" ]; then
+    if git diff --name-only "$last_deploy_commit_hash".."$last_develop_commit_hash" | grep --quiet '^yarn.lock$'; then
+      sudo docker-compose build --no-cache spa
+    else
+      sudo docker-compose build spa
+    fi
+    sudo docker-compose run --rm spa yarn build
+  else
+    cd "$(dirname $0)/spa"
+    yarn
+    yarn build
+  fi
+  exit 0
+}
+
+smart-api-deploy() {
+  cd "$(dirname $0)"
+  if [ "$1" == "service-host" ]; then
+    sudo docker-compose -f docker-compose.production.yml build
+    sudo docker-compose -f docker-compose.production.yml stop
+    sudo docker-compose -f docker-compose.production.yml down
+    sudo docker-compose -f docker-compose.production.yml up -d
+    sudo docker-compose -f docker-compose.production.yml ps
+  else
+    docker-compose -f docker-compose.production.yml build
+    docker-compose -f docker-compose.production.yml stop
+    docker-compose -f docker-compose.production.yml down
+    docker-compose -f docker-compose.production.yml up -d
+    docker-compose -f docker-compose.production.yml ps
+  fi
+  exit 0
+}
+
+add_tags() {
+  if [ $0 ]; then
+    array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
+    prev_tag=${array[1]}
+    tag=${array[0]}.${array[1]}.$((array[2]+1))
+  else
+    tag=$0
+  fi
+  [ ! $TEST ] && git tag $tag
+  [ ! $TEST ] && git push origin $tag || echo $tag
+  exit 0
+}
+
+test () {
+  echo 'hoge'
+}
+
+case "$verb" in
+  'all' | 'api' | 'spa')
+    smart-deploy $verb $@
+    ;;
+  
+  'add_tag')
+    add_tags $@
+    ;;
+
+  'test')
+    test $@
+    ;;
+
+  *)
+    set +x
+    echo
+    echo 'Subcommands'
+    echo '  all    -- deploy spa and api service'
+    echo '  spa    -- deploy spa (js)'
+    echo '  api    -- deploy api (rails)'
+    echo '  tag    -- add release tag'
+    echo
+    echo 'You can use NOSTAGE=1 environment variable if you do not want to stage.'
+    exit 64
+esac
