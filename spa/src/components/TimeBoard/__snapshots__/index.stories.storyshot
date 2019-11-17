@@ -16,6 +16,7 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
 }
 
 .c3 {
+  display: inline-block;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
@@ -157,6 +158,7 @@ exports[`Storyshots Components|TimeBoard BulletinHeader 1`] = `
 }
 
 .c2 {
+  display: inline-block;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
@@ -220,6 +222,7 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
 }
 
 .c3 {
+  display: inline-block;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
@@ -530,6 +533,7 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
 }
 
 .c3 {
+  display: inline-block;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
