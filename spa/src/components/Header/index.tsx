@@ -2,6 +2,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import React from 'react'
 
 import { LinkType } from 'lib/types'
+import styled from 'styled-components'
 
 interface HeaderProps {
   title: string
@@ -14,7 +15,9 @@ export default function Header({ title, navLists }: HeaderProps) {
       <Container>
         <Navbar bg="light" expand="lg" role="navigation" fixed="top">
           <Container>
-            <Navbar.Brand href="/">{title}</Navbar.Brand>
+            <HeaderText>
+              <Navbar.Brand href="/">{title}</Navbar.Brand>
+            </HeaderText>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
@@ -33,3 +36,10 @@ export default function Header({ title, navLists }: HeaderProps) {
     </header>
   )
 }
+
+const HeaderText = styled.h1`
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.2;
+`

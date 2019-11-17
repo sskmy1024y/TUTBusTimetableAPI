@@ -26,10 +26,12 @@ const Header = styled.div`
   border-bottom: 1px solid rgb(36, 41, 58);
 `
 
-const Place = styled.span`
+const Place = styled.h4`
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 700;
+  line-height: 33px;
+  margin-bottom: 0;
 
   ${media.greaterThan('small')`
     letter-spacing: 0.1em;
