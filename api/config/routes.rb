@@ -21,5 +21,8 @@ Rails.application.routes.draw do
   get '/register/reset', to: 'register#reset'
   post '/register/timetable_reset', to: 'register#timetable_reset'
 
-  get '*path', to: 'static_pages#index'
+  get '/api/v1/docs', to: 'static_pages#index'
+  get '/contacts', to: 'static_pages#index'
+
+  # get '*path', to: 'static_pages#index'
 end
