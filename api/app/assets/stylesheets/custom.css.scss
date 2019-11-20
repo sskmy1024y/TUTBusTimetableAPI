@@ -666,6 +666,16 @@ footer ul li {
   }
 }
 
+.info-container {
+  background-color: rgba(0, 0, 0, 0.13);
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  dl {
+    margin-bottom: 0;
+  }
+}
+
 .marquee {
   overflow: hidden;
 

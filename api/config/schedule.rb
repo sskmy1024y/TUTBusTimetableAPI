@@ -29,7 +29,8 @@ set :job_template, nil
 # stagingのみで実行
 if rails_env.to_sym != :development
   # clear cache
-  every 1.day, at: '0:00 am' do
+  interval = (9..18).select{ |_| _%3 == 0 }.map {|_| "#{_}:00" }
+  every 1.day, at: interval do
     rake "cron:detect_timetable_changes"
   end
 end
