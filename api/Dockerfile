@@ -43,8 +43,8 @@ COPY . $APP_DIR
 
 RUN gem install bundler && \
   gem install rails && \
-  bundle install --clean --without development test && \
-  bundle exec whenever -i
+  bundle install --clean && \
+  RAILS_ENV=production bundle exec whenever --update-crontab
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
