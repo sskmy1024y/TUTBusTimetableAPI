@@ -43,7 +43,7 @@ COPY . $APP_DIR
 
 RUN gem install bundler && \
   gem install rails && \
-  bundle install --clean && \
+  bundle install --clean --without development test && \
   bundle exec whenever -i
 
 COPY entrypoint.sh /usr/bin/
