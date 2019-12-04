@@ -43,8 +43,7 @@ COPY . $APP_DIR
 
 RUN gem install bundler && \
   gem install rails && \
-  bundle install --clean && \
-  bundle exec whenever -i
+  bundle install --clean
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
