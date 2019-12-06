@@ -150,10 +150,14 @@ class RegisterController < ApplicationController
 
       tables.each do | table |
         # [Course情報を取得・登録] ------------------------
+        # Note:表記揺れを修正するための処理が必要
+        destination_name = fixed_notation_shaking(table[:destination_place])
+        school_name = fixed_notation_shaking(table[:school_place])
+
         # 目的地のIDを取得
-        destination_place = Place.find_by(name: table[:destination_place]).id
+        destination_place = Place.find_by(name: destination_name).id
         # キャンパス側のIDを取得
-        school_place = Place.find_by(name: table[:school_place]).id
+        school_place = Place.find_by(name: school_name).id
         
         course_to_destination = Course.find_by(arrival_id: destination_place, departure_id: school_place) # 往路      
         course_to_school = Course.find_by(arrival_id: school_place , departure_id: destination_place) # 復路
@@ -245,6 +249,33 @@ class RegisterController < ApplicationController
     tabledata.each do |td|
       return td if !td.blank? && td.inner_text.include?('シャトル運行')
     end
+    return nil
+  end
+
+  # 行先表示の表記揺れを修正する
+  # @params string place
+  def fixed_notation_shaking(place)
+    places = {
+      '八王子みなみ野駅' => [
+        '八王子みなみ野',
+        'みなみ野'
+      ],
+      '図書館棟前' => [
+        '図書館棟',
+        '図書館前',
+      ],
+      '八王子駅南口' => [],
+      '厚生棟前' => [
+        '厚生棟'
+      ],
+      '学生会館' => [],
+      '正門ロータリー前' => [],
+    }
+
+    places.each do | key, value |
+      return key if key == place || value.include?(place)
+    end
+
     return nil
   end
 end
