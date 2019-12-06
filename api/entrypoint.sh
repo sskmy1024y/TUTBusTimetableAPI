@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-if [ $RAILS_ENV = 'production' ]; then
-  RAILS_ENV=production bundle exec whenever --update-crontab
+if [ "$RAILS_ENV" = 'production' ]; then
+  bundle exec whenever --update-crontab
   service cron start
 else
   bundle install
