@@ -11,6 +11,7 @@ set :output, error: "#{Rails.root}/log/cron_error.log", standard: "#{Rails.root}
 env :PATH, ENV['PATH']
 env :BUNDLE_PATH, ENV['BUNDLE_PATH']
 env :GEM_HOME, ENV['BUNDLER_ORIG_GEM_HOME']
+env :SECRET_KEY_BASE, ENV['SECRET_KEY_BASE']
 
 # NOTE: cron時に環境変数渡してくれない…
 env :MYSQL_ROOT_PASSWORD, ENV['MYSQL_ROOT_PASSWORD']
