@@ -1,6 +1,7 @@
-.idea/*
 .env
 *.log
 /db/
 
+*.idea/
+*.vscode/
 *node_modules/

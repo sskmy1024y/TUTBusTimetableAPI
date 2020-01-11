@@ -10,34 +10,58 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: rgb(76,83,109);
   padding: 5px;
   border-bottom: 1px solid rgb(36,41,58);
 }
 
 .c3 {
-  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.c4 {
   color: #fff;
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
   margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.c5 {
+.c6 {
   display: inline-block;
   font-size: 22px;
 }
 
-.c8 {
+.c9 {
   color: orange;
 }
 
-.c6 {
+.c7 {
   overflow: hidden;
 }
 
-.c7 {
+.c8 {
   margin: 0;
   padding-left: 100%;
   display: inline-block;
@@ -48,7 +72,7 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
   animation: kFpyMg 6s linear infinite;
 }
 
-.c7:after {
+.c8:after {
   content: '';
   white-space: nowrap;
   padding-right: 50px;
@@ -59,18 +83,18 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
   color: #fff;
 }
 
-.c4 {
+.c5 {
   background-color: #222;
 }
 
 @media (min-width:768px) {
-  .c2 {
+  .c3 {
     padding-left: 40px;
   }
 }
 
 @media (min-width:450px) {
-  .c3 {
+  .c4 {
     -webkit-letter-spacing: 0.1em;
     -moz-letter-spacing: 0.1em;
     -ms-letter-spacing: 0.1em;
@@ -78,20 +102,26 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
   }
 }
 
-@media (max-width:768px) {
+@media (max-width:450px) {
   .c4 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width:768px) {
+  .c5 {
     padding: 0 5px;
   }
 }
 
 @media (min-width:768px) {
-  .c4 {
+  .c5 {
     padding: 0 20px;
   }
 }
 
 @media (min-width:1170px) {
-  .c4 {
+  .c5 {
     padding: 0 50px;
   }
 }
@@ -106,30 +136,34 @@ exports[`Storyshots Components|TimeBoard AnnounceItem 1`] = `
     <div
       className="c2"
     >
-      <h4
+      <div
         className="c3"
       >
-        本日のバス
-      </h4>
-      
+        <h4
+          className="c4"
+        >
+          本日のバス
+          
+        </h4>
+      </div>
     </div>
     <div
-      className="c4"
+      className="c5"
     >
       <div
         className="row"
       >
         <div
-          className="c5 col-xl-12 col-md-12"
+          className="c6 col-xl-12 col-md-12"
         >
           <div
-            className="c6"
+            className="c7"
           >
             <p
-              className="c7"
+              className="c8"
             >
               <span
-                className="c8"
+                className="c9"
               >
                 本日の運行は終了しました
               </span>
@@ -152,146 +186,52 @@ exports[`Storyshots Components|TimeBoard BulletinHeader 1`] = `
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: rgb(76,83,109);
   padding: 5px;
   border-bottom: 1px solid rgb(36,41,58);
 }
 
 .c2 {
-  display: inline-block;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 33px;
-  margin-bottom: 0;
-}
-
-.c3 {
-  color: #fff;
-}
-
-@media (min-width:768px) {
-  .c1 {
-    padding-left: 40px;
-  }
-}
-
-@media (min-width:450px) {
-  .c2 {
-    -webkit-letter-spacing: 0.1em;
-    -moz-letter-spacing: 0.1em;
-    -ms-letter-spacing: 0.1em;
-    letter-spacing: 0.1em;
-  }
-}
-
-<div
-  className="c0"
-  width={698}
->
-  <div
-    className="c1"
-  >
-    <h4
-      className="c2"
-    >
-      sample
-    </h4>
-    <span
-      className="c3"
-    >
-      example
-    </span>
-  </div>
-</div>
-`;
-
-exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
-.c0 {
-  width: 698px;
-  margin: 10px 10px 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.c2 {
-  background-color: rgb(76,83,109);
-  padding: 5px;
-  border-bottom: 1px solid rgb(36,41,58);
-}
-
-.c3 {
-  display: inline-block;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 33px;
-  margin-bottom: 0;
-}
-
-.c4 {
-  color: #fff;
-}
-
-.c6 {
-  display: inline-block;
-  font-size: 24px;
-  color: greenyellow;
-}
-
-.c7 {
-  display: inline-block;
-  font-size: 26px;
-  line-height: 35px;
-  color: orange;
-}
-
-.c8 {
-  display: inline-block;
-  font-size: 22px;
-}
-
-.c11 {
-  color: orange;
-}
-
-.c13 {
-  color: red;
-}
-
-.c12 {
-  color: greenyellow;
-}
-
-.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  white-space: nowrap;
   overflow: hidden;
 }
 
-.c10 {
-  margin: 0;
-  padding-left: 100%;
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: transparent;
-  -webkit-animation: kFpyMg 6s linear infinite;
-  animation: kFpyMg 6s linear infinite;
-}
-
-.c10:after {
-  content: '';
-  white-space: nowrap;
-  padding-right: 50px;
-}
-
-.c1 {
-  background-color: rgb(76,83,109);
+.c3 {
   color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.c5 {
-  background-color: #222;
+.c4 {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  color: #fff;
+  line-height: 30px;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 @media (min-width:768px) {
@@ -309,21 +249,9 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
   }
 }
 
-@media (max-width:768px) {
-  .c5 {
-    padding: 0 5px;
-  }
-}
-
-@media (min-width:768px) {
-  .c5 {
-    padding: 0 20px;
-  }
-}
-
-@media (min-width:1170px) {
-  .c5 {
-    padding: 0 50px;
+@media (max-width:450px) {
+  .c3 {
+    font-size: 20px;
   }
 }
 
@@ -340,56 +268,280 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
       <h4
         className="c3"
       >
-        学校
+        sample
+        <span
+          className="c4"
+        >
+          example
+        </span>
       </h4>
-      <span
-        className="c4"
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
+.c0 {
+  width: 698px;
+  margin: 10px 10px 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.c7 {
+  stroke: none;
+  fill: #F2C94C;
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background-color: rgb(76,83,109);
+  padding: 5px;
+  border-bottom: 1px solid rgb(36,41,58);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.c4 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.c5 {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  color: #fff;
+  line-height: 30px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.c6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.c9 {
+  display: inline-block;
+  font-size: 24px;
+  color: greenyellow;
+}
+
+.c10 {
+  display: inline-block;
+  font-size: 26px;
+  line-height: 35px;
+  color: orange;
+}
+
+.c11 {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.c14 {
+  color: orange;
+}
+
+.c16 {
+  color: red;
+}
+
+.c15 {
+  color: greenyellow;
+}
+
+.c12 {
+  overflow: hidden;
+}
+
+.c13 {
+  margin: 0;
+  padding-left: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: transparent;
+  -webkit-animation: kFpyMg 6s linear infinite;
+  animation: kFpyMg 6s linear infinite;
+}
+
+.c13:after {
+  content: '';
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+.c1 {
+  background-color: rgb(76,83,109);
+  color: #fff;
+}
+
+.c8 {
+  background-color: #222;
+}
+
+@media (min-width:768px) {
+  .c3 {
+    padding-left: 40px;
+  }
+}
+
+@media (min-width:450px) {
+  .c4 {
+    -webkit-letter-spacing: 0.1em;
+    -moz-letter-spacing: 0.1em;
+    -ms-letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width:450px) {
+  .c4 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:768px) {
+  .c6 {
+    padding-right: 40px;
+  }
+}
+
+@media (max-width:768px) {
+  .c8 {
+    padding: 0 5px;
+  }
+}
+
+@media (min-width:768px) {
+  .c8 {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width:1170px) {
+  .c8 {
+    padding: 0 50px;
+  }
+}
+
+<div
+  className="c0"
+  width={698}
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
       >
-        行き（みなみの発）
-      </span>
+        <h4
+          className="c4"
+        >
+          みなみの
+          <span
+            className="c5"
+          >
+            発（学校行）
+          </span>
+        </h4>
+      </div>
+      <div
+        className="c6"
+        onClick={[Function]}
+      >
+        <svg
+          className="c7"
+          fill="none"
+          height={24}
+          viewBox="0 0 32 30"
+          width={24}
+        >
+          <path
+            d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
+          />
+        </svg>
+      </div>
     </div>
     <div
-      className="c5"
+      className="c8"
     >
       <div
         className="row"
       >
         <div
-          className="c6 col-md-3 col-6"
+          className="c9 col-md-3 col-6"
         >
           先発
         </div>
         <div
-          className="c7 col-md-3 col-6"
+          className="c10 col-md-3 col-6"
         >
           10:10
         </div>
         <div
-          className="c8 col-md-6 col-12"
+          className="c11 col-md-6 col-12"
         >
           <div
-            className="c9"
+            className="c12"
           >
             <p
-              className="c10"
+              className="c13"
             >
               <span
-                className="c11"
+                className="c14"
               >
                 シャトル運行中
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 のため、
               </span>
               <span
-                className="c11"
+                className="c14"
               >
                 時間が前後する場合
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 があります
               </span>
@@ -405,63 +557,83 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
     <div
       className="c2"
     >
-      <h4
+      <div
         className="c3"
       >
-        学校
-      </h4>
-      <span
-        className="c4"
+        <h4
+          className="c4"
+        >
+          八王子
+          <span
+            className="c5"
+          >
+            発（学校行）
+          </span>
+        </h4>
+      </div>
+      <div
+        className="c6"
+        onClick={[Function]}
       >
-        行き（八王子発）
-      </span>
+        <svg
+          className="c7"
+          fill="none"
+          height={24}
+          viewBox="0 0 32 30"
+          width={24}
+        >
+          <path
+            d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
+          />
+        </svg>
+      </div>
     </div>
     <div
-      className="c5"
+      className="c8"
     >
       <div
         className="row"
       >
         <div
-          className="c6 col-md-3 col-6"
+          className="c9 col-md-3 col-6"
         >
           <span
-            className="c13"
+            className="c16"
           >
             最終
           </span>
         </div>
         <div
-          className="c7 col-md-3 col-6"
+          className="c10 col-md-3 col-6"
         >
           10:10
         </div>
         <div
-          className="c8 col-md-6 col-12"
+          className="c11 col-md-6 col-12"
         >
           <div
-            className="c9"
+            className="c12"
           >
             <p
-              className="c10"
+              className="c13"
             >
               <span
-                className="c11"
+                className="c14"
               >
                 学校
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 行き
               </span>
               <span
-                className="c13"
+                className="c16"
               >
                 最終バス
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 です。
               </span>
@@ -477,34 +649,54 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
     <div
       className="c2"
     >
-      <h4
+      <div
         className="c3"
       >
-        みなみの
-      </h4>
-      <span
-        className="c4"
+        <h4
+          className="c4"
+        >
+          八王子
+          <span
+            className="c5"
+          >
+            発（みなみの行）
+          </span>
+        </h4>
+      </div>
+      <div
+        className="c6"
+        onClick={[Function]}
       >
-        行き（八王子発）
-      </span>
+        <svg
+          className="c7"
+          fill="none"
+          height={24}
+          viewBox="0 0 32 30"
+          width={24}
+        >
+          <path
+            d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
+          />
+        </svg>
+      </div>
     </div>
     <div
-      className="c5"
+      className="c8"
     >
       <div
         className="row"
       >
         <div
-          className="c8 col-xl-12 col-md-12"
+          className="c11 col-xl-12 col-md-12"
         >
           <div
-            className="c9"
+            className="c12"
           >
             <p
-              className="c10"
+              className="c13"
             >
               <span
-                className="c11"
+                className="c14"
               >
                 本日の運行は終了しました
               </span>
@@ -526,56 +718,102 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
   border-radius: 5px;
 }
 
+.c7 {
+  stroke: none;
+  fill: #F2C94C;
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+}
+
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: rgb(76,83,109);
   padding: 5px;
   border-bottom: 1px solid rgb(36,41,58);
 }
 
 .c3 {
-  display: inline-block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.c4 {
   color: #fff;
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
   margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.c4 {
+.c5 {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
   color: #fff;
+  line-height: 30px;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .c6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.c9 {
   display: inline-block;
   font-size: 24px;
   color: greenyellow;
 }
 
-.c7 {
+.c10 {
   display: inline-block;
   font-size: 26px;
   line-height: 35px;
   color: orange;
 }
 
-.c8 {
+.c11 {
   display: inline-block;
   font-size: 22px;
 }
 
-.c11 {
+.c14 {
   color: orange;
 }
 
-.c12 {
+.c15 {
   color: greenyellow;
 }
 
-.c9 {
+.c12 {
   overflow: hidden;
 }
 
-.c10 {
+.c13 {
   margin: 0;
   padding-left: 100%;
   display: inline-block;
@@ -586,7 +824,7 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
   animation: kFpyMg 6s linear infinite;
 }
 
-.c10:after {
+.c13:after {
   content: '';
   white-space: nowrap;
   padding-right: 50px;
@@ -597,18 +835,18 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
   color: #fff;
 }
 
-.c5 {
+.c8 {
   background-color: #222;
 }
 
 @media (min-width:768px) {
-  .c2 {
+  .c3 {
     padding-left: 40px;
   }
 }
 
 @media (min-width:450px) {
-  .c3 {
+  .c4 {
     -webkit-letter-spacing: 0.1em;
     -moz-letter-spacing: 0.1em;
     -ms-letter-spacing: 0.1em;
@@ -616,20 +854,32 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
   }
 }
 
+@media (max-width:450px) {
+  .c4 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width:768px) {
+  .c6 {
+    padding-right: 40px;
+  }
+}
+
 @media (max-width:768px) {
-  .c5 {
+  .c8 {
     padding: 0 5px;
   }
 }
 
 @media (min-width:768px) {
-  .c5 {
+  .c8 {
     padding: 0 20px;
   }
 }
 
 @media (min-width:1170px) {
-  .c5 {
+  .c8 {
     padding: 0 50px;
   }
 }
@@ -644,59 +894,79 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
     <div
       className="c2"
     >
-      <h4
+      <div
         className="c3"
       >
-        学校
-      </h4>
-      <span
-        className="c4"
+        <h4
+          className="c4"
+        >
+          みなみの
+          <span
+            className="c5"
+          >
+            発（学校行）
+          </span>
+        </h4>
+      </div>
+      <div
+        className="c6"
+        onClick={[Function]}
       >
-        行き（みなみの発）
-      </span>
+        <svg
+          className="c7"
+          fill="none"
+          height={24}
+          viewBox="0 0 32 30"
+          width={24}
+        >
+          <path
+            d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
+          />
+        </svg>
+      </div>
     </div>
     <div
-      className="c5"
+      className="c8"
     >
       <div
         className="row"
       >
         <div
-          className="c6 col-md-3 col-6"
+          className="c9 col-md-3 col-6"
         >
           先発
         </div>
         <div
-          className="c7 col-md-3 col-6"
+          className="c10 col-md-3 col-6"
         >
           10:10
         </div>
         <div
-          className="c8 col-md-6 col-12"
+          className="c11 col-md-6 col-12"
         >
           <div
-            className="c9"
+            className="c12"
           >
             <p
-              className="c10"
+              className="c13"
             >
               <span
-                className="c11"
+                className="c14"
               >
                 シャトル運行中
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 のため、
               </span>
               <span
-                className="c11"
+                className="c14"
               >
                 時間が前後する場合
               </span>
               <span
-                className="c12"
+                className="c15"
               >
                 があります
               </span>
