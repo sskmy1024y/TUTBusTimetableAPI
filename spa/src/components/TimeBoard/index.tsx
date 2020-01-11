@@ -2,8 +2,9 @@ import React from 'react'
 
 import { RootState } from 'modules'
 import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
-import { useSelector } from 'hooks'
+import { useSelector, useMemo } from 'hooks'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
+import { FavCourseType } from 'modules/FavoriteCourse'
 
 interface TimeBoardProps {
   timetables: TimetableCollectType[]
@@ -11,10 +12,28 @@ interface TimeBoardProps {
 
 export default function TimeBoard({ timetables }: TimeBoardProps) {
   const isSuccess = useSelector<RootState, boolean | null>(state => state.timetables.success)
+  const favoriteCourses = useSelector<RootState, FavCourseType[]>(state => state.favorite.courses)
 
-  return isSuccess === true && timetables.length > 0 ? (
+  const sortTimetable = useMemo(
+    () =>
+      timetables
+        .map(timetable => {
+          const index = favoriteCourses.findIndex(
+            course =>
+              course.arrivalId === timetable.arrival.id &&
+              course.departureId === timetable.departure.id
+          )
+          return { ...timetable, index }
+        })
+        .sort((prev, next) => {
+          return prev.index <= next.index ? 1 : -1
+        }),
+    [timetables, favoriteCourses]
+  )
+
+  return isSuccess === true && sortTimetable.length > 0 ? (
     <>
-      {timetables.map((timetable, index) => {
+      {sortTimetable.map((timetable, index) => {
         return <TimeBoardItem key={index} timetable={timetable} />
       })}
     </>

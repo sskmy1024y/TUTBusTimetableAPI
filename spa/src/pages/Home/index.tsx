@@ -20,6 +20,7 @@ export default function Home() {
   }, [location.pathname])
 
   useEffect(() => {
+    dispatch(thunkActionCreators.onload())
     dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
   }, [dispatch])
 

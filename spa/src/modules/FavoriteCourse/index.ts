@@ -1,10 +1,11 @@
 import { AddCourseAction, addCourse } from './AddCourse'
 import { RemoveCourseAction, removeCourse } from './RemoveCourse'
+import { RestoreCourseAction, restoreCourse } from './RestoreCourse'
 import { FavCourseType } from './types'
 
 export * from './types'
 
-export type Action = AddCourseAction | RemoveCourseAction
+export type Action = AddCourseAction | RemoveCourseAction | RestoreCourseAction
 
 export type State = {
   courses: FavCourseType[]
@@ -22,7 +23,16 @@ export function reducer(state: State = initialState, action: Action) {
       }
     case 'REMOVE_COURSE':
       return {
-        courses: state.courses.filter(course => course !== action.payload.course)
+        courses: state.courses.filter(course => {
+          return !(
+            course.arrivalId === action.payload.course.arrivalId &&
+            course.departureId === action.payload.course.departureId
+          )
+        })
+      }
+    case 'RESTORE_COURSE':
+      return {
+        courses: action.payload.courses
       }
     default:
       return state
@@ -31,5 +41,6 @@ export function reducer(state: State = initialState, action: Action) {
 
 export const actionCreators = {
   addCourse,
-  removeCourse
+  removeCourse,
+  restoreCourse
 }

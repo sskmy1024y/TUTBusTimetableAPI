@@ -1,5 +1,5 @@
 import { Row } from 'react-bootstrap'
-import { useSelector } from 'hooks'
+import { useSelector, useDispatch } from 'hooks'
 import React from 'react'
 
 import { TimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
@@ -10,22 +10,42 @@ import BulletinHeader from './BulletinHeader'
 
 import media from 'styled-media-query'
 import styled from 'styled-components'
+import { thunkActionCreators } from 'middleware/thunkAction'
+
+interface SortedTimtetableType extends TimetableCollectType {
+  index?: number
+}
 
 interface TimeBoardProps {
-  timetable: TimetableCollectType
+  timetable: SortedTimtetableType
 }
 
 export default function TimeBoardItem({ timetable }: TimeBoardProps) {
+  const dispatch = useDispatch()
   const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
   const labels = ['先発', '次発', '次々発', '四発', '五発']
   const lastLabel = '最終'
+
+  const isActive = timetable?.index !== -1 ?? false
+
+  const handleFavorite = () => {
+    dispatch(
+      thunkActionCreators.saveFavoriteCourse({
+        type: isActive ? 'REMOVE' : 'ADD',
+        arrival: timetable.arrival,
+        departure: timetable.departure
+      })
+    )
+  }
 
   return (
     <BulletinBoard>
       <BulletinHeader
         title={timetable.departure.name}
         subText={`発（${timetable.arrival.name}行）`}
-        showFavIcon={true}
+        showFavIcon
+        isActive={isActive}
+        onFavorite={handleFavorite}
       />
       <BoardBody>
         <Row>

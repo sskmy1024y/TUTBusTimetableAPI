@@ -9,6 +9,7 @@ interface BulletinHeaderProps {
   title: string
   subText?: string
   showFavIcon?: boolean
+  isActive?: boolean
   onFavorite?(): void
 }
 
@@ -16,6 +17,7 @@ export default function BulletinHeader({
   title,
   subText = '',
   showFavIcon,
+  isActive,
   onFavorite
 }: BulletinHeaderProps) {
   return (
@@ -28,7 +30,7 @@ export default function BulletinHeader({
       </Header>
       {showFavIcon && (
         <IconContainer onClick={onFavorite}>
-          <Favorite size={24} />
+          <Favorite size={24} active={isActive} />
         </IconContainer>
       )}
     </Container>
