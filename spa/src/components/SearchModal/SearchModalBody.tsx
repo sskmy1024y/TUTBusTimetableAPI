@@ -1,13 +1,4 @@
-import {
-  Button,
-  Col,
-  Form,
-  FormControl,
-  FormControlProps,
-  InputGroup,
-  Modal,
-  Row
-} from 'react-bootstrap'
+import { Button, Col, Form, InputGroup, Modal, Row } from 'react-bootstrap'
 import { addMonth, formatDate } from 'lib/utils'
 import { useDispatch, useMemo, useState } from 'hooks'
 import React, { useCallback } from 'react'
@@ -75,21 +66,21 @@ export function SearchModalBody(props: ModalProps) {
     )
   }, [dispatch, targetDate, targetTime, targetTimeType])
 
-  const handleChangeDate = (event: React.FormEvent<FormControlProps & FormControl>) => {
+  const handleChangeDate = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
       setTargetDate(value)
     }
   }
 
-  const handleChangeTime = (event: React.FormEvent<FormControlProps & FormControl>) => {
+  const handleChangeTime = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
       setTargetTime(value)
     }
   }
 
-  const handleChangeTimeType = (event: React.FormEvent<FormControlProps & FormControl>) => {
+  const handleChangeTimeType = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
     if (value !== undefined) {
       setTargetTimeType(parseInt(value))
