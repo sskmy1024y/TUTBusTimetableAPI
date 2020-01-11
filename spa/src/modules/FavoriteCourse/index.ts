@@ -24,6 +24,8 @@ export function reducer(state: State = initialState, action: Action) {
       return {
         courses: state.courses.filter(course => course !== action.payload.course)
       }
+    default:
+      return state
   }
 }
 
