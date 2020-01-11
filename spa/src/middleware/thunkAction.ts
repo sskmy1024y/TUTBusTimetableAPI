@@ -3,8 +3,8 @@ import { ThunkAction } from 'redux-thunk'
 
 import { RootState } from 'modules'
 
-import { onload } from './localStorage'
 import { getTimetable } from './FetchTimetable'
+import { onload } from './localStorage'
 import { saveFavoriteCourse } from './SaveFavoriteCourse'
 
 export type ThunkActionType = ThunkAction<void, RootState, undefined, Action>

@@ -1,5 +1,5 @@
 import { Row } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'hooks'
+import { useDispatch, useSelector } from 'hooks'
 import React from 'react'
 
 import { TimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
@@ -8,9 +8,9 @@ import { DefaultView, FullMarquee, SearchResult } from './BulletinBody'
 import { RootState } from 'modules'
 import BulletinHeader from './BulletinHeader'
 
+import { thunkActionCreators } from 'middleware/thunkAction'
 import media from 'styled-media-query'
 import styled from 'styled-components'
-import { thunkActionCreators } from 'middleware/thunkAction'
 
 interface SortedTimtetableType extends TimetableCollectType {
   index?: number

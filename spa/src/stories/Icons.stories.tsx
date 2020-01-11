@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { number, withKnobs, boolean } from '@storybook/addon-knobs'
+import { boolean, number, withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import Provider from 'stories/Provider'
 
-import TUTBusIcon from 'components/icons/TUTBusIcon'
-import Favorite from 'components/icons/Favorite'
 import { Container } from 'stories'
+import Favorite from 'components/icons/Favorite'
+import TUTBusIcon from 'components/icons/TUTBusIcon'
 import styled from 'styled-components'
 
 const storiesAll = storiesOf('Foundation|Icon', module)

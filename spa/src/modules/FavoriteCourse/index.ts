@@ -1,7 +1,7 @@
 import { AddCourseAction, addCourse } from './AddCourse'
+import { FavCourseType } from './types'
 import { RemoveCourseAction, removeCourse } from './RemoveCourse'
 import { RestoreCourseAction, restoreCourse } from './RestoreCourse'
-import { FavCourseType } from './types'
 
 export * from './types'
 

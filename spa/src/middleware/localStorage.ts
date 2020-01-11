@@ -1,7 +1,7 @@
-import { ThunkActionType } from './thunkAction'
-import { Dispatch } from 'react'
-import { actionCreator } from 'modules'
 import { Action } from 'modules/FavoriteCourse'
+import { Dispatch } from 'react'
+import { ThunkActionType } from './thunkAction'
+import { actionCreator } from 'modules'
 
 export enum StorageKey {
   FavCourse = 'favoriteCourses'

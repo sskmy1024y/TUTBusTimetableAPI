@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { FavCourseType } from 'modules/FavoriteCourse'
 import { RootState } from 'modules'
 import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
-import { useSelector, useMemo } from 'hooks'
+import { useMemo, useSelector } from 'hooks'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
-import { FavCourseType } from 'modules/FavoriteCourse'
 
 interface TimeBoardProps {
   timetables: TimetableCollectType[]

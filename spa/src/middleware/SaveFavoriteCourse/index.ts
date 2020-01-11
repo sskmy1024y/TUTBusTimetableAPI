@@ -1,9 +1,9 @@
-import { PlaceType } from 'lib/types'
-import { Dispatch } from 'react'
 import { Action } from 'modules/FavoriteCourse'
-import { actionCreator, RootState } from 'modules'
-import { ThunkActionType } from 'middleware/thunkAction'
+import { Dispatch } from 'react'
+import { PlaceType } from 'lib/types'
+import { RootState, actionCreator } from 'modules'
 import { StorageKey } from 'middleware/localStorage'
+import { ThunkActionType } from 'middleware/thunkAction'
 
 interface Payload {
   type: 'ADD' | 'REMOVE'

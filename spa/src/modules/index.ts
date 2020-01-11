@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
+import * as FavoriteCourse from './FavoriteCourse'
 import * as Search from './Search'
 import * as Timetable from './Timetable'
-import * as FavoriteCourse from './FavoriteCourse'
 
 export interface RootState {
   timetables: Timetable.State
