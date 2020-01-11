@@ -21,8 +21,10 @@ export default function BulletinHeader({
   return (
     <Container>
       <Header>
-        <Place>{title}</Place>
-        {subText && <SubText>{subText}</SubText>}
+        <Place>
+          {title}
+          {subText && <SubText>{subText}</SubText>}
+        </Place>
       </Header>
       {showFavIcon && (
         <IconContainer onClick={onFavorite}>
@@ -45,6 +47,9 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
+  overflow: hidden;
+
   ${media.greaterThan('medium')`
     padding-left: 40px;
   `}
@@ -56,9 +61,14 @@ const Place = styled.h4`
   font-weight: 600;
   line-height: 33px;
   margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   ${media.greaterThan('small')`
     letter-spacing: 0.1em;
+  `}
+  ${media.lessThan('small')`
+    font-size:20px;
   `}
 `
 
@@ -66,6 +76,8 @@ const SubText = styled.span`
   align-self: flex-end;
   color: #fff;
   line-height: 30px;
+  font-size: 1rem;
+  font-weight: 400;
 `
 
 const IconContainer = styled.div`

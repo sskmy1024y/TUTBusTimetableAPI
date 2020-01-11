@@ -23,8 +23,8 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   return (
     <BulletinBoard>
       <BulletinHeader
-        title={timetable.arrival.name}
-        subText={`行き（${timetable.departure.name}発）`}
+        title={timetable.departure.name}
+        subText={`発（${timetable.arrival.name}行）`}
         showFavIcon={true}
       />
       <BoardBody>
