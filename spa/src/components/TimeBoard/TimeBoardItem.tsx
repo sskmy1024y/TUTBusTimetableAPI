@@ -25,6 +25,7 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
       <BulletinHeader
         title={timetable.arrival.name}
         subText={`行き（${timetable.departure.name}発）`}
+        showFavIcon={true}
       />
       <BoardBody>
         <Row>
