@@ -1,7 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Foundation|Icon Icons 1`] = `
+exports[`Storyshots Foundation|Icon Favorite 1`] = `
 .c0 {
+  stroke: none;
+  fill: #F2C94C;
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+<svg
+  className="c0"
+  fill="none"
+  height={50}
+  viewBox="0 0 32 30"
+  width={50}
+>
+  <path
+    d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
+  />
+</svg>
+`;
+
+exports[`Storyshots Foundation|Icon Icons 1`] = `
+.c1 {
+  width: 80px;
+  margin: 10px 10px 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.c3 {
+  stroke: none;
+  fill: rgba(0,0,0,0.32);
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.c2 {
   stroke: none;
   fill: currentColor;
   line-height: 0;
@@ -9,10 +47,25 @@ exports[`Storyshots Foundation|Icon Icons 1`] = `
   vertical-align: middle;
 }
 
-<div>
-  <div>
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    width={80}
+  >
     <svg
-      className="c0"
+      className="c2"
       fill="none"
       height={50}
       viewBox="0 0 100 100"
@@ -40,6 +93,22 @@ exports[`Storyshots Foundation|Icon Icons 1`] = `
         width={75.2}
         x={12.4}
         y={27.8}
+      />
+    </svg>
+  </div>
+  <div
+    className="c1"
+    width={80}
+  >
+    <svg
+      className="c3"
+      fill="none"
+      height={50}
+      viewBox="0 0 32 30"
+      width={50}
+    >
+      <path
+        d="M15.7001 25.0245L23.5465 29.7601C24.7844 30.507 26.3114 29.3969 25.9829 27.9899L23.9002 19.0635L30.8338 13.0568C31.9265 12.111 31.3423 10.3156 29.9022 10.194L20.7752 9.42025L17.205 0.995989C16.6412 -0.331996 14.759 -0.331996 14.1953 0.995989L10.625 9.42025L1.49811 10.194C0.0580132 10.3156 -0.526237 12.111 0.566469 13.0568L7.5001 19.0635L5.41733 27.9899C5.08888 29.3969 6.61583 30.507 7.85381 29.7601L15.7001 25.0245Z"
       />
     </svg>
   </div>
