@@ -1,15 +1,19 @@
 #!/bin/bash
 
-readonly TEST=false
-
 cd "$(dirname $0)"
 verb="$1"
 shift
 
+if [ $RELEASE_SERVER -o $TEST_SERVER ]; then
+  printf "\e[31mYou should set TEST_SERVER or RELEASE_SERVER \e[m\n"
+  exit 1
+fi
+
 git fetch --prune
 readonly last_deploy_commit_hash="$(git rev-parse master)"
 readonly last_develop_commit_hash="$(git rev-parse origin/develop)"
-readonly is_production="$([ $TEST != true ] && echo true || echo false)"
+readonly is_production="$([ $RELEASE_SERVER ] && echo true || echo false)"
+readonly current_tag=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
 
 set -e
 
@@ -17,22 +21,33 @@ set -e
 #   Functions
 # =====================================
 
+check-commit-hash() {
+  printf "Now production commit hash =>\t${last_deploy_commit_hash}\n"
+  if [ $last_develop_commit_hash != $last_deploy_commit_hash ]; then
+    printf "\e[33mDetect new develop commit\e[m =>\t${last_develop_commit_hash}\n"
+    return 0
+  else
+    printf 'Not found new develop commit.\n'
+    return 1
+  fi
+}
+
 
 smart-deploy() {
-  deploy_type=$1
+  deploy_target=$1
   shift
 
   printf "Now production commit hash\t=> ${last_deploy_commit_hash}\n"
 
-  if [ $last_develop_commit_hash != $last_deploy_commit_hash ]; then
-    printf "\e[33mDetect new develop commit\e[m\t=> ${last_develop_commit_hash}\n"
+  if [ check-commit-hash ]; then
 
     if git status | grep --quiet 'working tree clean'; then
-      git checkout master
-      array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
-      $is_production && git merge origin/develop
+      if [ $RELEASE_SERVER ]; then
+        git checkout master
+        git merge origin/develop
+      fi
       
-      case "$deploy_type" in
+      case "$deploy_target" in
         'all')
           smart-api-deploy $@
           smart-spa-deploy $@
@@ -45,12 +60,10 @@ smart-deploy() {
           ;;
       esac
 
-      $is_production && git push origin master
-      prev_tag=${array[1]}
-      tag=${array[0]}.${array[1]}.$((array[2]+1))
-      $is_production && git tag $tag
-      $is_production && git push origin $tag || echo $tag
-
+      if [ $RELEASE_SERVER ]; then
+        git push origin master
+        add_tag
+      fi
       exit 0
     else
       printf "\e[31mExist NOT staged changes or commited some files\e[m\n"
@@ -59,7 +72,6 @@ smart-deploy() {
     fi
   
   else
-    printf 'Not found new develop commit.\n'
     printf "\e[31;1mAborted!!\e[m\n"
     exit 0
   fi
@@ -95,19 +107,24 @@ smart-api-deploy() {
 }
 
 add_tags() {
-  if [ $0 ]; then
+  if [ "$1" = "" ]; then
     array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
     prev_tag=${array[1]}
     tag=${array[0]}.${array[1]}.$((array[2]+1))
   else
-    tag=$0
+    tag=$1
   fi
-  $is_production && git tag $tag
-  $is_production && git push origin $tag || echo $tag
+
+  printf "specify tag:\t$tag\n"
+
+  if [ $RELEASE_SERVER ]; then
+    git tag $tag
+    git push origin $tag || echo $tag
+  fi
 }
 
 test () {
-  $is_production && echo 'test mode is false' || echo "test mode is true"
+  echo `add_tags $1`
 }
 
 case "$verb" in
@@ -131,7 +148,12 @@ case "$verb" in
     echo '  spa    -- deploy spa (js)'
     echo '  api    -- deploy api (rails)'
     echo '  tag    -- add release tag'
-    echo
-    echo 'You can use NOSTAGE=1 environment variable if you do not want to stage.'
+    echo ''
+    echo 'Environments'
+    echo '  RELEASE_SERVER=1  -- You must set this environment variable if you want to stage.'
+    echo ''
+    echo 'Arguments'
+    echo '  service-host  -- You can set argments if you want to deploy on docker service-host.'
+    echo '                   Example: `$./deploy <subcommands> service-host`'
     exit 64
 esac

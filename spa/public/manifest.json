@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TUT Bus Timetable",
+  "name": "TUT Bus",
+  "description": "東京工科大学 八王子キャンパスのバス時刻表をリアルタイムにお届けします",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,10 +17,11 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
-    }	 
+    }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
+  "orientation": "portrait",
   "background_color": "#ffffff"
 }
