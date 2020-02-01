@@ -143,10 +143,11 @@ class RegisterController < ApplicationController
   def create
     tables = JSON.parse(params[:tabledate], symbolize_names: true)
     dates = params[:dates].split(/,\n*/)
+    table_set_title = params[:title]
 
     # [TimetableSet情報を設定] ------------------------
     TimetableSet.transaction do
-      timetable_set = TimetableSet.create!(name: "とりあえず")
+      timetable_set = TimetableSet.create!(name: table_set_title)
 
       tables.each do | table |
         # [Course情報を取得・登録] ------------------------
@@ -155,9 +156,10 @@ class RegisterController < ApplicationController
         school_name = fixed_notation_shaking(table[:school_place])
 
         # 目的地のIDを取得
-        destination_place = Place.find_by(name: destination_name).id
+        destination_place = find_place(destination_name)
+        
         # キャンパス側のIDを取得
-        school_place = Place.find_by(name: school_name).id
+        school_place = find_place(school_name)
         
         course_to_destination = Course.find_by(arrival_id: destination_place, departure_id: school_place) # 往路      
         course_to_school = Course.find_by(arrival_id: school_place , departure_id: destination_place) # 復路
@@ -270,13 +272,23 @@ class RegisterController < ApplicationController
       ],
       '学生会館' => [],
       '正門ロータリー前' => [],
+      '講義棟C裏駐車場' => [],
     }
 
     places.each do | key, value |
       return key if key == place || value.include?(place)
     end
 
-    return nil
+    return place
+  end
+
+  # Placeを探して、なければ生成する
+  def find_place(name)
+    place = Place.find_by(name: name)
+    if place.nil?
+      place = Place.create({name: name})
+    end
+    return place.id
   end
 end
 
