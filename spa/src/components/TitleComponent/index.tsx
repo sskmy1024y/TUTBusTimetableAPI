@@ -9,6 +9,7 @@ import { thunkActionCreators } from 'middleware/thunkAction'
 import SearchModal from 'components/SearchModal'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import media from 'styled-media-query'
 import styled from 'styled-components'
 
 export default function TitleComponent() {
@@ -64,6 +65,11 @@ const Title = styled.h3`
   font-size: 2.1rem;
   font-weight: 350;
   line-height: 1.2;
+  margin: auto 0;
+
+  ${media.lessThan('small')`
+    font-size: 1.6rem;
+  `}
 `
 
 const ButtonContainer = styled.div`
@@ -80,7 +86,6 @@ const CancelButton = styled(Button)`
   background-color: rgba(108, 117, 125, 0.25);
 
   padding: 0px 10px;
-  margin-bottom: 8px;
   width: 40px;
   height: 40px;
 
