@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react'
 import Provider from 'stories/Provider'
 
 import { Container } from 'stories'
-import { TimetableDataType, ReadTimetableCollectType } from 'modules/Timetable'
+import { ReadTimetableCollectType, TimetableDataType } from 'modules/Timetable'
 import BulletinHeader from './BulletinHeader'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 

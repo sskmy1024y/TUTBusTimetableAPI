@@ -2,7 +2,7 @@ import { Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'hooks'
 import React from 'react'
 
-import { TimetableDataType, ReadTimetableCollectType } from 'modules/Timetable/type'
+import { ReadTimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
 
 import { DefaultView, FullMarquee, SearchResult } from './BulletinBody'
 import { RootState } from 'modules'

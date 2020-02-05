@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { FavCourseType } from 'modules/FavoriteCourse'
+import { ReadTimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
 import { RootState } from 'modules'
-import { TimetableDataType, ReadTimetableCollectType } from '../../modules/Timetable/type'
-import { useMemo, useSelector, useFlipGroup } from 'hooks'
+import { useFlipGroup, useMemo, useSelector } from 'hooks'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 
 interface TimeBoardProps {
