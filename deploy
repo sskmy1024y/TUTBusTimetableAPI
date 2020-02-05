@@ -1,13 +1,18 @@
 #!/bin/bash
 
+## 環境変数のチェック
+RELEASE_SERVER="${RELEASE_SERVER:-0}"
+TEST_SERVER="${TEST_SERVER:-0}"
+export LC_ALL="C.UTF-8"
+
+if [ "${TEST_SERVER}" -eq 0 -a "${RELEASE_SERVER}" -eq 0 ]; then
+  printf "\e[31mYou should set TEST_SERVER=1 or RELEASE_SERVER=1 \e[m\n"
+  exit 1
+fi
+
 cd "$(dirname $0)"
 verb="$1"
 shift
-
-if [ $RELEASE_SERVER -o $TEST_SERVER ]; then
-  printf "\e[31mYou should set TEST_SERVER or RELEASE_SERVER \e[m\n"
-  exit 1
-fi
 
 git fetch --prune
 readonly last_deploy_commit_hash="$(git rev-parse master)"
@@ -106,7 +111,7 @@ smart-api-deploy() {
   fi
 }
 
-add_tags() {
+add_tag() {
   if [ "$1" = "" ]; then
     array=( `git describe --abbrev=0 --tags | tr -s '.' ' '`)
     prev_tag=${array[1]}
@@ -124,7 +129,6 @@ add_tags() {
 }
 
 test () {
-  echo `add_tags $1`
 }
 
 case "$verb" in
@@ -133,7 +137,7 @@ case "$verb" in
     ;;
   
   'tag')
-    add_tags $@
+    add_tag $@
     ;;
 
   'test')
