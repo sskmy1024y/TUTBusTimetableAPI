@@ -9,8 +9,8 @@ import { thunkActionCreators } from 'middleware/thunkAction'
 import SearchModal from 'components/SearchModal'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled from 'styled-components'
 import media from 'styled-media-query'
+import styled from 'styled-components'
 
 export default function TitleComponent() {
   const dispatch = useDispatch()
