@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react'
 import Provider from 'stories/Provider'
 
 import { Container } from 'stories'
-import { TimetableCollectType, TimetableDataType } from 'modules/Timetable'
+import { TimetableDataType, ReadTimetableCollectType } from 'modules/Timetable'
 import BulletinHeader from './BulletinHeader'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 
@@ -15,7 +15,8 @@ const decorator = stories.addDecorator(withKnobs)
 
 const datetime = new Date('2019-10-24 10:10')
 
-const timetableData1: TimetableCollectType = {
+const timetableData1: ReadTimetableCollectType = {
+  uuid: '21',
   arrival: {
     id: 2,
     name: '学校'
@@ -35,7 +36,8 @@ const timetableData1: TimetableCollectType = {
   ]
 }
 
-const timetableData2: TimetableCollectType = {
+const timetableData2: ReadTimetableCollectType = {
+  uuid: '23',
   arrival: {
     id: 2,
     name: '学校'
@@ -55,7 +57,8 @@ const timetableData2: TimetableCollectType = {
   ]
 }
 
-const timetableData3: TimetableCollectType = {
+const timetableData3: ReadTimetableCollectType = {
+  uuid: '13',
   arrival: {
     id: 1,
     name: 'みなみの'
@@ -69,7 +72,7 @@ const timetableData3: TimetableCollectType = {
 
 decorator.add('TimeBoard', () => {
   const width = number('width', 698)
-  const timetableList: TimetableCollectType[] = [timetableData1, timetableData2, timetableData3]
+  const timetableList: ReadTimetableCollectType[] = [timetableData1, timetableData2, timetableData3]
   return (
     <Container width={width}>
       {timetableList.map((timetable, index) => {

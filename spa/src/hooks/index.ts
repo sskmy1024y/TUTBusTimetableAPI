@@ -17,4 +17,6 @@ export { useDispatch, useSelector } from 'react-redux'
 
 export { useParams, useHistory, useLocation } from 'react-router'
 
+export { useFlipGroup } from 'react-easy-flip'
+
 export * from './custom'

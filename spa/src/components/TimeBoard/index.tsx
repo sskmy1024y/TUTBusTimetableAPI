@@ -2,17 +2,19 @@ import React from 'react'
 
 import { FavCourseType } from 'modules/FavoriteCourse'
 import { RootState } from 'modules'
-import { TimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
-import { useMemo, useSelector } from 'hooks'
+import { TimetableDataType, ReadTimetableCollectType } from '../../modules/Timetable/type'
+import { useMemo, useSelector, useFlipGroup } from 'hooks'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 
 interface TimeBoardProps {
-  timetables: TimetableCollectType[]
+  timetables: ReadTimetableCollectType[]
 }
 
 export default function TimeBoard({ timetables }: TimeBoardProps) {
   const isSuccess = useSelector<RootState, boolean | null>(state => state.timetables.success)
   const favoriteCourses = useSelector<RootState, FavCourseType[]>(state => state.favorite.courses)
+
+  const flipId = 'flipRoot'
 
   const sortTimetable = useMemo(
     () =>
@@ -31,12 +33,18 @@ export default function TimeBoard({ timetables }: TimeBoardProps) {
     [timetables, favoriteCourses]
   )
 
+  useFlipGroup({
+    flipId,
+    opts: { duration: 500, easing: 'cubic-bezier(0.68, -0.1, 0.265, 1.55)' },
+    deps: sortTimetable
+  })
+
   return isSuccess === true && sortTimetable.length > 0 ? (
-    <>
-      {sortTimetable.map((timetable, index) => {
-        return <TimeBoardItem key={index} timetable={timetable} />
+    <div id={flipId}>
+      {sortTimetable.map(timetable => {
+        return <TimeBoardItem key={timetable.uuid} timetable={timetable} />
       })}
-    </>
+    </div>
   ) : (
     <AnnounceItem
       type={
