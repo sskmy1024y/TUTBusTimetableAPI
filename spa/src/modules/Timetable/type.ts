@@ -14,6 +14,10 @@ export interface TimetableCollectType {
   arrival: PlaceType
 }
 
+export type ReadTimetableCollectType = TimetableCollectType & {
+  uuid: string
+}
+
 export enum TimetableDataType {
   Time, // 時刻
   NoBus, // バス運行日ではない時

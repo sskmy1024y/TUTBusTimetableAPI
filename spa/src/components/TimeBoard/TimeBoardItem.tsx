@@ -2,7 +2,7 @@ import { Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'hooks'
 import React from 'react'
 
-import { TimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
+import { ReadTimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
 
 import { DefaultView, FullMarquee, SearchResult } from './BulletinBody'
 import { RootState } from 'modules'
@@ -12,7 +12,7 @@ import { thunkActionCreators } from 'middleware/thunkAction'
 import media from 'styled-media-query'
 import styled from 'styled-components'
 
-interface SortedTimtetableType extends TimetableCollectType {
+interface SortedTimtetableType extends ReadTimetableCollectType {
   index?: number
 }
 
@@ -39,7 +39,7 @@ export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   }
 
   return (
-    <BulletinBoard>
+    <BulletinBoard data-id={timetable.uuid}>
       <BulletinHeader
         title={timetable.departure.name}
         subText={`発（${timetable.arrival.name}行）`}

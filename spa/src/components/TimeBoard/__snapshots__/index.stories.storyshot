@@ -465,6 +465,7 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
 >
   <div
     className="c1"
+    data-id="21"
   >
     <div
       className="c2"
@@ -553,6 +554,7 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
   </div>
   <div
     className="c1"
+    data-id="23"
   >
     <div
       className="c2"
@@ -645,6 +647,7 @@ exports[`Storyshots Components|TimeBoard TimeBoard 1`] = `
   </div>
   <div
     className="c1"
+    data-id="13"
   >
     <div
       className="c2"
@@ -890,6 +893,7 @@ exports[`Storyshots Components|TimeBoard TimeBoardItem 1`] = `
 >
   <div
     className="c1"
+    data-id="21"
   >
     <div
       className="c2"
