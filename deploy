@@ -129,6 +129,7 @@ add_tag() {
 }
 
 test () {
+  echo "test command"
 }
 
 case "$verb" in
