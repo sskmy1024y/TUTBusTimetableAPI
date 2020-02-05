@@ -132,7 +132,7 @@ case "$verb" in
     smart-deploy $verb $@
     ;;
   
-  'add_tag')
+  'tag')
     add_tags $@
     ;;
 
