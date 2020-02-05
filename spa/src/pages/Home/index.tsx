@@ -77,10 +77,11 @@ const IconPoint = styled.p`
 `
 
 const JumbotronContainer = styled(Jumbotron)`
-  padding: 2rem 1rem 1rem;
+  margin-top: 15px;
+  padding: 1rem 1rem 1rem;
 
   ${media.lessThan('small')`
-    padding: 1rem 1rem;
+    padding: 0 1rem;
   `}
 `
 
