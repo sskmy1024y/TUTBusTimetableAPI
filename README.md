@@ -82,5 +82,5 @@ out port is `:22222`
 and 
 
 ```bash
-$ docker-compose run --rm --service-ports web
+$ docker-compose run --rm --service-ports api
 ```

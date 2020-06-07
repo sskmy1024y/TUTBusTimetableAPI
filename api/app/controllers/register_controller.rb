@@ -42,7 +42,7 @@ class RegisterController < ApplicationController
     html_headers = contents.css('>h6.m-txt-ttl5')
 
     html_tables.each_with_index do |table_html, index|
-      title_html = html_headers.css('span strong')[index]
+      title_html = html_headers[index]
 
       # 一時格納するための変数を宣言
       goto_school = []
