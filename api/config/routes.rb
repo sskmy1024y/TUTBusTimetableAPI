@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/timetables/last', to: 'timetables#last'
       get '/timetables/internal', to: 'timetables#internal'
       get '/timetables/internal/:search', to: 'timetables#internal'
+      get '/timetables/lastupdate', to: 'timetables#lastupdate'
 
       post '/check', to: 'check#index'
     end
