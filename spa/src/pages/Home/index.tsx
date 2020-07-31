@@ -1,5 +1,5 @@
 import { Col, Jumbotron, Row } from 'react-bootstrap'
-import { useDispatch, useEffect, useLocation } from 'hooks'
+import { useDispatch, useEffect, useLocation, useSelector } from 'hooks'
 import React from 'react'
 
 import { thunkActionCreators } from 'middleware/thunkAction'
@@ -7,6 +7,7 @@ import ClientAccordion from 'components/ClientAccordion'
 import TimeBoard from 'containers/TimeBoard'
 import TitleComponent from 'components/TitleComponent'
 
+import { formatDate } from 'lib/utils'
 import TUTBusIcon from 'components/icons/TUTBusIcon'
 import media from 'styled-media-query'
 import styled from 'styled-components'
@@ -14,6 +15,7 @@ import styled from 'styled-components'
 export default function Home() {
   const dispatch = useDispatch()
   const location = useLocation()
+  const { lastUpdate } = useSelector(state => state.timetables)
 
   useEffect(() => {
     window.gtagPageview(location.pathname)
@@ -21,6 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(thunkActionCreators.onload())
+    dispatch(thunkActionCreators.getLastUpdate())
     dispatch(thunkActionCreators.getTimetable({ datetime: new Date(), searchType: null }))
   }, [dispatch])
 
@@ -35,6 +38,12 @@ export default function Home() {
           </MainIcon>
         </Col>
         <Col md='8'>
+          {lastUpdate && (
+            <LastUpdate>{`最終更新日時: ${formatDate(
+              new Date(lastUpdate),
+              'YYYY/MM/DD hh:mm'
+            )}`}</LastUpdate>
+          )}
           <JumbotronContainer>
             <TitleComponent />
             <TimeBoard />
@@ -77,7 +86,6 @@ const IconPoint = styled.p`
 `
 
 const JumbotronContainer = styled(Jumbotron)`
-  margin-top: 15px;
   padding: 1rem 1rem 1rem;
 
   ${media.lessThan('small')`
@@ -88,6 +96,13 @@ const JumbotronContainer = styled(Jumbotron)`
 const Annotation = styled.p`
   font-size: 0.9rem;
   font-weight: 400;
+`
+
+const LastUpdate = styled.p`
+  font-size: 14px;
+  font-weight: 300;
+  text-align: right;
+  margin: 5px 10px;
 `
 
 const Line = styled.hr`

@@ -1,3 +1,5 @@
+import * as rr from 'react-redux'
+import { RootState } from 'modules'
 import React from 'react'
 
 export const {
@@ -13,7 +15,17 @@ export const {
   useState
 } = React
 
-export { useDispatch, useSelector } from 'react-redux'
+/**
+ * Type-safe `useSelector` for the UniposProps store
+ */
+export const useSelector: rr.TypedUseSelectorHook<RootState> = rr.useSelector
+
+/**
+ * Type-safe `useDispatch` for the **SPA** store
+ */
+// export const useDispatch = (): Store['dispatch'] => rr.useDispatch
+
+export { useDispatch } from 'react-redux'
 
 export { useParams, useHistory, useLocation } from 'react-router'
 

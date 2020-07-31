@@ -145,7 +145,7 @@ class Api::V1::TimetablesController < ApplicationController
     expires_now
     last_dateset = DateSet.order(updated_at: "DESC").limit(1).first()
 
-    render json: { success: true, datetime: last_dateset.updated_at }, status: :ok if last_dateset
+    render json: { success: true, data: last_dateset.updated_at }, status: :ok if last_dateset
   rescue => e
     render json: { success: false, errors: '500 internal server error. Please contact the administrator.' }, status: :internal
   end

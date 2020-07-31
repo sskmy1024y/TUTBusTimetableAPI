@@ -7,10 +7,7 @@ interface RawApiResponse<T> {
   data: T
 }
 
-export function parseResponse<T>(
-  apiResponse: RawApiResponse<T>,
-  convertCamelCase: boolean = false
-) {
+export function parseResponse<T>(apiResponse: RawApiResponse<T>) {
   if (!apiResponse.success) {
     throw new Error('response error')
   }
@@ -43,4 +40,15 @@ export async function fetchTimetable(date: Date, searchType: SearchType | null) 
     return parseResponse<TimetablesApiData>(await response.json())
   }
   throw Error('fetch error')
+}
+
+export async function fetchLastUpdate() {
+  const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/timetables/lastupdate`, {
+    mode: 'cors'
+  })
+
+  if (response.ok) {
+    return parseResponse<string>(await response.json())
+  }
+  throw Error('[Fetch Error] cannnot fetch last update.')
 }
