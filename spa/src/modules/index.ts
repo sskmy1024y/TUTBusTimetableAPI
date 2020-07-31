@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import * as FavoriteCourse from './FavoriteCourse'
 import * as Search from './Search'
 import * as Timetable from './Timetable'
+import * as Common from './Common'
 
 export interface RootState {
   timetables: Timetable.State
@@ -25,5 +26,6 @@ export const rootReducer = combineReducers({
 export const actionCreator = {
   ...Timetable.actionCreators,
   ...Search.actionCreators,
-  ...FavoriteCourse.actionCreators
+  ...FavoriteCourse.actionCreators,
+  ...Common.actionCreator
 }

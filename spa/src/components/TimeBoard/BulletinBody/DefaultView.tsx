@@ -4,7 +4,6 @@ import React from 'react'
 import { Detail, Time, Type, WarningSpan } from './StyledComponents'
 import { NowShattle, WarningLastBus } from '.'
 import { PlaceType } from 'lib/types'
-import { RootState } from 'modules'
 import { TimetableType } from 'modules/Timetable/type'
 import { adjustDate, formatDate } from 'lib/utils'
 import { thunkActionCreators } from 'middleware/thunkAction'
@@ -27,7 +26,7 @@ export function DefaultView({
   marquee
 }: TimeProps) {
   const dispatch = useDispatch()
-  const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
+  const isSearch = useSelector(state => state.search.isSearch)
 
   useInterval(() => {
     if (!isSearch) {

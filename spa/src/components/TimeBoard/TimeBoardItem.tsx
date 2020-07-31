@@ -5,7 +5,6 @@ import React from 'react'
 import { ReadTimetableCollectType, TimetableDataType } from 'modules/Timetable/type'
 
 import { DefaultView, FullMarquee, SearchResult } from './BulletinBody'
-import { RootState } from 'modules'
 import BulletinHeader from './BulletinHeader'
 
 import { thunkActionCreators } from 'middleware/thunkAction'
@@ -22,7 +21,7 @@ interface TimeBoardProps {
 
 export default function TimeBoardItem({ timetable }: TimeBoardProps) {
   const dispatch = useDispatch()
-  const isSearch = useSelector<RootState, boolean>(state => state.search.isSearch)
+  const isSearch = useSelector(state => state.search.isSearch)
   const labels = ['先発', '次発', '次々発', '四発', '五発']
   const lastLabel = '最終'
 

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'hooks'
 import React from 'react'
 
 import * as Search from 'modules/Search'
-import { RootState } from 'modules'
 import { formatDate } from 'lib/utils'
 import { thunkActionCreators } from 'middleware/thunkAction'
 import SearchModal from 'components/SearchModal'
@@ -14,7 +13,7 @@ import styled from 'styled-components'
 
 export default function TitleComponent() {
   const dispatch = useDispatch()
-  const { isSearch, searchRequest } = useSelector<RootState, Search.State>(state => state.search)
+  const { isSearch, searchRequest } = useSelector(state => state.search)
 
   const handleCancel = () => {
     dispatch(

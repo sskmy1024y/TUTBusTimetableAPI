@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { FavCourseType } from 'modules/FavoriteCourse'
 import { ReadTimetableCollectType, TimetableDataType } from '../../modules/Timetable/type'
-import { RootState } from 'modules'
 import { useFlipGroup, useMemo, useSelector } from 'hooks'
 import TimeBoardItem, { AnnounceItem } from './TimeBoardItem'
 
@@ -11,8 +9,8 @@ interface TimeBoardProps {
 }
 
 export default function TimeBoard({ timetables }: TimeBoardProps) {
-  const isSuccess = useSelector<RootState, boolean | null>(state => state.timetables.success)
-  const favoriteCourses = useSelector<RootState, FavCourseType[]>(state => state.favorite.courses)
+  const isSuccess = useSelector(state => state.timetables.success)
+  const favoriteCourses = useSelector(state => state.favorite.courses)
 
   const flipId = 'flipRoot'
 
