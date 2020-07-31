@@ -99,6 +99,7 @@ const Annotation = styled.p`
 `
 
 const LastUpdate = styled.p`
+  color: #797979;
   font-size: 14px;
   font-weight: 300;
   text-align: right;

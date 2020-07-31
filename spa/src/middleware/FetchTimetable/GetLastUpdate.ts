@@ -10,6 +10,6 @@ export const getLastUpdate = (): ThunkActionType => async (dispatch: Dispatch<Ac
     const response = await fetchLastUpdate()
     dispatch(actionCreator.setLastUpdate({ response }))
   } catch (e) {
-    // TODO: error handler
+    dispatch(actionCreator.noOp())
   }
 }
